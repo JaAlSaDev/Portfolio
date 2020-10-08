@@ -1,0 +1,60 @@
+* {
+    -moz-box-sizing: border-box;
+    /* Firexfox */
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome/iOS/Android */
+    box-sizing: border-box;
+    /* IE */
+}
+
+body {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background-color: black;
+    margin: auto;
+}
+
+.Screen {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#StartScreen {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#StartScreen>p {
+    z-index: 1;
+}
+
+#StartScreenBackground {
+    position: absolute;
+    z-index: 0;
+    filter: opacity(45%) blur(1px) hue-rotate(50deg);
+}
+
+p {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+#GameTitle {
+    font-size: 200px;
+    margin: 10px 0px 210px 0px;
+}
+
+#StartPrompt {
+    font-size: 50px;
+}
+
+#Subtitle {
+    font-size: 40px;
+}
