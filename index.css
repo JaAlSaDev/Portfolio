@@ -28,6 +28,7 @@ body {
 #StartScreen {
     background-size: cover;
     background-repeat: no-repeat;
+    /* border: white dashed 5px; */
 }
 
 #StartScreen>p {
@@ -37,24 +38,29 @@ body {
 #StartScreenBackground {
     position: absolute;
     z-index: 0;
-    filter: opacity(45%) blur(1px) hue-rotate(50deg);
+    filter: opacity(45%) blur(2px) hue-rotate(50deg);
 }
 
 p {
+    position: absolute;
     color: white;
     font-weight: bold;
     margin: 0;
-}
-
-#GameTitle {
-    font-size: 200px;
-    margin: 10px 0px 210px 0px;
-}
-
-#StartPrompt {
-    font-size: 50px;
+    /* border: red dashed 5px; */
 }
 
 #Subtitle {
     font-size: 40px;
+    top: 20%;
+}
+
+#GameTitle {
+    font-size: 200px;
+    top: 27.5%;
+}
+
+#StartPrompt {
+    font-size: 50px;
+    display: none;
+    bottom: 15%;
 }
