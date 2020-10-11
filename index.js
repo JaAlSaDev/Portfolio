@@ -1,25 +1,42 @@
 import jQuery from "./JS/jQuery";
 window.$ = window.jQuery = jQuery;
 
-let startPrompt = $("#StartPrompt")
+let startPrompt = {
+    element: $("#StartPrompt"),
 
-console.log(startPrompt.text());
-console.log("fuck you");
+    flickerOnce: function(duration) {
+        this.element.fadeIn(duration / 2).fadeOut(duration / 2);
+    },
 
-function flicker(flickerDuration) {
-    startPrompt.fadeIn(flickerDuration / 2).fadeOut(flickerDuration / 2);
+    timer: (duration) => setInterval(() => {
+        startPrompt.flickerOnce(duration)
+    }, duration),
+
+    speedUp: function(flick, fastFlickerDuration) {
+        clearInterval(flick)
+        this.timer(fastFlickerDuration);
+    },
+
+    control: function(initialFadeInDuration, normalDuration, fastDuration) {
+
+        setTimeout(() => {
+            this.flickerOnce(normalDuration);
+
+            let flick = this.timer(normalDuration);
+
+            window.addEventListener("keypress", function(e) {
+                e = e || window.event;
+
+                //If any key is pressed
+                if (e.key) {
+                    startPrompt.speedUp(flick, fastDuration)
+                }
+            })
+
+
+
+        }, initialFadeInDuration);
+    }
 }
 
-function controlFlicker(initialDuration, flickerDuration) {
-    setTimeout(() => {
-        flicker(flickerDuration);
-
-        setInterval(() => {
-            flicker(flickerDuration);
-        }, flickerDuration);
-
-    }, initialDuration);
-}
-
-
-controlFlicker(2500, 2000)
+startPrompt.control(2500, 1250, 100);
