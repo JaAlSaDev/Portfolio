@@ -64,3 +64,11 @@ p {
     display: none;
     bottom: 15%;
 }
+
+#StartPrompt:hover {
+    color: rgb(0, 225, 255);
+}
+
+#StartPrompt:active {
+    color: greenyellow;
+}

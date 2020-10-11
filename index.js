@@ -3,7 +3,14 @@ window.$ = window.jQuery = jQuery;
 
 let startPrompt = {
     element: $("#StartPrompt"),
+    isFast: false,
 
+
+    changeText: function(newText) {
+        if (!this.isFast) {
+            this.element.text(newText);
+        }
+    },
     flickerOnce: function(duration) {
         this.element.fadeIn(duration / 2).fadeOut(duration / 2);
     },
@@ -13,8 +20,12 @@ let startPrompt = {
     }, duration),
 
     speedUp: function(flick, fastFlickerDuration) {
-        clearInterval(flick)
-        this.timer(fastFlickerDuration);
+        if (!this.isFast) {
+            clearInterval(flick)
+            this.timer(fastFlickerDuration);
+            this.isFast = true;
+        }
+
     },
 
     control: function(initialFadeInDuration, normalDuration, fastDuration) {
@@ -22,18 +33,31 @@ let startPrompt = {
         setTimeout(() => {
             this.flickerOnce(normalDuration);
 
-            let flick = this.timer(normalDuration);
+            let flickerTimer = this.timer(normalDuration);
 
+            //Keyboard
             window.addEventListener("keypress", function(e) {
                 e = e || window.event;
 
-                //If any key is pressed
                 if (e.key) {
-                    startPrompt.speedUp(flick, fastDuration)
+                    startPrompt.changeText("PRESS ENTER TO START");
+                }
+
+                if (e.key == "Enter") {
+                    startPrompt.speedUp(flickerTimer, fastDuration)
                 }
             })
 
+            //Mouse
+            window.onmousemove = function(e) {
+                startPrompt.changeText("CLICK HERE TO START");
+            }
 
+            this.element.on("mouseup", function(e) {
+                if (e.button == 0) {
+                    startPrompt.speedUp(flickerTimer, fastDuration)
+                }
+            })
 
         }, initialFadeInDuration);
     }
