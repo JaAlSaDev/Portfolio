@@ -23,12 +23,23 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
 }
 
 #StartScreen {
     background-size: cover;
     background-repeat: no-repeat;
-    /* border: white dashed 5px; */
+    border: white dashed 5px;
+}
+
+#MainMenu {
+    background-color: rgb(255, 93, 52);
+    display: none;
+}
+
+#MainMenu>p {
+    font-size: 50px;
+    /* display: none; */
 }
 
 #StartScreen>p {
@@ -37,8 +48,10 @@ body {
 
 #StartScreenBackground {
     position: absolute;
+    width: 100%;
+    height: 100%;
     z-index: 0;
-    filter: opacity(45%) blur(2px) hue-rotate(50deg);
+    filter: opacity(50%) blur(2px) hue-rotate(50deg);
 }
 
 p {

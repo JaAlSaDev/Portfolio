@@ -1,6 +1,10 @@
 import jQuery from "./JS/jQuery";
 window.$ = window.jQuery = jQuery;
 
+let startScreen = $("#StartScreen");
+let mainMenu = $("#MainMenu");
+
+
 let startPrompt = {
     element: $("#StartPrompt"),
     isFast: false,
@@ -28,6 +32,23 @@ let startPrompt = {
 
     },
 
+    transitionToMainScreen: function(flickerTimer, fastDuration) {
+
+        //Speed up the start prompt
+        startPrompt.speedUp(flickerTimer, fastDuration);
+
+        setTimeout(() => {
+            startScreen.fadeOut(3000);
+
+            setTimeout(() => {
+                mainMenu.fadeIn(3000);
+            }, 3000);
+        }, 1250);
+
+
+
+    },
+
     control: function(initialFadeInDuration, normalDuration, fastDuration) {
 
         setTimeout(() => {
@@ -40,24 +61,44 @@ let startPrompt = {
                 e = e || window.event;
 
                 if (e.key) {
-                    startPrompt.changeText("PRESS ENTER TO START");
+                    startPrompt.changeText("PRESS ENTER");
                 }
 
                 if (e.key == "Enter") {
-                    startPrompt.speedUp(flickerTimer, fastDuration)
+                    startPrompt.transitionToMainScreen(flickerTimer, fastDuration)
                 }
             })
 
             //Mouse
             window.onmousemove = function(e) {
-                startPrompt.changeText("CLICK HERE TO START");
+                startPrompt.changeText("CLICK HERE");
             }
 
             this.element.on("mouseup", function(e) {
                 if (e.button == 0) {
-                    startPrompt.speedUp(flickerTimer, fastDuration)
+                    startPrompt.transitionToMainScreen(flickerTimer, fastDuration)
                 }
             })
+
+
+            //Gamepad
+            window.addEventListener("gamepadconnected", function(e) {
+                var gamepad = e.gamepad;
+                console.log(
+                    "Gamepad connected at index %d: %s. %d buttons, %d axes.",
+                    gamepad.index,
+                    gamepad.id,
+                    gamepad.buttons.length,
+                    gamepad.axes.length
+                );
+
+                startPrompt.changeText("PRESS START")
+
+            });
+
+            window.addEventListener("gamepaddisconnected", function(e) {
+                startPrompt.changeText("PRESS ENTER");
+            });
 
         }, initialFadeInDuration);
     }
