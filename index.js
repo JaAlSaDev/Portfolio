@@ -4,6 +4,10 @@ window.$ = window.jQuery = jQuery;
 let startScreen = $("#StartScreen");
 let mainMenu = $("#MainMenu");
 
+let previewStatic = $("#previewStatic");
+let staticFlicker = (duration) => {
+    previewStatic.fadeTo(duration / 2, 0.2).fadeTo(duration / 2, 0.7);
+}
 
 let startPrompt = {
     element: $("#StartPrompt"),
@@ -42,6 +46,14 @@ let startPrompt = {
 
             setTimeout(() => {
                 mainMenu.fadeIn(3000);
+                setTimeout(() => {
+                    staticFlicker(2500);
+
+                    setInterval(() => {
+                        staticFlicker(2500);
+                    }, 2750);
+                }, 3000);
+
             }, 3000);
         }, 1250);
 
