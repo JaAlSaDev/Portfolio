@@ -124,6 +124,10 @@ let jobtitles = ['Software Engineer', 'Full Stack Developer', 'Game Developer', 
 
 let jobTitleIndex = 0;
 
+let writeDuration = 100,
+    deleteDuration = 50,
+    waitDuration = 2000;
+
 function typeJobTitle() {
     if (!jobtitles[jobTitleIndex]) {
         jobTitleIndex = 0;
@@ -133,41 +137,47 @@ function typeJobTitle() {
 
     currentTitle.split();
 
-    let part = '';
+    let printedText = '';
     let currentChar = 0;
 
 
     let int1 = setInterval(() => {
-        if (!currentTitle[currentChar]) {
+        if (currentTitle[currentChar]) {
+            //Print text if there are characters left
+            printedText += currentTitle[currentChar++];
+            jobTitleElm.text(printedText)
+
+        } else {
+            //Go to the next job title
             jobTitleIndex++;
 
             setTimeout(() => {
-                deleteMessage(part);
-            }, 500);
+                deleteMessage(printedText);
+            }, waitDuration);
             clearInterval(int1);
-
-        } else {
-            part += currentTitle[currentChar++];
-            jobTitleElm.text(part)
         }
-    }, 100);
+    }, writeDuration);
 
 }
 
 function deleteMessage(str) {
     let int = setInterval(() => {
-        if (str.length === 0) {
-            setTimeout(() => {
-                typeJobTitle();
-            }, 500);
-            clearInterval(int);
-        } else {
+        if (str.length !== 0) {
+
             str = str.split('');
             str.pop();
             str = str.join('');
+
             jobTitleElm.text(str)
+        } else {
+
+
+            setTimeout(() => {
+                typeJobTitle();
+            }, waitDuration);
+            clearInterval(int);
         }
-    }, 50);
+    }, deleteDuration);
 }
 
 typeJobTitle()
