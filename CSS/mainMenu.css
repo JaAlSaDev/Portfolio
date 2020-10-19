@@ -1,0 +1,85 @@
+#MainMenu {
+    /* background-color:; */
+    display: none;
+}
+
+.ItemPreview {
+    border: dashed blue 5px;
+    position: absolute;
+    top: 30%;
+    height: 28%;
+    width: 25%;
+}
+
+#TextPreviewContainer {
+    right: 2.5%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: max-content max-content;
+}
+
+#TextPreviewContainer>p {
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+}
+
+#ImgPreviewContainer {
+    left: 2.5%;
+    display: flex;
+    justify-content: center;
+}
+
+#ImgPreviewContainer>img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+
+#previewImg {
+    filter: opacity(100%);
+    background-repeat: no-repeat;
+}
+
+#previewStatic {
+    background: url("../Images/Static3.gif") no-repeat;
+    /* filter: opacity(20%); */
+}
+
+#message {
+    position: relative;
+    color: white;
+    text-align: center;
+    border: dashed blue 5px;
+    font-size: 50px;
+    top: 60%;
+    max-height: 10%;
+}
+
+#JobTitle {
+    color: rgb(255, 144, 124);
+}
+
+.cursor {
+    display: inline-block;
+    height: 50px;
+    width: 18px;
+    background: white;
+    vertical-align: middle;
+    animation: 1.25s blink linear infinite;
+}
+
+@keyframes blink {
+    0%,
+    49% {
+        opacity: 0;
+    }
+    50%,
+    100% {
+        opacity: 1;
+    }
+}

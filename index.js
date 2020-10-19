@@ -117,3 +117,57 @@ let startPrompt = {
 }
 
 startPrompt.control(2500, 1250, 100);
+
+
+let jobTitleElm = $("#JobTitle");
+let jobtitles = ['Software Engineer', 'Full Stack Developer', 'Game Developer', 'Creative Spirit'];
+
+let jobTitleIndex = 0;
+
+function typeJobTitle() {
+    if (!jobtitles[jobTitleIndex]) {
+        jobTitleIndex = 0;
+    }
+
+    const currentTitle = jobtitles[jobTitleIndex];
+
+    currentTitle.split();
+
+    let part = '';
+    let currentChar = 0;
+
+
+    let int1 = setInterval(() => {
+        if (!currentTitle[currentChar]) {
+            jobTitleIndex++;
+
+            setTimeout(() => {
+                deleteMessage(part);
+            }, 500);
+            clearInterval(int1);
+
+        } else {
+            part += currentTitle[currentChar++];
+            jobTitleElm.text(part)
+        }
+    }, 100);
+
+}
+
+function deleteMessage(str) {
+    let int = setInterval(() => {
+        if (str.length === 0) {
+            setTimeout(() => {
+                typeJobTitle();
+            }, 500);
+            clearInterval(int);
+        } else {
+            str = str.split('');
+            str.pop();
+            str = str.join('');
+            jobTitleElm.text(str)
+        }
+    }, 50);
+}
+
+typeJobTitle()
