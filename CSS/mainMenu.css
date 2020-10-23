@@ -47,17 +47,17 @@
 
 #previewStatic {
     background: url("../Images/Static3.gif") no-repeat;
-    /* filter: opacity(20%); */
 }
 
 #message {
-    position: relative;
+    position: absolute;
     color: white;
     text-align: center;
     border: dashed blue 5px;
     font-size: 50px;
     top: 60%;
     max-height: 10%;
+    width: 100%;
 }
 
 #JobTitle {
@@ -82,4 +82,60 @@
     100% {
         opacity: 1;
     }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: auto;
+    width: 40%;
+    /* height: 100%; */
+    border: dashed blue 5px;
+    top: 32%;
+}
+
+.hexagonContainer {
+    margin: auto;
+    position: relative;
+    height: auto;
+    width: 27.85714285714286%;
+    padding: 0 0 32.16760145166612% 0;
+    -o-transform: rotate(-60deg) skewY(30deg);
+    -moz-transform: rotate(-60deg) skewY(30deg);
+    -webkit-transform: rotate(-60deg) skewY(30deg);
+    -ms-transform: rotate(-60deg) skewY(30deg);
+    transform: rotate(-90deg) skewY(30deg);
+    background: #fd005f;
+    overflow: hidden;
+    visibility: hidden;
+    /* top: 10%; */
+}
+
+.hexagonContainer * {
+    visibility: visible;
+}
+
+.hexagon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -moz-transform: skewY(-30deg) rotate(60deg);
+    -webkit-transform: skewY(-30deg) rotate(60deg);
+    -ms-transform: skewY(-30deg) rotate(60deg);
+    transform: skewY(-30deg) rotate(60deg);
+    overflow: hidden;
+    /* background: url("../Images/Insurgentes.jpg") no-repeat; */
+    border: blue dashed 5px;
+}
+
+.hexagon>img {
+    height: 120%;
+    rotate: 30deg;
+    top: -10%;
+    left: -15%;
+    position: absolute;
 }
