@@ -28,3 +28,8 @@ body {
     align-items: center;
     border: white dashed 5px;
 }
+
+.hex {
+    stroke: goldenrod;
+    stroke-width: 50;
+}

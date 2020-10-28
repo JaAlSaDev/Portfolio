@@ -104,3 +104,8 @@ let startPrompt = {
 }
 
 startPrompt.control(2500, 1250, 100);
+
+
+let hexagon = $('svg g polygon')[0];
+
+console.log(hexagon);

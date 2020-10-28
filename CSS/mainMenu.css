@@ -38,13 +38,14 @@
     overflow: hidden;
 }
 
-#ImgPreviewContainer>img {
+#ImgPreviewContainer>#previewImg {
     position: absolute;
     /* height: 100%; */
-    width: 120%;
+    width: 125%;
     background-size: cover;
     transform: skewX(-12deg);
-    top: -10%;
+    top: -50%;
+    right: -15%;
 }
 
 #previewImg {
@@ -54,6 +55,9 @@
 
 #previewStatic {
     background: url("../Images/Static3.gif") no-repeat;
+    width: 125%;
+    /* height: 150%; */
+    /* transform: skewX(-12deg); */
 }
 
 #message {
@@ -140,9 +144,10 @@
 }
 
 .hexagon>img {
-    height: 120%;
+    /* height: 100%; */
+    width: 120%;
     rotate: 30deg;
-    top: -10%;
-    left: -15%;
+    /* top: -10%; */
+    left: -10%;
     position: absolute;
 }
