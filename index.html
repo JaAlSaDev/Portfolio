@@ -13,7 +13,7 @@
 
     <div class="Screen" id="StartScreen">
 
-        <img id="StartScreenBackground" src="./Images/TV Color Bars1.gif" />
+        <img class="BackgroundImg" src="./Images/TV Color Bars1.gif" />
 
         <p id="Subtitle">A GAMIFIED PORTFOLIO</p>
         <p id="GameTitle">JAALSADEV</p>
@@ -24,59 +24,38 @@
 
 
     <div class="Screen" id="MainMenu">
-        <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <!-- <rect fill="blue" x="0" y="0" width="100%" height="100%"/> -->
-            
-            <defs>
+
+        <img class="BackgroundImg" src="./Images/King Ghost.jpg" />
+        <!-- <object data="./svg/hexagon.svg" type="image/svg+xml"> </object> -->
+
+        <div id="midSection">
+            <div class="ItemPreview" id="ImgPreviewContainer">
+                <img id="previewImg" src="./Images/GFD.jpg" alt="">
+                <img id="previewStatic" src="" alt="">
+
+            </div>
+
+            <svg version="1.1" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 261.5">
+                <!-- <rect fill="blue" x="0" y="0" width="100%" height="100%"/> -->
                 
-                <pattern id="imgpattern" x="0" y="0" width="100%" height="100%" patternContentUnits="objectBoundingBox">
-                    <image width="1" height="1" xlink:href="Images/Static3.gif" preserveAspectRatio="none" />
-                </pattern>
-            </defs>
-
-            <svg x="42.5%" y="32%" height="26%" width="16.5%">
-                <g class="hex"  stroke-width="50" transform="scale(0.4), translate(30,30)">
-                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
-                </g>
+                <defs>
+                    
+                    <pattern id="imgpattern" x="0" y="0" width="100%" height="100%" patternContentUnits="objectBoundingBox">
+                        <image width="1" height="1" xlink:href="Images/Static3.gif" preserveAspectRatio="none" />
+                    </pattern>
+                </defs>
+                <polygon class="hexagon"  width="100%" height="100%" stroke-width="0" transform="scale(0.385), translate(27,27)" fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
             </svg>
 
 
-        <svg x="25%" y="2.8%" height="26%" width="16.5%">
-                <g class="hex"  stroke-width="50" transform="scale(0.4), translate(30,30)">
-                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
-                </g>
-            </svg>
-
-        <svg x="25%" y="60%" height="26%" width="16.5%">
-                <g class="hex" transform="scale(0.4), translate(30,30)">
-                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
-                </g>
-            </svg>
-
-        <svg x="60%" y="2.8%" height="26%" width="16.5%">
-                <g class="hex"  stroke-width="50" transform="scale(0.4), translate(30,30)">
-                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
-                </g>
-            </svg>
-
-        <svg x="60%" y="60%" height="26%" width="16.5%">
-                <g class="hex" transform="scale(0.4), translate(30,30)">
-                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
-                </g>
-            </svg>
+            <div class="ItemPreview" id="TextPreviewContainer">
+                <p id="TextPreview">Grace</p>
+            </div>
 
 
-        </svg>
-        <div class="ItemPreview" id="TextPreviewContainer">
-            <p id="TextPreview">Grace</p>
+
         </div>
 
-
-        <div class="ItemPreview" id="ImgPreviewContainer">
-            <img id="previewImg" src="./Images/GFD.jpg" alt="">
-            <img id="previewStatic" src="" alt="">
-
-        </div>
 
 
         <p id="message">I am a <span id="JobTitle"></span> <span class="cursor"></span></p>

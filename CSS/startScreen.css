@@ -1,7 +1,7 @@
 #StartScreen {
     background-size: cover;
     background-repeat: no-repeat;
-    /* display: none; */
+    display: none;
 }
 
 #StartScreen>p {
@@ -10,15 +10,6 @@
     font-weight: bold;
     margin: 0;
     z-index: 1;
-}
-
-#StartScreenBackground {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    filter: opacity(50%) blur(2px) hue-rotate(50deg);
-    background-size: cover;
 }
 
 #Subtitle {

@@ -29,7 +29,11 @@ body {
     border: white dashed 5px;
 }
 
-.hex {
-    stroke: goldenrod;
-    stroke-width: 50;
+.BackgroundImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    filter: opacity(50%) blur(2px) hue-rotate(50deg);
+    background-size: cover;
 }

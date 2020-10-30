@@ -1,0 +1,61 @@
+<svg width="500" height="255" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <rect fill="blue" x="0" y="0" width="100%" height="100%"/>
+
+    <!-- <defs>
+
+        <pattern id="imgpattern" x="0" y="0" width="100%" height="100%" patternContentUnits="objectBoundingBox">
+            <image width="1" height="1" xlink:href="https://media0.giphy.com/media/Gb0fYjAiMvNVC/giphy.gif" preserveAspectRatio="none" />
+        </pattern>
+    </defs> -->
+
+    
+    <polygon class="hexagon" stroke-width="50" transform="scale(0.4), translate(5,5)"
+                points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+
+</svg>
+
+<svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <!-- <rect fill="blue" x="0" y="0" width="100%" height="100%"/> -->
+            
+            <defs>
+                
+                <pattern id="imgpattern" x="0" y="0" width="100%" height="100%" patternContentUnits="objectBoundingBox">
+                    <image width="1" height="1" xlink:href="Images/Static3.gif" preserveAspectRatio="none" />
+                </pattern>
+            </defs>
+
+            <svg x="42.5%" y="32%" height="26%" width="16.5%">
+                <g class="hexagon"  stroke-width="50" transform="scale(0.4), translate(30,30)">
+                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+                </g>
+            </svg>
+
+
+
+
+        <svg x="25%" y="2.8%" height="26%" width="16.5%">
+                <g class="hexagon"  stroke-width="50" transform="scale(0.4), translate(30,30)">
+                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+                </g>
+            </svg>
+
+        <svg x="25%" y="60%" height="26%" width="16.5%">
+                <g class="hexagon" transform="scale(0.4), translate(30,30)">
+                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+                </g>
+            </svg>
+
+        <svg x="60%" y="2.8%" height="26%" width="16.5%">
+                <g class="hexagon"  stroke-width="50" transform="scale(0.4), translate(30,30)">
+                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+                </g>
+            </svg>
+
+        <svg x="60%" y="60%" height="26%" width="16.5%">
+                <g class="hexagon" transform="scale(0.4), translate(30,30)">
+                    <polygon fill="url(#imgpattern)" points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+                </g>
+            </svg>
+
+
+        </svg>
