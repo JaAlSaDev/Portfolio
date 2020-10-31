@@ -10,9 +10,9 @@
 }
 
 body {
-    position: relative;
-    width: 1920px;
-    height: 1080px;
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
     background-color: black;
     margin: auto;
 }
@@ -26,7 +26,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: white dashed 5px;
+    /* border: white dashed 5px; */
 }
 
 .BackgroundImg {
