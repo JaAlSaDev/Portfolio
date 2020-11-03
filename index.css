@@ -34,6 +34,6 @@ body {
     width: 100%;
     height: 100%;
     z-index: 0;
-    filter: opacity(50%) blur(2px) hue-rotate(50deg);
+    /* filter: opacity(50%) blur(2px) hue-rotate(50deg); */
     background-size: cover;
 }
