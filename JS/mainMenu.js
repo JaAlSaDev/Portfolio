@@ -1,11 +1,14 @@
 import jQuery from "./jQuery";
 window.$ = window.jQuery = jQuery;
 import sundayImg from "../Images/onthesunday-background-compress.jpg"
+import handCannotErase from "../Images/qg26Ki.jpg"
+import astronaut from "../Images/tumblr_ockrhsElIo1tmnl7lo1_500.png";
 export let mainMenu = {
     elem: $("#MainMenu"),
     previewStatic: $("#previewStatic"),
     hexagon_Containers: $("svg"),
     hexPatterns: $(".hexPattern"),
+    hexagons: $(".hexagon"),
 
     previewPanels: {
         img: $("#previewImg"),
@@ -18,7 +21,7 @@ export let mainMenu = {
     },
     jobTitle: {
         elem: $("#JobTitle"),
-        list: ['Software Engineer', 'Full Stack Developer', 'Game Developer', 'Creative Spirit'],
+        list: ['Software Engineer', 'Full Stack Developer', 'Game Developer'],
         index: 0,
         durations: {
             write: 100,
@@ -75,7 +78,7 @@ export let mainMenu = {
     },
 
     staticFlicker: (duration) => {
-        mainMenu.previewStatic.fadeTo(duration / 2, 0.2).fadeTo(duration / 2, 0.7);
+        mainMenu.previewStatic.fadeTo(duration / 2, 0.1).fadeTo(duration / 2, 0.7);
     },
     control: function() {
         setTimeout(() => {
@@ -94,7 +97,28 @@ export let mainMenu = {
     }
 };
 
-mainMenu.previewPanels.changeContent(sundayImg, "On the Sunday of Life")
-    // mainMenu.hexagon_Containers[0].childNodes[3].childNodes[1].childNodes[1].attributes[2].nodeValue = "https://123greetingsquotes.com/wp-content/uploads/2017/11/beautiful-gif-images-of-flowers-falling-4.gif"
-    // console.log(mainMenu.hexagon_Containers[0].childNodes[3].childNodes[1].childNodes[1].attributes[2].nodeValue);
-    // console.log(mainMenu.hexPatterns);
+// mainMenu.previewPanels.changeContent(sundayImg, "On the Sunday of Life")
+// mainMenu.hexagon_Containers[0].childNodes[3].childNodes[1].childNodes[1].attributes[2].nodeValue = "https://123greetingsquotes.com/wp-content/uploads/2017/11/beautiful-gif-images-of-flowers-falling-4.gif"
+// console.log(mainMenu.hexagon_Containers[0].childNodes[3].childNodes[1].childNodes[1].attributes[2].nodeValue);
+// console.log(mainMenu.hexPatterns);
+// console.log(mainMenu.hexagons[0]);
+
+
+
+
+const hexValues = Object.values(mainMenu.hexagons);
+hexValues.splice(5);
+
+const previewTexts = ["???", "On the Sunday of Life", "Hand Cannot Erase", "Frightened Astronaut", "???"]
+const previewImgs = ["https://media.giphy.com/media/3oz8xOvhnSpVOs9xza/giphy.gif", sundayImg, handCannotErase, astronaut, "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"];
+hexValues.forEach((hexagon, index) => {
+
+
+    hexagon.addEventListener("mouseover", () => {
+        mainMenu.previewPanels.changeContent(previewImgs[index], previewTexts[index])
+    })
+
+    hexagon.addEventListener("mouseleave", () => {
+        mainMenu.previewPanels.changeContent("", "")
+    })
+});
