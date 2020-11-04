@@ -1,10 +1,21 @@
 import jQuery from "./jQuery";
 window.$ = window.jQuery = jQuery;
-
+import sundayImg from "../Images/onthesunday-background-compress.jpg"
 export let mainMenu = {
     elem: $("#MainMenu"),
     previewStatic: $("#previewStatic"),
+    hexagon_Containers: $("svg"),
+    hexPatterns: $(".hexPattern"),
 
+    previewPanels: {
+        img: $("#previewImg"),
+        text: $("#TextPreview")[0],
+
+        changeContent: function(imgSrc, text) {
+            mainMenu.previewPanels.img.attr("src", imgSrc);
+            mainMenu.previewPanels.text.textContent = text;
+        }
+    },
     jobTitle: {
         elem: $("#JobTitle"),
         list: ['Software Engineer', 'Full Stack Developer', 'Game Developer', 'Creative Spirit'],
@@ -82,3 +93,8 @@ export let mainMenu = {
 
     }
 };
+
+mainMenu.previewPanels.changeContent(sundayImg, "On the Sunday of Life")
+    // mainMenu.hexagon_Containers[0].childNodes[3].childNodes[1].childNodes[1].attributes[2].nodeValue = "https://123greetingsquotes.com/wp-content/uploads/2017/11/beautiful-gif-images-of-flowers-falling-4.gif"
+    // console.log(mainMenu.hexagon_Containers[0].childNodes[3].childNodes[1].childNodes[1].attributes[2].nodeValue);
+    // console.log(mainMenu.hexPatterns);
