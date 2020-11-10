@@ -6,6 +6,15 @@ import astronaut from "../Images/tumblr_ockrhsElIo1tmnl7lo1_500.png";
 import sunday from "../Images/Sunday.jpg"
 import astronaut1 from "../Images/Astronaut1.jpg"
 
+
+let audioElement = $("audio")[0]
+audioElement.src = require("../Sound/X8StageSelect.mp3")
+
+const audioContext = new AudioContext();
+
+const track = audioContext.createMediaElementSource(audioElement);
+track.connect(audioContext.destination)
+
 let jobTitle = {
     elem: $("#JobTitle"),
     list: ['Software Engineer', 'Full Stack Developer', 'Game Developer'],
@@ -118,11 +127,12 @@ let hexagons = {
                 previewPanels.changeContent(this.previewImgs[index], this.previewTexts[index])
 
                 this.changeHexImage(index, this.hoverImages[index]);
+                audioElement.play();
             })
 
             hexagon.addEventListener("mouseleave", () => {
                 previewPanels.changeContent("", "")
-
+                    // audioElement.pause()
                 this.changeHexImage(index, this.originalImages[index]);
             })
         });

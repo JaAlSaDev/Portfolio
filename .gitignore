@@ -1,5 +1,6 @@
 .cache
 dist
 Images
+sound
 fonts
 node_modules
