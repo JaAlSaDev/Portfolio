@@ -7,6 +7,11 @@ import sunday from "../Images/Sunday.jpg"
 import astronaut1 from "../Images/Astronaut1.jpg"
 import tvStatic from "../Images/Static3.gif";
 import recordings from "../Images/Recordings.png"
+import gameControllerIcon from "../svg/game-controller.svg";
+import webDevelopmentIcon from "../svg/programming.svg";
+import linkIcon from "../svg/link.svg"
+import Hexagon from "./Hexagon";
+
 
 
 let audioElement = $("audio")[0]
@@ -16,6 +21,8 @@ const audioContext = new AudioContext();
 
 const track = audioContext.createMediaElementSource(audioElement);
 track.connect(audioContext.destination)
+
+
 
 let jobTitle = {
     elem: $("#JobTitle"),
@@ -87,6 +94,59 @@ let previewPanels = {
         this.previewStatic.fadeTo(duration / 2, 0.1).fadeTo(duration / 2, 0.5);
     },
 };
+
+//Inject hexagons to the DOM
+{
+    //Hexagon attributes
+    let patternID = ["topLeftHexPatt", "topRightHexPatt", "midHexPatt", "bottomLeftHexPatt", "bottomRightHexPatt"];
+    let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection"]
+    let originalImages = [
+        tvStatic,
+        sunday,
+        "http://stevenwilsonhq.com/sw/wp-content/uploads/2014/12/HCE-finalcover.jpg",
+        astronaut1,
+        tvStatic
+    ];
+    let icons = [
+        [],
+        [],
+        [],
+        [{
+                "x": "0.25",
+                "y": "0.25",
+                "xlink:href": gameControllerIcon,
+                "transform": "scale(0.5)"
+            },
+            {
+                "x": "0.85",
+                "y": "0.85",
+                "xlink:href": webDevelopmentIcon,
+                "transform": "scale(0.45)"
+            }
+        ],
+        [{
+            "x": "0.35",
+            "y": "0.35",
+            "xlink:href": linkIcon,
+            "transform": "scale(0.6)"
+        }]
+    ];
+
+
+    //Inject the hexagons into the DOM
+    for (let i = 0; i < 2; i++) {
+
+        $(location[i]).append((new Hexagon(patternID[i], originalImages[i], icons[i])).getElement())
+    }
+
+    $(location[2]).after((new Hexagon(patternID[2], originalImages[2], icons[2])).getElement())
+
+    for (let i = 3; i < location.length; i++) {
+        $(location[i]).append((new Hexagon(patternID[i], originalImages[i], icons[i])).getElement())
+    }
+}
+
+
 
 let hexagons = {
     containers: $("svg"),
