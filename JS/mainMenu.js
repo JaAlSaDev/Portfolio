@@ -5,6 +5,8 @@ import handCannotErase from "../Images/qg26Ki.jpg"
 import astronaut from "../Images/tumblr_ockrhsElIo1tmnl7lo1_500.png";
 import sunday from "../Images/Sunday.jpg"
 import astronaut1 from "../Images/Astronaut1.jpg"
+import tvStatic from "../Images/Static3.gif";
+import recordings from "../Images/Recordings.png"
 
 
 let audioElement = $("audio")[0]
@@ -91,35 +93,35 @@ let hexagons = {
     patterns: $(".hexPattern"),
     elements: (Object.values($(".hexagon"))),
     originalImages: [
-        "https://media.giphy.com/media/3oz8xOvhnSpVOs9xza/giphy.gif",
+        tvStatic,
         sunday,
         "http://stevenwilsonhq.com/sw/wp-content/uploads/2014/12/HCE-finalcover.jpg",
         astronaut1,
-        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"
+        tvStatic
     ],
     hoverImages: [
-        "",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://neuralrustsite.files.wordpress.com/2017/05/04-tr-789-e1501090105324.png?w=700",
         "http://stevenwilsonhq.com/sw/wp-content/uploads/2015/02/cryingeyes-hce.jpg",
         "https://cdn.bandmix.com/bandmix_us/media/468/468750/1266987-l.jpg",
-        ""
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"
     ],
     previewTexts: [
         "???",
         "On the Sunday of Life",
         "Hand Cannot Erase",
-        "Frightened Astronaut",
-        "???"
+        "Projects",
+        "Links"
     ],
     previewImgs: [
-        "https://media.giphy.com/media/3oz8xOvhnSpVOs9xza/giphy.gif",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         sundayImg,
         handCannotErase,
         astronaut,
-        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"
+        recordings
     ],
 
-    listen: function() {
+    addEventListeners: function() {
         this.elements.splice(5);
 
         this.elements.forEach((hexagon, index) => {
@@ -149,7 +151,7 @@ export let mainMenu = {
     control: function() {
         setTimeout(() => {
             this.elem.fadeIn(3000);
-            hexagons.listen();
+            hexagons.addEventListeners();
             setTimeout(() => {
                 previewPanels.staticFlicker(2500);
                 jobTitle.write();
@@ -163,3 +165,8 @@ export let mainMenu = {
 
     }
 };
+
+for (let index = 0; index < hexagons.hoverImages.length; index++) {
+    var img = new Image();
+    img.src = hexagons.hoverImages[index];
+}
