@@ -1,0 +1,40 @@
+@import "./CSS//mainMenu.css";
+@import "./CSS/startScreen.css";
+@import "./CSS/linksScreen.css";
+* {
+    -moz-box-sizing: border-box;
+    /* Firexfox */
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome/iOS/Android */
+    box-sizing: border-box;
+    /* IE */
+}
+
+body {
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    margin: auto;
+}
+
+.Screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: white dashed 5px; */
+}
+
+.BackgroundImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    filter: opacity(50%) blur(2px) hue-rotate(50deg);
+    background-size: cover;
+}

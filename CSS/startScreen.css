@@ -1,0 +1,37 @@
+#StartScreen {
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* display: none; */
+}
+
+#StartScreen>p {
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    z-index: 1;
+}
+
+#Subtitle {
+    font-size: 40px;
+    top: 20%;
+}
+
+#GameTitle {
+    font-size: 200px;
+    top: 27.5%;
+}
+
+#StartPrompt {
+    font-size: 50px;
+    display: none;
+    bottom: 15%;
+}
+
+#StartPrompt:hover {
+    color: rgb(0, 225, 255);
+}
+
+#StartPrompt:active {
+    color: greenyellow;
+}
