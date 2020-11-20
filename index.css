@@ -1,5 +1,6 @@
 @import "./CSS//mainMenu.css";
 @import "./CSS/startScreen.css";
+@import "./CSS/linksScreen.css";
 * {
     -moz-box-sizing: border-box;
     /* Firexfox */

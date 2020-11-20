@@ -10,6 +10,10 @@ import recordings from "../Images/Recordings.png"
 import gameControllerIcon from "../svg/game-controller.svg";
 import webDevelopmentIcon from "../svg/programming.svg";
 import linkIcon from "../svg/link.svg"
+import githubIcon from "../svg/github.svg"
+import twitterIcon from "../svg/twitter.svg"
+import linkedinIcon from "../svg/linkedin.svg"
+import gmailIcon from "../svg/gmail.svg"
 import Hexagon from "./Hexagon";
 
 
@@ -98,8 +102,8 @@ let previewPanels = {
 //Inject hexagons to the DOM
 {
     //Hexagon attributes
-    let patternID = ["topLeftHexPatt", "topRightHexPatt", "midHexPatt", "bottomLeftHexPatt", "bottomRightHexPatt"];
-    let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection"]
+    let patternID = ["topLeftHexPatt", "topRightHexPatt", "midHexPatt", "bottomLeftHexPatt", "bottomRightHexPatt", "gitHub", "twitter", "linkedIn", "email"];
+    let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection", "#topSection", "#topSection", "#bottomSection", "#bottomSection"]
     let originalImages = [
         tvStatic,
         sunday,
@@ -128,6 +132,30 @@ let previewPanels = {
             "x": "0.35",
             "y": "0.35",
             "xlink:href": linkIcon,
+            "transform": "scale(0.6)"
+        }],
+        [{
+            "x": "0.35",
+            "y": "0.35",
+            "xlink:href": githubIcon,
+            "transform": "scale(0.6)"
+        }],
+        [{
+            "x": "0.35",
+            "y": "0.35",
+            "xlink:href": twitterIcon,
+            "transform": "scale(0.6)"
+        }],
+        [{
+            "x": "0.35",
+            "y": "0.35",
+            "xlink:href": linkedinIcon,
+            "transform": "scale(0.6)"
+        }],
+        [{
+            "x": "0.35",
+            "y": "0.35",
+            "xlink:href": gmailIcon,
             "transform": "scale(0.6)"
         }]
     ];
@@ -180,11 +208,13 @@ let hexagons = {
         astronaut,
         recordings
     ],
+    screenIDs: ["EducationScreen", "ExperienceScreen", "AboutMeScreen", "ProjectsScreen", "LinksScreen"],
 
     addEventListeners: function() {
         this.elements.splice(5);
 
         this.elements.forEach((hexagon, index) => {
+            console.log(hexagon);
             hexagon.addEventListener("mouseover", () => {
                 previewPanels.changeContent(this.previewImgs[index], this.previewTexts[index])
 
@@ -196,6 +226,16 @@ let hexagons = {
                 previewPanels.changeContent("", "")
                     // audioElement.pause()
                 this.changeHexImage(index, this.originalImages[index]);
+            })
+
+            hexagon.addEventListener("click", () => {
+                $("#MainMenu").fadeOut(3000);
+                setTimeout(() => {
+
+                    $(`#${this.screenIDs[index]}`).fadeIn(5500)
+                    $(`#${this.screenIDs[index]}`).css("display", "flex");
+
+                }, 3000);
             })
         });
     },

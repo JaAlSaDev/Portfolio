@@ -1,0 +1,29 @@
+#LinksScreen {
+    display: none;
+}
+
+#topSection {
+    height: 30%;
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-evenly;
+    align-self: center;
+    position: absolute;
+    left: 50%;
+    /* top: 50%; */
+    transform: translate(-50%, -50%);
+}
+
+#bottomSection {
+    height: 30%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-evenly;
+    align-self: center;
+    position: absolute;
+    left: 62.5%;
+    top: 65.5%;
+    transform: translate(-50%, -50%);
+}
