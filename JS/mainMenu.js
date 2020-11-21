@@ -210,6 +210,7 @@ let hexagons = {
         recordings
     ],
     screenIDs: ["EducationScreen", "ExperienceScreen", "AboutMeScreen", "ProjectsScreen", "LinksScreen"],
+    links: ["", "", "", "", "", "https://github.com/JaAlSaDev", "https://www.linkedin.com/in/jaalsadev/", "https://twitter.com/JaAlSaDev", ""],
 
     addEventListeners: function() {
         this.elements.splice(9);
@@ -230,13 +231,20 @@ let hexagons = {
             })
 
             hexagon.addEventListener("click", () => {
-                $("#MainMenu").fadeOut(3000);
-                setTimeout(() => {
 
-                    $(`#${this.screenIDs[index]}`).fadeIn(5500)
-                    $(`#${this.screenIDs[index]}`).css("display", "flex");
+                if (index < 5) {
+                    $("#MainMenu").fadeOut(3000);
+                    setTimeout(() => {
 
-                }, 3000);
+                        $(`#${this.screenIDs[index]}`).fadeIn(5500)
+                        $(`#${this.screenIDs[index]}`).css("display", "flex");
+
+                    }, 3000);
+                } else if (this.links[index]) {
+
+                    window.open(this.links[index]);
+                }
+
             })
         });
     },
