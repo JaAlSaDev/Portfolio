@@ -103,7 +103,7 @@ let previewPanels = {
 {
     //Hexagon attributes
     let patternID = ["topLeftHexPatt", "topRightHexPatt", "midHexPatt", "bottomLeftHexPatt", "bottomRightHexPatt", "gitHub", "twitter", "linkedIn", "email"];
-    let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection", "#topSection", "#topSection", "#bottomSection", "#bottomSection"]
+    let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection", "#linksContainer", "#linksContainer", "#linksContainer", "#linksContainer"]
     let originalImages = [
         tvStatic,
         sunday,
@@ -143,15 +143,16 @@ let previewPanels = {
         [{
             "x": "0.35",
             "y": "0.35",
-            "xlink:href": twitterIcon,
+            "xlink:href": linkedinIcon,
             "transform": "scale(0.6)"
         }],
         [{
             "x": "0.35",
             "y": "0.35",
-            "xlink:href": linkedinIcon,
+            "xlink:href": twitterIcon,
             "transform": "scale(0.6)"
         }],
+
         [{
             "x": "0.35",
             "y": "0.35",
@@ -211,7 +212,7 @@ let hexagons = {
     screenIDs: ["EducationScreen", "ExperienceScreen", "AboutMeScreen", "ProjectsScreen", "LinksScreen"],
 
     addEventListeners: function() {
-        this.elements.splice(5);
+        this.elements.splice(9);
 
         this.elements.forEach((hexagon, index) => {
             console.log(hexagon);
