@@ -10,11 +10,11 @@ import recordings from "../Images/Recordings.png"
 import gameControllerIcon from "../svg/game-controller.svg";
 import webDevelopmentIcon from "../svg/programming.svg";
 import linkIcon from "../svg/link.svg"
-import githubIcon from "../svg/github.svg"
-import twitterIcon from "../svg/twitter.svg"
-import linkedinIcon from "../svg/linkedin.svg"
-import gmailIcon from "../svg/gmail.svg"
+
 import Hexagon from "./Hexagon";
+import {
+    linksScreen
+} from "./linksScreen"
 
 
 
@@ -102,8 +102,8 @@ let previewPanels = {
 //Inject hexagons to the DOM
 {
     //Hexagon attributes
-    let patternID = ["topLeftHexPatt", "topRightHexPatt", "midHexPatt", "bottomLeftHexPatt", "bottomRightHexPatt", "gitHub", "twitter", "linkedIn", "email"];
-    let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection", "#linksContainer", "#linksContainer", "#linksContainer", "#linksContainer"]
+    let patternID = ["topLeftHexPatt", "topRightHexPatt", "midHexPatt", "bottomLeftHexPatt", "bottomRightHexPatt"];
+    let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection"]
     let originalImages = [
         tvStatic,
         tvStatic,
@@ -134,31 +134,6 @@ let previewPanels = {
             "xlink:href": linkIcon,
             "transform": "scale(0.6)"
         }],
-        [{
-            "x": "0.35",
-            "y": "0.35",
-            "xlink:href": githubIcon,
-            "transform": "scale(0.6)"
-        }],
-        [{
-            "x": "0.35",
-            "y": "0.35",
-            "xlink:href": linkedinIcon,
-            "transform": "scale(0.6)"
-        }],
-        [{
-            "x": "0.35",
-            "y": "0.35",
-            "xlink:href": twitterIcon,
-            "transform": "scale(0.6)"
-        }],
-
-        [{
-            "x": "0.35",
-            "y": "0.35",
-            "xlink:href": gmailIcon,
-            "transform": "scale(0.6)"
-        }]
     ];
 
 
@@ -209,11 +184,11 @@ let hexagons = {
         astronaut,
         recordings
     ],
-    screenIDs: ["EducationScreen", "ExperienceScreen", "AboutMeScreen", "ProjectsScreen", "LinksScreen"],
-    links: ["", "", "", "", "", "https://github.com/JaAlSaDev", "https://www.linkedin.com/in/jaalsadev/", "https://twitter.com/JaAlSaDev", "JaAlSaDev@gmail.com"],
+    screenIDs: ["", "", "", "", linksScreen],
+
 
     addEventListeners: function() {
-        this.elements.splice(9);
+        this.elements.splice(5);
 
         this.elements.forEach((hexagon, index) => {
             console.log(hexagon);
@@ -231,21 +206,20 @@ let hexagons = {
             })
 
             hexagon.addEventListener("click", () => {
-
-                if (index < 5) {
+                console.log(this.screenIDs[index]);
+                if (this.screenIDs[index]) {
                     $("#MainMenu").fadeOut(3000);
+
                     setTimeout(() => {
 
-                        $(`#${this.screenIDs[index]}`).fadeIn(5500)
-                        $(`#${this.screenIDs[index]}`).css("display", "flex");
+                        // $(`#${this.screenIDs[index]}`).fadeIn(5500)
+                        // $(`#${this.screenIDs[index]}`).css("display", "flex");
+
+                        this.screenIDs[index].control();
 
                     }, 3000);
-                } else if (index < 8) {
-
-                    window.open(this.links[index]);
-                } else if (index === 8) {
-                    window.location.href = `mailto:${this.links[index]}`;
                 }
+
 
             })
         });
