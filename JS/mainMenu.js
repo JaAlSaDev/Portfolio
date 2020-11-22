@@ -106,8 +106,8 @@ let previewPanels = {
     let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection", "#linksContainer", "#linksContainer", "#linksContainer", "#linksContainer"]
     let originalImages = [
         tvStatic,
-        sunday,
-        "http://stevenwilsonhq.com/sw/wp-content/uploads/2014/12/HCE-finalcover.jpg",
+        tvStatic,
+        tvStatic,
         astronaut1,
         tvStatic
     ];
@@ -183,34 +183,34 @@ let hexagons = {
     elements: (Object.values($(".hexagon"))),
     originalImages: [
         tvStatic,
-        sunday,
-        "http://stevenwilsonhq.com/sw/wp-content/uploads/2014/12/HCE-finalcover.jpg",
+        tvStatic,
+        tvStatic,
         astronaut1,
         tvStatic
     ],
     hoverImages: [
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
-        "https://neuralrustsite.files.wordpress.com/2017/05/04-tr-789-e1501090105324.png?w=700",
-        "http://stevenwilsonhq.com/sw/wp-content/uploads/2015/02/cryingeyes-hce.jpg",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://cdn.bandmix.com/bandmix_us/media/468/468750/1266987-l.jpg",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"
     ],
     previewTexts: [
         "???",
-        "On the Sunday of Life",
-        "Hand Cannot Erase",
+        "???",
+        "???",
         "Projects",
         "Links"
     ],
     previewImgs: [
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
-        sundayImg,
-        handCannotErase,
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         astronaut,
         recordings
     ],
     screenIDs: ["EducationScreen", "ExperienceScreen", "AboutMeScreen", "ProjectsScreen", "LinksScreen"],
-    links: ["", "", "", "", "", "https://github.com/JaAlSaDev", "https://www.linkedin.com/in/jaalsadev/", "https://twitter.com/JaAlSaDev", ""],
+    links: ["", "", "", "", "", "https://github.com/JaAlSaDev", "https://www.linkedin.com/in/jaalsadev/", "https://twitter.com/JaAlSaDev", "JaAlSaDev@gmail.com"],
 
     addEventListeners: function() {
         this.elements.splice(9);
@@ -240,9 +240,11 @@ let hexagons = {
                         $(`#${this.screenIDs[index]}`).css("display", "flex");
 
                     }, 3000);
-                } else if (this.links[index]) {
+                } else if (index < 8) {
 
                     window.open(this.links[index]);
+                } else if (index === 8) {
+                    window.location.href = `mailto:${this.links[index]}`;
                 }
 
             })
