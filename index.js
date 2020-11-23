@@ -4,6 +4,15 @@ import {
     mainMenu
 } from "./JS/mainMenu"
 
+
+
+
+
+
+
+
+
+
 let startScreen = $("#StartScreen");
 
 let startPrompt = {

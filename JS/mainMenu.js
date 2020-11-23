@@ -10,12 +10,11 @@ import recordings from "../Images/Recordings.png"
 import gameControllerIcon from "../svg/game-controller.svg";
 import webDevelopmentIcon from "../svg/programming.svg";
 import linkIcon from "../svg/link.svg"
-import githubIcon from "../svg/github.svg"
-import twitterIcon from "../svg/twitter.svg"
-import linkedinIcon from "../svg/linkedin.svg"
-import gmailIcon from "../svg/gmail.svg"
-import Hexagon from "./Hexagon";
 
+import Hexagon from "./Hexagon";
+import {
+    linksScreen
+} from "./linksScreen"
 
 
 let audioElement = $("audio")[0]
@@ -102,31 +101,33 @@ let previewPanels = {
 //Inject hexagons to the DOM
 {
     //Hexagon attributes
-    let patternID = ["topLeftHexPatt", "topRightHexPatt", "midHexPatt", "bottomLeftHexPatt", "bottomRightHexPatt", "gitHub", "twitter", "linkedIn", "email"];
-    let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection", "#topSection", "#topSection", "#bottomSection", "#bottomSection"]
+    let patternID = ["topLeftHexPatt", "topRightHexPatt", "midHexPatt", "bottomLeftHexPatt", "bottomRightHexPatt"];
+    let location = ["#upperSection", "#upperSection", "#ImgPreviewContainer", "#lowerSection", "#lowerSection"]
     let originalImages = [
         tvStatic,
-        sunday,
-        "http://stevenwilsonhq.com/sw/wp-content/uploads/2014/12/HCE-finalcover.jpg",
-        astronaut1,
+        tvStatic,
+        tvStatic,
+        tvStatic,
         tvStatic
     ];
     let icons = [
         [],
         [],
         [],
-        [{
-                "x": "0.25",
-                "y": "0.25",
-                "xlink:href": gameControllerIcon,
-                "transform": "scale(0.5)"
-            },
-            {
-                "x": "0.85",
-                "y": "0.85",
-                "xlink:href": webDevelopmentIcon,
-                "transform": "scale(0.45)"
-            }
+        [
+
+            // {
+            //     "x": "0.25",
+            //     "y": "0.25",
+            //     "xlink:href": gameControllerIcon,
+            //     "transform": "scale(0.5)"
+            // },
+            // {
+            //     "x": "0.85",
+            //     "y": "0.85",
+            //     "xlink:href": webDevelopmentIcon,
+            //     "transform": "scale(0.45)"
+            // }
         ],
         [{
             "x": "0.35",
@@ -134,30 +135,6 @@ let previewPanels = {
             "xlink:href": linkIcon,
             "transform": "scale(0.6)"
         }],
-        [{
-            "x": "0.35",
-            "y": "0.35",
-            "xlink:href": githubIcon,
-            "transform": "scale(0.6)"
-        }],
-        [{
-            "x": "0.35",
-            "y": "0.35",
-            "xlink:href": twitterIcon,
-            "transform": "scale(0.6)"
-        }],
-        [{
-            "x": "0.35",
-            "y": "0.35",
-            "xlink:href": linkedinIcon,
-            "transform": "scale(0.6)"
-        }],
-        [{
-            "x": "0.35",
-            "y": "0.35",
-            "xlink:href": gmailIcon,
-            "transform": "scale(0.6)"
-        }]
     ];
 
 
@@ -182,33 +159,34 @@ let hexagons = {
     elements: (Object.values($(".hexagon"))),
     originalImages: [
         tvStatic,
-        sunday,
-        "http://stevenwilsonhq.com/sw/wp-content/uploads/2014/12/HCE-finalcover.jpg",
-        astronaut1,
+        tvStatic,
+        tvStatic,
+        tvStatic,
         tvStatic
     ],
     hoverImages: [
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
-        "https://neuralrustsite.files.wordpress.com/2017/05/04-tr-789-e1501090105324.png?w=700",
-        "http://stevenwilsonhq.com/sw/wp-content/uploads/2015/02/cryingeyes-hce.jpg",
-        "https://cdn.bandmix.com/bandmix_us/media/468/468750/1266987-l.jpg",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"
     ],
     previewTexts: [
         "???",
-        "On the Sunday of Life",
-        "Hand Cannot Erase",
-        "Projects",
+        "???",
+        "???",
+        "???",
         "Links"
     ],
     previewImgs: [
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
-        sundayImg,
-        handCannotErase,
-        astronaut,
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         recordings
     ],
-    screenIDs: ["EducationScreen", "ExperienceScreen", "AboutMeScreen", "ProjectsScreen", "LinksScreen"],
+    screenIDs: ["", "", "", "", linksScreen],
+
 
     addEventListeners: function() {
         this.elements.splice(5);
@@ -229,13 +207,17 @@ let hexagons = {
             })
 
             hexagon.addEventListener("click", () => {
-                $("#MainMenu").fadeOut(3000);
-                setTimeout(() => {
+                if (this.screenIDs[index]) {
+                    $("#MainMenu").fadeOut(3000);
 
-                    $(`#${this.screenIDs[index]}`).fadeIn(5500)
-                    $(`#${this.screenIDs[index]}`).css("display", "flex");
 
-                }, 3000);
+
+                    this.screenIDs[index].control();
+
+
+                }
+
+
             })
         });
     },
@@ -246,21 +228,28 @@ let hexagons = {
 }
 
 
+
 export let mainMenu = {
     elem: $("#MainMenu"),
-    control: function() {
-        setTimeout(() => {
-            this.elem.fadeIn(3000);
-            hexagons.addEventListeners();
-            setTimeout(() => {
-                previewPanels.staticFlicker(2500);
-                jobTitle.write();
-                setInterval(() => {
-                    previewPanels.staticFlicker(2500);
-                }, 2750);
-            }, 3000);
+    timer3: () => setInterval(() => {
+        previewPanels.staticFlicker(2500);
+    }, 2750),
+    timer2: () => setTimeout(() => {
+        previewPanels.staticFlicker(2500);
+        jobTitle.write();
+        mainMenu.timer3()
+    }, 3000),
+    timer1: () => setTimeout(() => {
+        mainMenu.elem.fadeIn(3000);
+        hexagons.addEventListeners();
+        mainMenu.timer2()
 
-        }, 3000);
+    }, 3000),
+    control: function() {
+        // clearInterval(this.timer3)
+        // clearTimeout(this.timer2)
+        // clearTimeout(this.timer1)
+        this.timer1();
 
 
     }

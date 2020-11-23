@@ -138,12 +138,12 @@
 
 .hexagon {
     height: auto;
-    stroke: black;
+    stroke: rgb(116, 0, 62);
     stroke-width: 50;
 }
 
 .hexagon:hover {
-    stroke: rgb(212, 1, 114);
+    stroke: rgb(216, 0, 115);
 }
 
 .hexagon:active {
