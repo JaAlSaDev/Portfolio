@@ -1,6 +1,8 @@
 import jQuery from "./jQuery";
 window.$ = window.jQuery = jQuery;
-import tvStatic from "../Images/Static3.gif";
+import {
+    mainMenu
+} from "./mainMenu"
 import Hexagon from "./Hexagon";
 import githubIcon from "../svg/github.svg"
 import twitterIcon from "../svg/twitter.svg"
@@ -57,7 +59,7 @@ let hexagons = {
     links: ["https://github.com/JaAlSaDev", "https://www.linkedin.com/in/jaalsadev/", "https://twitter.com/JaAlSaDev", "JaAlSaDev@gmail.com"],
 
     addEventListeners: function() {
-        console.log(this.elements);
+
         this.elements.splice(4);
 
         this.elements.forEach((hexagon, index) => {
@@ -76,16 +78,41 @@ let hexagons = {
 
 }
 
+let backArrow = undefined;
 
 export let linksScreen = {
     elem: $("#LinksScreen"),
     control: function() {
+
         setTimeout(() => {
             this.elem.fadeIn(3000);
+
             this.elem.css("display", "flex");
+
+            if (!backArrow) {
+                setTimeout(() => {
+
+                    backArrow = document.querySelector("#arrowContainer object").contentDocument.children[0];
+                    console.log(document.querySelector("#arrowContainer object"));
+                    backArrow.addEventListener("click", () => {
+
+                        console.log("Hello?!");
+                        linksScreen.elem.fadeOut(3000);
+
+                        setTimeout(() => {
+                            // mainMenu.control();
+                            $("#MainMenu").fadeIn(3000);
+                        }, 4000);
+
+
+                    });
+                    console.log("It works only once!");
+
+                }, 1000);
+
+            }
+
             hexagons.addEventListeners();
         }, 3000);
-
-
     }
 };

@@ -2,17 +2,34 @@
     display: none;
 }
 
-#linksContainer {
-    height: 35%;
-    width: 100%;
+#arrowContainer {
+    position: absolute;
     /* background-color: blue; */
+    /* left: 2.5%; */
+    top: 5%;
+    height: 10%;
+    width: 100%;
+}
+
+.backArrow {
+    height: 100%;
+    width: 5%;
+    margin: 0% 0% 0% 2.5%;
+    /* background-color: green; */
+    /* padding: 0%; */
+}
+
+#linksContainer {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-self: center;
-    position: absolute;
+    height: 35%;
+    width: 100%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    /* background-color: blue; */
 }
 
 #linksContainer svg {

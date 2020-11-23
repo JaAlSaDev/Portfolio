@@ -17,7 +17,6 @@ import {
 } from "./linksScreen"
 
 
-
 let audioElement = $("audio")[0]
 audioElement.src = require("../Sound/X8StageSelect.mp3")
 
@@ -108,25 +107,27 @@ let previewPanels = {
         tvStatic,
         tvStatic,
         tvStatic,
-        astronaut1,
+        tvStatic,
         tvStatic
     ];
     let icons = [
         [],
         [],
         [],
-        [{
-                "x": "0.25",
-                "y": "0.25",
-                "xlink:href": gameControllerIcon,
-                "transform": "scale(0.5)"
-            },
-            {
-                "x": "0.85",
-                "y": "0.85",
-                "xlink:href": webDevelopmentIcon,
-                "transform": "scale(0.45)"
-            }
+        [
+
+            // {
+            //     "x": "0.25",
+            //     "y": "0.25",
+            //     "xlink:href": gameControllerIcon,
+            //     "transform": "scale(0.5)"
+            // },
+            // {
+            //     "x": "0.85",
+            //     "y": "0.85",
+            //     "xlink:href": webDevelopmentIcon,
+            //     "transform": "scale(0.45)"
+            // }
         ],
         [{
             "x": "0.35",
@@ -160,28 +161,28 @@ let hexagons = {
         tvStatic,
         tvStatic,
         tvStatic,
-        astronaut1,
+        tvStatic,
         tvStatic
     ],
     hoverImages: [
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
-        "https://cdn.bandmix.com/bandmix_us/media/468/468750/1266987-l.jpg",
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"
     ],
     previewTexts: [
         "???",
         "???",
         "???",
-        "Projects",
+        "???",
         "Links"
     ],
     previewImgs: [
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
-        astronaut,
+        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         recordings
     ],
     screenIDs: ["", "", "", "", linksScreen],
@@ -206,18 +207,14 @@ let hexagons = {
             })
 
             hexagon.addEventListener("click", () => {
-                console.log(this.screenIDs[index]);
                 if (this.screenIDs[index]) {
                     $("#MainMenu").fadeOut(3000);
 
-                    setTimeout(() => {
 
-                        // $(`#${this.screenIDs[index]}`).fadeIn(5500)
-                        // $(`#${this.screenIDs[index]}`).css("display", "flex");
 
-                        this.screenIDs[index].control();
+                    this.screenIDs[index].control();
 
-                    }, 3000);
+
                 }
 
 
@@ -231,21 +228,28 @@ let hexagons = {
 }
 
 
+
 export let mainMenu = {
     elem: $("#MainMenu"),
-    control: function() {
-        setTimeout(() => {
-            this.elem.fadeIn(3000);
-            hexagons.addEventListeners();
-            setTimeout(() => {
-                previewPanels.staticFlicker(2500);
-                jobTitle.write();
-                setInterval(() => {
-                    previewPanels.staticFlicker(2500);
-                }, 2750);
-            }, 3000);
+    timer3: () => setInterval(() => {
+        previewPanels.staticFlicker(2500);
+    }, 2750),
+    timer2: () => setTimeout(() => {
+        previewPanels.staticFlicker(2500);
+        jobTitle.write();
+        mainMenu.timer3()
+    }, 3000),
+    timer1: () => setTimeout(() => {
+        mainMenu.elem.fadeIn(3000);
+        hexagons.addEventListeners();
+        mainMenu.timer2()
 
-        }, 3000);
+    }, 3000),
+    control: function() {
+        // clearInterval(this.timer3)
+        // clearTimeout(this.timer2)
+        // clearTimeout(this.timer1)
+        this.timer1();
 
 
     }
