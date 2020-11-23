@@ -2,13 +2,13 @@ export default class Hexagon {
 
     constructor(patternID, backgroundImage, icons) {
         this.patternID = patternID;
-        this.pattern = `<image width="1" height="1" xlink:href=${backgroundImage} preserveAspectRatio="none" />`
+        this.pattern = `<image width="1" height="1" href=${backgroundImage} preserveAspectRatio="none" />`
 
         if (icons.length > 0) {
             this.pattern += `<g x="0.5" y="0.5" fill="white" transform="scale(1)">\n`
             this.pattern += `\t<rect fill="lightblue" x="0" y="0" width="100%" height="100%"/>\n`
             for (let i = 0; i < icons.length; i++) {
-                this.pattern += `\t<image width="1" height="1" x="${icons[i]["x"]}" y="${icons[i]["y"]}" xlink:href="${icons[i]["xlink:href"]}" transform="${icons[i]["transform"]}"/>\n`
+                this.pattern += `\t<image width="1" height="1" x="${icons[i]["x"]}" y="${icons[i]["y"]}" href="${icons[i]["xlink:href"]}" transform="${icons[i]["transform"]}"/>\n`
 
             }
             this.pattern += `</g>`

@@ -208,7 +208,7 @@ let hexagons = {
 
             hexagon.addEventListener("click", () => {
                 if (this.screenIDs[index]) {
-                    $("#MainMenu").fadeOut(3000);
+                    $("#MainMenu").fadeOut(2000);
 
 
 
@@ -228,7 +228,7 @@ let hexagons = {
 }
 
 
-
+let addedEventListeners = false;
 export let mainMenu = {
     elem: $("#MainMenu"),
     timer3: () => setInterval(() => {
@@ -240,22 +240,22 @@ export let mainMenu = {
         mainMenu.timer3()
     }, 3000),
     timer1: () => setTimeout(() => {
-        mainMenu.elem.fadeIn(3000);
-        hexagons.addEventListeners();
-        mainMenu.timer2()
+        mainMenu.elem.fadeIn(2000);
+
+        if (!addedEventListeners) {
+            hexagons.addEventListeners();
+            addedEventListeners = true;
+            mainMenu.timer2()
+        }
+
+        for (let index = 0; index < hexagons.hoverImages.length; index++) {
+            var img = new Image();
+            img.src = hexagons.hoverImages[index];
+        }
+
 
     }, 3000),
     control: function() {
-        // clearInterval(this.timer3)
-        // clearTimeout(this.timer2)
-        // clearTimeout(this.timer1)
         this.timer1();
-
-
     }
 };
-
-for (let index = 0; index < hexagons.hoverImages.length; index++) {
-    var img = new Image();
-    img.src = hexagons.hoverImages[index];
-}

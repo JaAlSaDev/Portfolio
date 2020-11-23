@@ -48,7 +48,7 @@ let startPrompt = {
         startPrompt.speedUp(flickerTimer, fastDuration);
 
         setTimeout(() => {
-            startScreen.fadeOut(3000);
+            startScreen.fadeOut(2000);
 
             mainMenu.control();
         }, 1250);
@@ -58,7 +58,7 @@ let startPrompt = {
     },
 
     control: function(initialFadeInDuration, normalDuration, fastDuration) {
-
+        // this.flickerOnce(normalDuration);
         setTimeout(() => {
             this.flickerOnce(normalDuration);
 
@@ -112,4 +112,4 @@ let startPrompt = {
     }
 }
 
-startPrompt.control(2500, 1250, 100);
+startPrompt.control(1000, 1250, 100);

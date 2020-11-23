@@ -89,30 +89,36 @@ export let linksScreen = {
 
             this.elem.css("display", "flex");
 
+            //Add event listeners to hexagons and backArrow if the backArrow is empty (done once)
             if (!backArrow) {
                 setTimeout(() => {
 
                     backArrow = document.querySelector("#arrowContainer object").contentDocument.children[0];
-                    console.log(document.querySelector("#arrowContainer object"));
+
+
                     backArrow.addEventListener("click", () => {
 
-                        console.log("Hello?!");
-                        linksScreen.elem.fadeOut(3000);
+                        linksScreen.elem.fadeOut(2000);
 
-                        setTimeout(() => {
-                            // mainMenu.control();
-                            $("#MainMenu").fadeIn(3000);
-                        }, 4000);
+                        // setTimeout(() => {
 
+                        //     // $("#MainMenu").fadeIn(3000);
+                        // }, 4000);
+                        mainMenu.control();
 
                     });
-                    console.log("It works only once!");
+
+
+                    hexagons.addEventListeners();
+
 
                 }, 1000);
 
             }
 
-            hexagons.addEventListeners();
-        }, 3000);
+
+
+
+        }, 2000);
     }
 };
