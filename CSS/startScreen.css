@@ -13,17 +13,17 @@
 }
 
 #Subtitle {
-    font-size: 40px;
+    font-size: 2.3vw;
     top: 20%;
 }
 
 #GameTitle {
-    font-size: 200px;
+    font-size: 10.4vw;
     top: 27.5%;
 }
 
 #StartPrompt {
-    font-size: 50px;
+    font-size: 2.8vw;
     display: none;
     bottom: 15%;
 }
