@@ -1,0 +1,44 @@
+#AboutMeScreen {
+    display: none;
+}
+
+#AboutMeContainer {
+    top: 5%;
+    position: relative;
+    height: 70%;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* border: rgb(212, 1, 114) 0.5vw groove; */
+}
+
+#AboutMeContainer>div {
+    height: 100%;
+}
+
+#ProfilePicContainer {
+    /* height: 100%; */
+    width: 32.5%;
+    /* border: rgb(212, 1, 114) 0.5vw groove; */
+    /* background-color: rgb(114, 0, 61); */
+}
+
+#AboutMeDescriptionContainer {
+    /* height: 100%; */
+    width: 60%;
+    /* border: rgb(212, 1, 114) 0.5vw groove; */
+    /* background-color: rgb(114, 0, 61); */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#AboutMeContainer p {
+    color: white;
+    /* border: rgb(212, 1, 114) 0.5vw groove; */
+    font-size: 2.5vw;
+    max-width: 95%;
+    max-height: 100%;
+}

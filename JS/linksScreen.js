@@ -93,7 +93,7 @@ export let linksScreen = {
             if (!backArrow) {
                 setTimeout(() => {
 
-                    backArrow = document.querySelector("#arrowContainer object").contentDocument.children[0];
+                    backArrow = document.querySelector("#LinksScreen object").contentDocument.children[0];
 
 
                     backArrow.addEventListener("click", () => {

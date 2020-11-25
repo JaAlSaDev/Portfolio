@@ -10,11 +10,13 @@ import recordings from "../Images/Recordings.png"
 import gameControllerIcon from "../svg/game-controller.svg";
 import webDevelopmentIcon from "../svg/programming.svg";
 import linkIcon from "../svg/link.svg"
-
+import glowManPreview from "../Images/gavinharrisonbackground.jpg"
+import glowMan from "../Images/Lasse_Portraits.jpg"
 import Hexagon from "./Hexagon";
 import {
     linksScreen
 } from "./linksScreen"
+import { aboutMeScreen } from "./aboutMeScreen"
 
 
 let audioElement = $("audio")[0]
@@ -106,7 +108,7 @@ let previewPanels = {
     let originalImages = [
         tvStatic,
         tvStatic,
-        tvStatic,
+        glowMan,
         tvStatic,
         tvStatic
     ];
@@ -144,7 +146,7 @@ let previewPanels = {
         $(location[i]).append((new Hexagon(patternID[i], originalImages[i], icons[i])).getElement())
     }
 
-    $(location[2]).after((new Hexagon(patternID[2], originalImages[2], icons[2])).getElement())
+    $(location[2]).after((new Hexagon(patternID[2], originalImages[2], icons[2], "", "xMinYMax slice")).getElement())
 
     for (let i = 3; i < location.length; i++) {
         $(location[i]).append((new Hexagon(patternID[i], originalImages[i], icons[i])).getElement())
@@ -160,32 +162,32 @@ let hexagons = {
     originalImages: [
         tvStatic,
         tvStatic,
-        tvStatic,
+        glowMan,
         tvStatic,
         tvStatic
     ],
     hoverImages: [
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
-        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
+        glowMan,
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"
     ],
     previewTexts: [
         "???",
         "???",
-        "???",
+        "About Me",
         "???",
         "Links"
     ],
     previewImgs: [
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
-        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
+        glowManPreview,
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         recordings
     ],
-    screenIDs: ["", "", "", "", linksScreen],
+    screenIDs: ["", "", aboutMeScreen, "", linksScreen],
 
 
     addEventListeners: function() {

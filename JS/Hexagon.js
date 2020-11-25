@@ -1,9 +1,9 @@
 export default class Hexagon {
 
-    constructor(patternID, backgroundImage, icons) {
+    constructor(patternID, backgroundImage, icons, width = "", preserveAspectRatio = "none") {
         this.patternID = patternID;
-        this.pattern = `<image width="1" height="1" href=${backgroundImage} preserveAspectRatio="none" />`
-
+        this.pattern = `<image width="1" height="1" href=${backgroundImage} preserveAspectRatio="${preserveAspectRatio}" />`
+        this.width = width;
         if (icons.length > 0) {
             this.pattern += `<g x="0.5" y="0.5" fill="white" transform="scale(1)">\n`
             this.pattern += `\t<rect fill="lightblue" x="0" y="0" width="100%" height="100%"/>\n`
@@ -17,7 +17,7 @@ export default class Hexagon {
 
 
     getElement() {
-        return `<svg version="1.1" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 261.5">
+        return `<svg version="1.1" height="100%" width="${this.width}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 261.5">
         
         <defs>
             

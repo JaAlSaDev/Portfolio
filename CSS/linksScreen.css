@@ -2,7 +2,7 @@
     display: none;
 }
 
-#arrowContainer {
+.arrowContainer {
     position: absolute;
     /* background-color: blue; */
     /* left: 2.5%; */
