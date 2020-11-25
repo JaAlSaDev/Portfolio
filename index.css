@@ -1,6 +1,7 @@
 @import "./CSS//mainMenu.css";
 @import "./CSS/startScreen.css";
 @import "./CSS/linksScreen.css";
+@import "./CSS/aboutMeScreen.css";
 * {
     -moz-box-sizing: border-box;
     /* Firexfox */
@@ -35,6 +36,6 @@ body {
     width: 100%;
     height: 100%;
     z-index: 0;
-    filter: opacity(50%) blur(2px) hue-rotate(50deg);
+    filter: opacity(50%) blur(0.1vw) hue-rotate(50deg);
     background-size: cover;
 }
