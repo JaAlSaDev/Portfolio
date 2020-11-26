@@ -18,14 +18,13 @@ import {
 } from "./linksScreen"
 import { aboutMeScreen } from "./aboutMeScreen"
 
+import {
+    startPrompt
+} from "../index"
 
-let audioElement = $("audio")[0]
-audioElement.src = require("../Sound/X8StageSelect.mp3")
+import soundEffects from "./soundEffects"
 
-const audioContext = new AudioContext();
 
-const track = audioContext.createMediaElementSource(audioElement);
-track.connect(audioContext.destination)
 
 
 
@@ -199,12 +198,14 @@ let hexagons = {
                 previewPanels.changeContent(this.previewImgs[index], this.previewTexts[index])
 
                 this.changeHexImage(index, this.hoverImages[index]);
-                audioElement.play();
+
+
+                soundEffects.playSelect();
             })
 
             hexagon.addEventListener("mouseleave", () => {
                 previewPanels.changeContent("", "")
-                    // audioElement.pause()
+
                 this.changeHexImage(index, this.originalImages[index]);
             })
 
@@ -212,10 +213,12 @@ let hexagons = {
                 if (this.screenIDs[index]) {
                     $("#MainMenu").fadeOut(2000);
 
-
-
                     this.screenIDs[index].control();
 
+
+                    soundEffects.playDecision();
+                } else {
+                    soundEffects.playError();
 
                 }
 
@@ -231,6 +234,8 @@ let hexagons = {
 
 
 let addedEventListeners = false;
+
+let backArrow = undefined;
 export let mainMenu = {
     elem: $("#MainMenu"),
     timer3: () => setInterval(() => {
@@ -246,6 +251,22 @@ export let mainMenu = {
 
         if (!addedEventListeners) {
             hexagons.addEventListeners();
+            backArrow = document.querySelector("#MainMenu object").contentDocument.children[0];
+
+
+            backArrow.addEventListener("click", () => {
+
+                mainMenu.elem.fadeOut(2000);
+                soundEffects.playCancel();
+                setTimeout(() => {
+                    $("#StartScreen").fadeIn(2000);
+
+                    startPrompt.control();
+                }, 3000);
+
+
+            });
+
             addedEventListeners = true;
             mainMenu.timer2()
         }

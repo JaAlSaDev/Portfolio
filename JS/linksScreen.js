@@ -8,6 +8,7 @@ import githubIcon from "../svg/github.svg"
 import twitterIcon from "../svg/twitter.svg"
 import linkedinIcon from "../svg/linkedin.svg"
 import gmailIcon from "../svg/gmail.svg"
+import soundEffects from "./soundEffects"
 //Inject hexagons to the DOM
 {
     //Hexagon attributes
@@ -72,6 +73,14 @@ let hexagons = {
                     window.location.href = `mailto:${this.links[index]}`;
                 }
 
+                soundEffects.playDecision();
+
+            })
+
+            hexagon.addEventListener("mouseover", () => {
+
+
+                soundEffects.playSelect();
             })
         });
     },
@@ -95,15 +104,11 @@ export let linksScreen = {
 
                     backArrow = document.querySelector("#LinksScreen object").contentDocument.children[0];
 
-
                     backArrow.addEventListener("click", () => {
 
                         linksScreen.elem.fadeOut(2000);
 
-                        // setTimeout(() => {
-
-                        //     // $("#MainMenu").fadeIn(3000);
-                        // }, 4000);
+                        soundEffects.playCancel();
                         mainMenu.control();
 
                     });
@@ -113,11 +118,7 @@ export let linksScreen = {
 
 
                 }, 1000);
-
             }
-
-
-
 
         }, 2000);
     }

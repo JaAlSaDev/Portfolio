@@ -5,50 +5,32 @@ import {
 } from "./mainMenu"
 import Hexagon from "./Hexagon";
 import stevenSketch from "../Images/Steven_Sketch.jpg";
+import soundEffects from "./soundEffects"
 
 
-//Inject hexagons to the DOM
-{
-    //Hexagon attributes
-    let patternID = ["profileImage"];
-    let location = ["#ProfilePicContainer"]
-    let icons = [
-        [
-
-            // {
-            //     "x": "0.35",
-            //     "y": "0.35",
-            //     "xlink:href": githubIcon,
-            //     "transform": "scale(0.6)"
-            // }
-
-        ],
-    ];
-    let originalImages = [
-        stevenSketch
-
-    ];
+//Inject the hexagons into the DOM
+$("#ProfilePicContainer").append((new Hexagon("profileImage", stevenSketch, [], "100%")).getElement())
 
 
-    //Inject the hexagons into the DOM
-    for (let i = 0; i < location.length; i++) {
-        $("#ProfilePicContainer").append((new Hexagon(patternID[i], originalImages[i], [], "100%")).getElement())
-    }
+let hexagon = {
+    containers: $("#AboutMeScreen svg"),
+    patterns: $("#linksContainer .hexPattern"),
+    element: (Object.values($("#AboutMeScreen .hexagon")))[0],
+
+
+    addEventListeners: function() {
+
+
+        this.element.addEventListener("click", () => {
+            soundEffects.playError();
+        })
+
+        this.element.addEventListener("mouseover", () => {
+            soundEffects.playSelect();
+        });
+    },
+
 }
-
-
-
-// let hexagons = {
-//     containers: $("#ProfilePicContainer svg"),
-//     patterns: $("#ProfilePicContainer .hexPattern"),
-//     elements: (Object.values($("#ProfilePicContainer .hexagon"))),
-
-
-//     links: [],
-
-
-// }
-
 let backArrow = undefined;
 
 export let aboutMeScreen = {
@@ -66,30 +48,19 @@ export let aboutMeScreen = {
 
                     backArrow = document.querySelector("#AboutMeScreen object").contentDocument.children[0];
 
-
                     backArrow.addEventListener("click", () => {
 
                         aboutMeScreen.elem.fadeOut(2000);
 
-                        // setTimeout(() => {
-
-                        //     // $("#MainMenu").fadeIn(3000);
-                        // }, 4000);
+                        soundEffects.playCancel();
                         mainMenu.control();
 
                     });
 
-
-                    // hexagons.addEventListeners();
-
+                    hexagon.addEventListeners();
 
                 }, 1000);
-
             }
-
-
-
-
         }, 2000);
     }
 };
