@@ -6,7 +6,9 @@ import {
 
 
 
-
+const normalDuration = 1250,
+    initialFadeInDuration = 1000,
+    fastDuration = 100;
 
 
 
@@ -14,10 +16,11 @@ import {
 
 
 let startScreen = $("#StartScreen");
-
-let startPrompt = {
+let addedEventListeners = false;
+export let startPrompt = {
     element: $("#StartPrompt"),
     isFast: false,
+    fickerTimer: undefined,
 
 
     changeText: function(newText) {
@@ -29,87 +32,98 @@ let startPrompt = {
         this.element.fadeIn(duration / 2).fadeOut(duration / 2);
     },
 
-    timer: (duration) => setInterval(() => {
+    flickerInterval: (duration) => setInterval(() => {
         startPrompt.flickerOnce(duration)
     }, duration),
 
-    speedUp: function(flick, fastFlickerDuration) {
-        if (!this.isFast) {
-            clearInterval(flick)
-            this.timer(fastFlickerDuration);
-            this.isFast = true;
-        }
 
+    changeSpeed: function(newDuration) {
+        clearInterval(startPrompt.flickerTimer)
+        startPrompt.flickerTimer = startPrompt.flickerInterval(newDuration);
     },
 
-    transitionToMainScreen: function(flickerTimer, fastDuration) {
+    transitionToMainScreen: function() {
 
         //Speed up the start prompt
-        startPrompt.speedUp(flickerTimer, fastDuration);
+        startPrompt.changeSpeed(fastDuration);
 
         setTimeout(() => {
             startScreen.fadeOut(2000);
 
             mainMenu.control();
-        }, 1250);
 
+            setTimeout(() => {
+                startPrompt.changeSpeed(normalDuration);
+            }, 2000);
+        }, 1250);
 
 
     },
 
-    control: function(initialFadeInDuration, normalDuration, fastDuration) {
-        // this.flickerOnce(normalDuration);
+    control: function() {
+
+
         setTimeout(() => {
-            this.flickerOnce(normalDuration);
+            startScreen.fadeIn(2000)
 
-            let flickerTimer = this.timer(normalDuration);
 
-            //Keyboard
-            window.addEventListener("keypress", function(e) {
-                e = e || window.event;
-
-                if (e.key) {
-                    startPrompt.changeText("PRESS ENTER");
-                }
-
-                if (e.key == "Enter") {
-                    startPrompt.transitionToMainScreen(flickerTimer, fastDuration)
-                }
-            })
-
-            //Mouse
-            window.onmousemove = function(e) {
-                startPrompt.changeText("CLICK HERE");
+            if (!startPrompt.flickerTimer) {
+                startPrompt.flickerTimer = startPrompt.flickerInterval(normalDuration);
             }
 
-            this.element.on("mouseup", function(e) {
-                if (e.button == 0) {
-                    startPrompt.transitionToMainScreen(flickerTimer, fastDuration)
+
+
+            if (!addedEventListeners) {
+
+                //Keyboard
+                window.addEventListener("keypress", function(e) {
+                    e = e || window.event;
+
+                    if (e.key) {
+                        startPrompt.changeText("PRESS ENTER");
+                    }
+
+                    if (e.key == "Enter") {
+                        startPrompt.transitionToMainScreen()
+                    }
+                })
+
+                //Mouse
+                window.onmousemove = function(e) {
+                    startPrompt.changeText("CLICK HERE");
                 }
-            })
+
+                this.element.on("mouseup", function(e) {
+                    if (e.button == 0) {
+                        startPrompt.transitionToMainScreen()
+                    }
+                })
 
 
-            //Gamepad
-            window.addEventListener("gamepadconnected", function(e) {
-                var gamepad = e.gamepad;
-                console.log(
-                    "Gamepad connected at index %d: %s. %d buttons, %d axes.",
-                    gamepad.index,
-                    gamepad.id,
-                    gamepad.buttons.length,
-                    gamepad.axes.length
-                );
+                //Gamepad
+                window.addEventListener("gamepadconnected", function(e) {
+                    var gamepad = e.gamepad;
+                    console.log(
+                        "Gamepad connected at index %d: %s. %d buttons, %d axes.",
+                        gamepad.index,
+                        gamepad.id,
+                        gamepad.buttons.length,
+                        gamepad.axes.length
+                    );
 
-                startPrompt.changeText("PRESS START")
+                    startPrompt.changeText("PRESS START")
 
-            });
+                });
 
-            window.addEventListener("gamepaddisconnected", function(e) {
-                startPrompt.changeText("PRESS ENTER");
-            });
+                window.addEventListener("gamepaddisconnected", function(e) {
+                    startPrompt.changeText("PRESS ENTER");
+                });
+                addedEventListeners = true;
+            }
+
 
         }, initialFadeInDuration);
     }
 }
 
-startPrompt.control(1000, 1250, 100);
+startPrompt.control();

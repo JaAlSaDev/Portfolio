@@ -18,6 +18,11 @@ import {
 } from "./linksScreen"
 import { aboutMeScreen } from "./aboutMeScreen"
 
+import {
+    startPrompt
+} from "../index"
+
+
 
 let audioElement = $("audio")[0]
 audioElement.src = require("../Sound/X8StageSelect.mp3")
@@ -231,6 +236,8 @@ let hexagons = {
 
 
 let addedEventListeners = false;
+
+let backArrow = undefined;
 export let mainMenu = {
     elem: $("#MainMenu"),
     timer3: () => setInterval(() => {
@@ -246,6 +253,22 @@ export let mainMenu = {
 
         if (!addedEventListeners) {
             hexagons.addEventListeners();
+            backArrow = document.querySelector("#MainMenu object").contentDocument.children[0];
+
+
+            backArrow.addEventListener("click", () => {
+
+                mainMenu.elem.fadeOut(2000);
+
+                setTimeout(() => {
+                    $("#StartScreen").fadeIn(2000);
+
+                    startPrompt.control();
+                }, 3000);
+
+
+            });
+
             addedEventListeners = true;
             mainMenu.timer2()
         }
