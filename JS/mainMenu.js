@@ -22,15 +22,9 @@ import {
     startPrompt
 } from "../index"
 
+import soundEffects from "./soundEffects"
 
 
-let audioElement = $("audio")[0]
-audioElement.src = require("../Sound/X8StageSelect.mp3")
-
-const audioContext = new AudioContext();
-
-const track = audioContext.createMediaElementSource(audioElement);
-track.connect(audioContext.destination)
 
 
 
@@ -204,12 +198,14 @@ let hexagons = {
                 previewPanels.changeContent(this.previewImgs[index], this.previewTexts[index])
 
                 this.changeHexImage(index, this.hoverImages[index]);
-                audioElement.play();
+
+
+                soundEffects.playSelect();
             })
 
             hexagon.addEventListener("mouseleave", () => {
                 previewPanels.changeContent("", "")
-                    // audioElement.pause()
+
                 this.changeHexImage(index, this.originalImages[index]);
             })
 
@@ -217,10 +213,12 @@ let hexagons = {
                 if (this.screenIDs[index]) {
                     $("#MainMenu").fadeOut(2000);
 
-
-
                     this.screenIDs[index].control();
 
+
+                    soundEffects.playDecision();
+                } else {
+                    soundEffects.playError();
 
                 }
 
@@ -259,7 +257,7 @@ export let mainMenu = {
             backArrow.addEventListener("click", () => {
 
                 mainMenu.elem.fadeOut(2000);
-
+                soundEffects.playCancel();
                 setTimeout(() => {
                     $("#StartScreen").fadeIn(2000);
 

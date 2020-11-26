@@ -4,16 +4,13 @@ import {
     mainMenu
 } from "./JS/mainMenu"
 
+import soundEffects from "./JS/soundEffects"
+
 
 
 const normalDuration = 1250,
     initialFadeInDuration = 1000,
     fastDuration = 100;
-
-
-
-
-
 
 let startScreen = $("#StartScreen");
 let addedEventListeners = false;
@@ -46,7 +43,7 @@ export let startPrompt = {
 
         //Speed up the start prompt
         startPrompt.changeSpeed(fastDuration);
-
+        soundEffects.playDecision();
         setTimeout(() => {
             startScreen.fadeOut(2000);
 
