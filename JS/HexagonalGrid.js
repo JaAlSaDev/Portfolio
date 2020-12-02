@@ -1,16 +1,18 @@
 let gridSize = 0;
 let allLeafNodes = new Set();
+
+let queue = []
 class GridElement {
 
     constructor(content) {
         this.content = "" + content
-        this.neighbors = [undefined, undefined, undefined, undefined, undefined, undefined];
+        this.neighbors = [null, null, null, null, null, null];
         this.visited = false;
 
     }
 
     addNeighbor(newNeighborContent) {
-        this.neighbors[this.neighbors.indexOf(undefined)] = new GridElement(newNeighborContent)
+        this.neighbors[this.neighbors.indexOf(null)] = new GridElement(newNeighborContent)
     }
 
 
@@ -67,7 +69,7 @@ class GridElement {
 
 
     isLeaf() {
-        return this.neighbors.includes(undefined);
+        return this.neighbors.includes(null);
     }
 
     getLeafNeighbors() {
@@ -86,14 +88,19 @@ class GridElement {
     printContentOfChildren() {
 
 
-        let message = "Children of " + this.content + " are: "
+        let message = "  " + this.content + ":\t   |"
 
         for (let i = 0; i < this.neighbors.length; i++) {
-            message += " " + ((this.neighbors[i]) ? this.neighbors[i].content : this.neighbors[i]);
+            let word = "" + ((this.neighbors[i]) ? this.neighbors[i].content : this.neighbors[i])
+                // console.log(word + " " + word.length);
+
+            // word =
+
+            message += word + "" + (" ").repeat(4 - word.length) + "|";
 
         }
 
-        console.log(message + "\n");
+        console.log(message + "\n" + ("_").repeat(45));
 
     }
 
@@ -116,10 +123,12 @@ class GridElement {
 
     }
 
+
+
 }
 
 
-const numOfProjects = 0
+const numOfProjects = 50
 let projects = []
 
 for (let i = 0; i < numOfProjects; i++) {
@@ -141,6 +150,7 @@ let HexagonalGrid = {
         //Iterate through the depth queue
         while (projects.length) {
             let interiorQueue = []
+
             while (this.depthQueue[0].length) {
                 this.depthQueue[0][0].connectContigousNeighbors();
 
@@ -156,8 +166,6 @@ let HexagonalGrid = {
                         this.depthQueue[0][0].connectContigousNeighbors();
                     }
 
-
-                    this.depthQueue[0][0].printContentOfChildren()
                     this.depthQueue[0].push(this.depthQueue[0].shift());
                 }
 
@@ -205,9 +213,50 @@ let HexagonalGrid = {
 HexagonalGrid.createGrid()
 
 
-HexagonalGrid.CentralHexagon.printGridDepthFirst();
-console.log("Grid size: " + gridSize);
-console.log(HexagonalGrid.depthQueue[0].length);
-console.log(HexagonalGrid.depthQueue);
+// HexagonalGrid.CentralHexagon.printGridDepthFirst();
+// console.log("Grid size: " + gridSize);
 
+
+// console.log(allLeafNodes);
+
+console.log("\t    Printing breadth first\n" + ("_").repeat(45));
+console.log("  Hexagon  | T  | TR | BR | B  | BL | TL |");
+console.log(("_").repeat(45));
+
+function printGridBreadthFirst(hexagon, i = 0) {
+
+    hexagon.connectContigousNeighbors();
+
+    if (!hexagon.visited) {
+        hexagon.printContentOfChildren();
+        hexagon.visited = true;
+    }
+
+    if (hexagon.isLeaf()) {
+        allLeafNodes.add(hexagon.content)
+    }
+
+
+    hexagon.neighbors.forEach(neighbor => {
+        if (neighbor && !queue.includes(neighbor)) {
+            queue.push(neighbor)
+        }
+    });
+
+    // queue.shift();
+    if (queue.length > i) {
+        printGridBreadthFirst(queue[i], i + 1);
+    }
+
+
+}
+
+queue.push(HexagonalGrid.CentralHexagon)
+
+
+
+
+printGridBreadthFirst(HexagonalGrid.CentralHexagon)
+
+console.log(allLeafNodes.size);
 console.log(allLeafNodes);
