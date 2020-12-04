@@ -17,6 +17,7 @@ import {
     linksScreen
 } from "./linksScreen"
 import { aboutMeScreen } from "./aboutMeScreen"
+import { projectsScreen } from "./projectsScreen"
 
 import {
     startPrompt
@@ -117,18 +118,18 @@ let previewPanels = {
         [],
         [
 
-            // {
-            //     "x": "0.25",
-            //     "y": "0.25",
-            //     "xlink:href": gameControllerIcon,
-            //     "transform": "scale(0.5)"
-            // },
-            // {
-            //     "x": "0.85",
-            //     "y": "0.85",
-            //     "xlink:href": webDevelopmentIcon,
-            //     "transform": "scale(0.45)"
-            // }
+            {
+                "x": "0.25",
+                "y": "0.25",
+                "xlink:href": gameControllerIcon,
+                "transform": "scale(0.5)"
+            },
+            {
+                "x": "0.85",
+                "y": "0.85",
+                "xlink:href": webDevelopmentIcon,
+                "transform": "scale(0.45)"
+            }
         ],
         [{
             "x": "0.35",
@@ -176,17 +177,17 @@ let hexagons = {
         "???",
         "???",
         "About Me",
-        "???",
+        "Projects",
         "Links"
     ],
     previewImgs: [
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
         glowManPreview,
-        "https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif",
+        astronaut1,
         recordings
     ],
-    screenIDs: ["", "", aboutMeScreen, "", linksScreen],
+    screenIDs: ["", "", aboutMeScreen, projectsScreen, linksScreen],
 
 
     addEventListeners: function() {

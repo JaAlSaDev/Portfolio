@@ -1,0 +1,20 @@
+#ProjectsScreen {
+    /* background-color:; */
+    /* display: flex; */
+}
+
+#hexagonalGrid .hexagon {
+    height: auto;
+    stroke: rgb(116, 0, 62);
+    stroke-width: 12.5;
+    fill: rgb(0, 99, 165);
+}
+
+#hexagonalGridContainer {
+    position: relative;
+    width: 60%;
+    height: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+}
