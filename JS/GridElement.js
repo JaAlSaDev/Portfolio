@@ -1,28 +1,10 @@
-const positions = [{
-        x: 0,
-        y: -23
-    }, {
-        x: 22.5,
-        y: -11.5
-    }, {
-        x: 22.5,
-        y: 11.5
-    }, {
-        x: 0,
-        y: 23
-    }, {
-        x: -22.5,
-        y: 11.5
-    },
-    {
-        x: -22.5,
-        y: -11.5
-    }
-]
 export default class GridElement {
 
-    constructor(content, x = 0, y = 0) {
+    constructor(content, size, margin, x = 0, y = 0) {
         this.content = "" + content
+
+        this.size = size
+        this.margin = margin
         this.x = x;
         this.y = y;
         this.neighbors = [null, null, null, null, null, null];
@@ -32,7 +14,10 @@ export default class GridElement {
 
     addNeighbor(newNeighborContent) {
         let indexOfNull = this.neighbors.indexOf(null);
-        this.neighbors[indexOfNull] = new GridElement(newNeighborContent, this.x + positions[indexOfNull].x, this.y + positions[indexOfNull].y)
+
+        let x = this.margin * Math.cos(((270 + 60 * indexOfNull) % 360) * Math.PI / 180);
+        let y = this.margin * Math.sin(((270 + 60 * indexOfNull) % 360) * Math.PI / 180)
+        this.neighbors[indexOfNull] = new GridElement(newNeighborContent, this.size, this.margin, this.x + x, this.y + y)
 
         // this.neighbors[indexOfNull].neighbors[(indexOfNull + 3) % 6] = this;
 
@@ -147,9 +132,10 @@ export default class GridElement {
     }
 
     createElement() {
-        return `<svg x="${this.x}%" y="${this.y}%" width="30%" viewBox="0 0 262.5 225">
+        return `<svg x="${this.x}%" y="${this.y}%" width="${this.size}%" viewBox="0 0 262.5 225">
                     
         <polygon stroke="red" stroke-width="5" fill="green" stroke= "rgb(116, 0, 62)" transform="scale(0.357), translate(0,0)" class="hexagon"     points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+        <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="60">${this.content}</text>
     </svg>`
     }
 

@@ -40,3 +40,17 @@ body {
     filter: opacity(50%) blur(0.1vw) hue-rotate(50deg);
     background-size: cover;
 }
+
+.hexagon {
+    height: auto;
+    stroke: rgb(116, 0, 62);
+    stroke-width: 50;
+}
+
+.hexagon:hover {
+    stroke: rgb(216, 0, 115);
+}
+
+.hexagon:active {
+    stroke: gold;
+}

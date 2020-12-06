@@ -13,7 +13,9 @@ let allLeafNodes = new Set();
 
 let queue = []
 
-const numOfProjects = 19
+const numOfProjects = 7,
+    hexagonSize = 30,
+    margin = 5;
 let projects = []
 
 for (let i = 0; i < numOfProjects; i++) {
@@ -22,14 +24,16 @@ for (let i = 0; i < numOfProjects; i++) {
 }
 
 let HexagonalGrid = {
-    CentralHexagon: new GridElement(projects.shift(), 35),
+    CentralHexagon: null,
     depthQueue: [
         [],
         []
     ],
 
-    createGrid: function() {
+    createGrid: function(margin, size) {
         //Insert the central hexagon into the queue
+        let actualMargin = (0.85 + margin / 100) * size
+        this.CentralHexagon = new GridElement(projects.shift(), size, actualMargin, (100 - size) / 2);
         this.depthQueue[0].unshift(this.CentralHexagon)
 
         //Iterate through the depth queue
@@ -83,7 +87,7 @@ let HexagonalGrid = {
     }
 }
 
-HexagonalGrid.createGrid()
+HexagonalGrid.createGrid(margin, hexagonSize)
 
 
 console.log("\t    Printing breadth first\n" + ("_").repeat(45));
@@ -157,14 +161,17 @@ let backArrow = undefined;
 
 export let projectsScreen = {
     elem: $("#ProjectsScreen"),
+    projects: $("#ProjectsScreen .hexagon"),
     control: function() {
 
         setTimeout(() => {
             this.elem.fadeIn(3000);
+            if (!backArrow) {
+                setTimeout(() => {
+                    printGridBreadthFirst(HexagonalGrid.CentralHexagon)
+                }, 2500);
+            }
 
-            setTimeout(() => {
-                printGridBreadthFirst(HexagonalGrid.CentralHexagon)
-            }, 1200);
 
             this.elem.css("display", "flex");
 
