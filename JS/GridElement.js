@@ -1,8 +1,8 @@
 export default class GridElement {
 
-    constructor(content, size, margin, x = 0, y = 0) {
+    constructor(content, size, margin, x = 0, y = 0, color = "black") {
         this.content = "" + content
-
+        this.color = color;
         this.size = size
         this.margin = margin
         this.x = x;
@@ -12,15 +12,12 @@ export default class GridElement {
 
     }
 
-    addNeighbor(newNeighborContent) {
+    addNeighbor(newNeighborContent, color) {
         let indexOfNull = this.neighbors.indexOf(null);
 
-        let x = this.margin * Math.cos(((270 + 60 * indexOfNull) % 360) * Math.PI / 180);
-        let y = this.margin * Math.sin(((270 + 60 * indexOfNull) % 360) * Math.PI / 180)
-        this.neighbors[indexOfNull] = new GridElement(newNeighborContent, this.size, this.margin, this.x + x, this.y + y)
-
-        // this.neighbors[indexOfNull].neighbors[(indexOfNull + 3) % 6] = this;
-
+        let x = this.x + this.margin * Math.cos(((270 + 60 * indexOfNull) % 360) * Math.PI / 180);
+        let y = this.y + this.margin * Math.sin(((270 + 60 * indexOfNull) % 360) * Math.PI / 180)
+        this.neighbors[indexOfNull] = new GridElement(newNeighborContent, this.size, this.margin, x, y, color)
     }
 
     // TODO: Implement this more efficiently
@@ -134,7 +131,7 @@ export default class GridElement {
     createElement() {
         return `<svg x="${this.x}%" y="${this.y}%" width="${this.size}%" viewBox="0 0 262.5 225">
                     
-        <polygon stroke="red" stroke-width="5" fill="green" stroke= "rgb(116, 0, 62)" transform="scale(0.357), translate(0,0)" class="hexagon"     points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+        <polygon stroke="${this.color.getRGB()}" stroke-width="5" fill="#000"  transform="scale(0.357), translate(0,0)" class="hexagon"     points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
         <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="60">${this.content}</text>
     </svg>`
     }
