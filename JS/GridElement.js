@@ -109,24 +109,7 @@ export default class GridElement {
 
     }
 
-    printGridDepthFirst(depth = 0) {
-        this.visited = true;
-        gridSize++;
-        // this.connectContigousNeighbors();
-        this.printContentOfChildren();
 
-        if (this.isLeaf()) {
-            allLeafNodes.add(this.content)
-        }
-
-        depth++
-        this.neighbors.forEach(neighbor => {
-            if (neighbor && !neighbor.visited) {
-                neighbor.printGridDepthFirst(depth);
-            }
-        });
-
-    }
 
     createElement() {
         return `<svg x="${this.x}%" y="${this.y}%" width="${this.size}%" viewBox="0 0 262.5 225">

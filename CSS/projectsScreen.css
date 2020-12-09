@@ -1,15 +1,19 @@
 #ProjectsScreen {
     /* background-color:; */
     /* display: flex; */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #hexagonalGridContainer {
     position: relative;
-    /* height: 100%; */
-    width: 50%;
+    height: 100%;
+    width: 45%;
     /* background-color: blue; */
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-self: center;
 }
 
 
@@ -17,10 +21,28 @@
     width: 50%;
 } */
 
+#ProjectsScreen .ItemPreview {
+    border: rgb(212, 1, 114) 0.4vw groove;
+    /* position: absolute; */
+    top: 38%;
+    /* background-color: blue; */
+    height: 25%;
+    width: 20%;
+    overflow: hidden;
+}
+
+#ProjectsScreen .TextPreviewContainer {
+    margin-left: 2%;
+}
+
+#ProjectsScreen .ImgPreviewContainer {
+    margin-right: 2%;
+}
+
 #hexagonalGrid .hexagon {
     height: auto;
     /* stroke: rgb(116, 0, 62); */
-    stroke-width: 25;
+    stroke-width: 18;
 }
 
 #hexagonalGrid .hexagon:hover {

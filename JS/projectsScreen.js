@@ -28,11 +28,13 @@ let allLeafNodes = new Set();
 let color = [new Color(255, 0, 0), new Color(0, 255, 0), new Color(0, 0, 255), new Color(128, 0, 128), new Color(255, 255, 255)]
 let queue = []
 
-const numOfProjects = 1 + 6 + 12 + 18 + 24,
-    hexagonSize = 12.3,
-    margin = 5,
-    duration = 25;
+const numLayers = 2,
+    numOfProjects = 1 + 3 * numLayers * (numLayers + 1),
+    hexagonSize = 22.5,
+    MARGIN = 8,
+    DURATION = 300;
 let projects = []
+
 
 for (let i = 0; i < numOfProjects; i++) {
     projects[i] = i
@@ -105,15 +107,22 @@ let HexagonalGrid = {
     },
 
     showLayerByLayer() {
+        this.showLayer([this.CentralHexagon])
+    },
+    showHexagonByHexagon() {
+        this.printGridBreadthFirst([this.CentralHexagon], this.CentralHexagon);
+    },
 
-        let depthQueue = [
-            [this.CentralHexagon],
-            []
-        ]
+    printGridBreadthFirst(queue, hexagon, i = 0) {
+        setTimeout(() => {
+            this.showHexagon(hexagon)
+        }, DURATION);
 
-        depthQueue[0].forEach(hexagon => {
-            showHexagon(hexagon);
-        })
+        if (hexagon.isLeaf()) {
+            allLeafNodes.add(hexagon.content)
+        }
+
+
         hexagon.neighbors.forEach(neighbor => {
             if (neighbor && !queue.includes(neighbor)) {
                 queue.push(neighbor)
@@ -122,77 +131,63 @@ let HexagonalGrid = {
 
         if (queue.length > i) {
             setTimeout(() => {
-                printGridBreadthFirst(queue[i], i + 1);
-            }, duration);
+                this.printGridBreadthFirst(queue, queue[i], i + 1);
+            }, DURATION);
 
         }
+
+
+    },
+
+    showLayer(currentLayer) {
+        let nextLayer = []
+
+        //1: Show the hexagons in the current layer on screen
+        setTimeout(() => {
+            currentLayer.forEach(hexagon => {
+                this.showHexagon(hexagon);
+            })
+        }, DURATION);
+
+
+        //2: Prepare the next layer
+        currentLayer.forEach(hexagon => {
+            hexagon.neighbors.forEach(neighbor => {
+
+                /*Add a neighbor to the next layer if it meets the following requirements:
+                    1: If it exists.
+                    2: If it hasn't been visited yet.
+                    3: If it isn't already included in the next layer
+                */
+                if (neighbor && !neighbor.visited && !nextLayer.includes(neighbor)) {
+                    nextLayer.push(neighbor)
+                }
+            });
+        });
+
+
+        //3: Go to the next layer
+        if (nextLayer.length) {
+            setTimeout(() => {
+
+                this.showLayer(nextLayer)
+            }, DURATION);
+
+        }
+
     },
 
     showHexagon(hexagon) {
         $("#hexagonalGrid").append(hexagon.createElement())
         if (!hexagon.visited) {
-            hexagon.printContentOfChildren();
             hexagon.visited = true;
-
-            if (hexagon.isLeaf()) {
-                allLeafNodes.add(hexagon.content)
-            }
         }
 
 
     }
 }
 
-HexagonalGrid.construct(margin, hexagonSize)
-
-
-console.log("\t    Printing breadth first\n" + ("_").repeat(45));
-console.log("  Hexagon  | T  | TR | BR | B  | BL | TL |");
-console.log(("_").repeat(45));
-
-function printGridBreadthFirst(hexagon, i = 0) {
-
-    setTimeout(() => {
-        $("#hexagonalGrid").append(hexagon.createElement())
-    }, duration);
-
-
-    if (!hexagon.visited) {
-        hexagon.printContentOfChildren();
-        hexagon.visited = true;
-    }
-
-    if (hexagon.isLeaf()) {
-        allLeafNodes.add(hexagon.content)
-    }
-
-
-    hexagon.neighbors.forEach(neighbor => {
-        if (neighbor && !queue.includes(neighbor)) {
-            queue.push(neighbor)
-        }
-    });
-
-    if (queue.length > i) {
-        setTimeout(() => {
-            printGridBreadthFirst(queue[i], i + 1);
-        }, duration);
-
-    }
-
-
-}
-
-queue.push(HexagonalGrid.CentralHexagon)
-
-
-
-
-console.log(allLeafNodes.size);
-console.log(allLeafNodes);
-//Inject the hexagons into the DOM
-// $("#hexagonalGrid").append((new Hexagon("profileImage", stevenSketch, [], "100%")).getElement())
-
+HexagonalGrid.construct(MARGIN, hexagonSize)
 
 let hexagon = {
     containers: $("#ProjectsScreen svg"),
@@ -222,10 +217,13 @@ export let projectsScreen = {
 
         setTimeout(() => {
             this.elem.fadeIn(3000);
+
+
             if (!backArrow) {
+                // Print the hexagonal grid in some way
                 setTimeout(() => {
-                    printGridBreadthFirst(HexagonalGrid.CentralHexagon)
-                }, 2500);
+                    HexagonalGrid.showLayerByLayer()
+                }, 2000);
             }
 
 

@@ -87,9 +87,9 @@ let jobTitle = {
     }
 }
 let previewPanels = {
-    img: $("#previewImg"),
-    previewStatic: $("#previewStatic"),
-    text: $("#TextPreview")[0],
+    img: $("#MainMenu .previewImg"),
+    previewStatic: $("#MainMenu .previewStatic"),
+    text: $("#MainMenu .TextPreview")[0],
 
     changeContent: function(imgSrc, text) {
         this.img.attr("src", imgSrc);
