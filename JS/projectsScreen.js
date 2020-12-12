@@ -172,12 +172,10 @@ let HexagonalGrid = {
     },
 
     showHexagon(hexagon) {
-        $("#hexagonalGrid").append(hexagon.createElement())
         if (!hexagon.visited) {
+            $("#hexagonalGrid").append(hexagon.createElement())
             hexagon.visited = true;
         }
-
-
     }
 }
 

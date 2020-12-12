@@ -2,7 +2,7 @@ import Hexagon from "./Hexagon"
 export default class GridElement {
 
     constructor(project, size, margin, x = 0, y = 0, color = "black") {
-        this.content = project
+        this.project = project
         this.color = color;
         this.size = size
         this.margin = margin
@@ -13,12 +13,12 @@ export default class GridElement {
 
     }
 
-    addNeighbor(newNeighborContent, color) {
+    addNeighbor(project, color) {
         let indexOfNull = this.neighbors.indexOf(null);
 
         let x = this.x + this.margin * Math.cos(((270 + 60 * indexOfNull) % 360) * Math.PI / 180);
         let y = this.y + this.margin * Math.sin(((270 + 60 * indexOfNull) % 360) * Math.PI / 180)
-        this.neighbors[indexOfNull] = new GridElement(newNeighborContent, this.size, this.margin, x, y, color)
+        this.neighbors[indexOfNull] = new GridElement(project, this.size, this.margin, x, y, color)
     }
 
     // TODO: Implement this more efficiently
@@ -27,7 +27,7 @@ export default class GridElement {
 
 
             if (this.neighbors[i]) {
-                let message = "Connecting contigous neighbors of " + this.neighbors[i].content + "."
+                let message = "Connecting contigous neighbors of " + this.neighbors[i].project + "."
 
 
 
@@ -36,7 +36,7 @@ export default class GridElement {
 
 
                 if (neighbor1) {
-                    // message += neighbor1.content;
+                    // message += neighbor1.project;
 
 
                     this.neighbors[i].neighbors[(i + 2) % 6] = neighbor1;
@@ -45,7 +45,7 @@ export default class GridElement {
 
 
                 //3: Connect to the central Hexagon
-                // message += ", " + this.content;
+                // message += ", " + this.project;
 
                 this.neighbors[i].neighbors[(i + 3) % 6] = this;
 
@@ -54,7 +54,7 @@ export default class GridElement {
                 let neighbor2 = this.neighbors[(i + 5) % 6];
 
                 if (neighbor2) {
-                    // message += ", " + neighbor2.content;
+                    // message += ", " + neighbor2.project;
 
                     this.neighbors[i].neighbors[(i + 4) % 6] = neighbor2;
                 }
@@ -77,11 +77,11 @@ export default class GridElement {
 
     getLeafNeighbors() {
         let leafNeighbors = [];
-        let message = "Leaf neighbors of " + this.content + " are "
+        let message = "Leaf neighbors of " + this.project + " are "
         for (let i = 0; i < this.neighbors.length; i++) {
             if (this.neighbors[i].isLeaf()) {
                 leafNeighbors.push(this.neighbors[i]);
-                message += " " + this.neighbors[i].content;
+                message += " " + this.neighbors[i].project;
             }
 
         }
@@ -91,10 +91,10 @@ export default class GridElement {
     printContentOfChildren() {
 
 
-        let message = "  " + this.content + ":\t   |"
+        let message = "  " + this.project + ":\t   |"
 
         for (let i = 0; i < this.neighbors.length; i++) {
-            let word = "" + ((this.neighbors[i]) ? this.neighbors[i].content : this.neighbors[i])
+            let word = "" + ((this.neighbors[i]) ? this.neighbors[i].project : this.neighbors[i])
                 // console.log(word + " " + word.length);
 
             // word =
@@ -110,8 +110,8 @@ export default class GridElement {
 
 
     createElement() {
-        let project = this.content;
-        let hexagon = new Hexagon(project.patternID, project.icon, [], this.size, "none", "0 0 262.5 225", this.color.getRGB(), this.x, this.y, "0,0", "0.357")
+        let project = this.project;
+        let hexagon = new Hexagon(project.patternID, project.icon, [], this.size + "%", "none", "0 0 262.5 225", this.color.getRGB(), this.x, this.y, "0,0", "0.357")
 
         return hexagon.getElement();
         //     return `<svg x="${this.x}%" y="${this.y}%" width="${this.size}%" viewBox="0 0 262.5 225">
@@ -120,7 +120,7 @@ export default class GridElement {
 
         // </svg>`
 
-        // <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="60">${this.content}</text>
+        // <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="60">${this.project}</text>
     }
 
 }

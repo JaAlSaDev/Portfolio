@@ -24,7 +24,7 @@ export default class Hexagon {
 
 
     getElement() {
-        return `<svg version="1.1" height="100%" width="${this.width}%" x="${this.x}%" y="${this.y}%" xmlns="http://www.w3.org/2000/svg" viewBox="${this.viewBox}">
+        return `<svg version="1.1" height="100%" width="${this.width}" x="${this.x}%" y="${this.y}%" xmlns="http://www.w3.org/2000/svg" viewBox="${this.viewBox}">
         
         <defs>
             
