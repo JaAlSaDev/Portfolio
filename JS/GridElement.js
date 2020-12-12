@@ -114,13 +114,6 @@ export default class GridElement {
         let hexagon = new Hexagon(project.patternID, project.icon, [], this.size + "%", "none", "0 0 262.5 225", this.color.getRGB(), this.x, this.y, "0,0", "0.357")
 
         return hexagon.getElement();
-        //     return `<svg x="${this.x}%" y="${this.y}%" width="${this.size}%" viewBox="0 0 262.5 225">
-
-        //     <polygon stroke="${this.color.getRGB()}" stroke-width="5" fill="#000"  transform="scale(0.357), translate(0,0)" class="hexagon"     points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
-
-        // </svg>`
-
-        // <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="60">${this.project}</text>
     }
 
 }

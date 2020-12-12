@@ -9,6 +9,23 @@ import GridElement from "./GridElement.js"
 import soundEffects from "./soundEffects"
 import projects from "./projectsList"
 
+
+
+let previewPanels = {
+    img: $("#ProjectsScreen .previewImg"),
+    previewStatic: $("#ProjectsScreen .previewStatic"),
+    text: $("#ProjectsScreen .TextPreview")[0],
+
+    changeContent: function(imgSrc, text) {
+        this.img.attr("src", imgSrc);
+        this.text.textContent = text;
+    },
+    staticFlicker: function(duration) {
+        this.previewStatic.fadeTo(duration / 2, 0.1).fadeTo(duration / 2, 0.5);
+    },
+};
+
+
 class Color {
     constructor(red, green, blue) {
         this.red = red;
@@ -43,11 +60,14 @@ let HexagonalGrid = {
     ],
 
     construct: function(margin, size) {
-        //Insert the central hexagon into the queue
+
         let actualMargin = (0.85 + margin / 100) * size
         this.CentralHexagon = new GridElement(projects.shift(), size, actualMargin, (100 - size) / 2, 0, color[0]);
 
+
         color.push(color.shift())
+
+        //Insert the central hexagon into the queue
         this.depthQueue[0].unshift(this.CentralHexagon)
 
         //Iterate through the depth queue
@@ -173,7 +193,31 @@ let HexagonalGrid = {
 
     showHexagon(hexagon) {
         if (!hexagon.visited) {
-            $("#hexagonalGrid").append(hexagon.createElement())
+            let hexgrid = $("#hexagonalGrid");
+            hexgrid.append(hexagon.createElement())
+
+            let hexElements = Object.values($("#ProjectsScreen .hexagon"));
+            let hexElement = hexElements[hexElements.length - 3];
+
+            // Event listeners
+            {
+                hexElement.addEventListener("click", () => {
+
+                    soundEffects.playError();
+                });
+
+                hexElement.addEventListener("mouseover", () => {
+
+                    previewPanels.changeContent(hexagon.project.image, hexagon.project.title)
+                    soundEffects.playSelect();
+                });
+
+                hexElement.addEventListener("mouseleave", () => {
+                    previewPanels.changeContent("", "")
+                });
+            }
+
+
             hexagon.visited = true;
         }
     }
@@ -181,35 +225,21 @@ let HexagonalGrid = {
 
 HexagonalGrid.construct(MARGIN, hexagonSize)
 
-let hexagon = {
-    containers: $("#ProjectsScreen svg"),
-    // patterns: $("#linksContainer .hexPattern"),
-    element: (Object.values($("#ProjectsScreen .hexagon")))[0],
-
-
-    addEventListeners: function() {
-
-
-        this.element.addEventListener("click", () => {
-            soundEffects.playError();
-        })
-
-        this.element.addEventListener("mouseover", () => {
-            soundEffects.playSelect();
-        });
-    },
-
-}
 let backArrow = undefined;
 
 export let projectsScreen = {
     elem: $("#ProjectsScreen"),
     projects: $("#ProjectsScreen .hexagon"),
+
+    staticFlickerTimer: () => setInterval(() => {
+        previewPanels.staticFlicker(2500);
+    }, 2750),
+
     control: function() {
 
         setTimeout(() => {
             this.elem.fadeIn(3000);
-
+            this.staticFlickerTimer();
             if (!backArrow) {
                 // Print the hexagonal grid in some way
                 setTimeout(() => {

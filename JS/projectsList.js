@@ -3,7 +3,8 @@ import FOABPImg from "../Images/FOABP Img 1.jpg"
 
 import ITCOTCK from "../Images/king-crimson-in-the-court-of.jpg"
 
-import IA from "../Images/In_Absentia_Right.jpg"
+import IAR from "../Images/In_Absentia_Right.jpg"
+import IA from "../Images/In_Absentia.png"
 import Recordings from "../Images/Recordings.jpg"
 import StupidDream from "../Images/Stupid_Dream.jpg"
 import TSMS from "../Images/skymovesideways.jpg"
@@ -22,12 +23,11 @@ class Project {
 
 let projects = [
     new Project("Fear of a Blank Planet", FOABP, FOABPImg, "FOABP"),
-    new Project("In Absentia", IA, IA, "IA"),
+    new Project("In Absentia", IAR, IA, "IA"),
     new Project("Recordings", Recordings, Recordings, "Recordings"),
     new Project("Stupid Dream", StupidDream, StupidDream, "StupidDream"),
     new Project("The Sky Moves Sideways", TSMS, TSMS, "TSMS"),
     new Project("On the Sunday of Life...", Sunday, Sunday, "Sunday"),
     new Project("Lightbulb Sun", LightbulbSun, LightbulbSun, "LightbulbSun"),
-
 ]
 export default projects;
