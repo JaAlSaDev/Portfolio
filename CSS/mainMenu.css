@@ -1,8 +1,3 @@
-#MainMenu {
-    /* background-color:; */
-    display: none;
-}
-
 #upperSection {
     height: 25%;
     width: 100%;
@@ -51,7 +46,7 @@
     overflow: hidden;
 }
 
-#TextPreviewContainer {
+.TextPreviewContainer {
     right: 9.5%;
     grid-template-columns: max-content max-content;
     transform: skewX(-12deg);
@@ -60,7 +55,7 @@
     justify-content: center;
 }
 
-#TextPreviewContainer>p {
+.TextPreviewContainer>p {
     width: 100%;
     /* height: 100%; */
     color: white;
@@ -71,7 +66,7 @@
     /* border: dashed blue 5px; */
 }
 
-#ImgPreviewContainer {
+.ImgPreviewContainer {
     left: 9.5%;
     display: flex;
     justify-content: center;
@@ -79,7 +74,7 @@
     overflow: hidden;
 }
 
-#ImgPreviewContainer>img {
+.ImgPreviewContainer>img {
     position: absolute;
     /* height: 100vw; */
     width: 125%;
@@ -89,12 +84,12 @@
     /* right: -15%; */
 }
 
-#previewImg {
+.previewImg {
     filter: opacity(100%);
     background-repeat: no-repeat;
 }
 
-#previewStatic {
+.previewStatic {
     width: 125%;
 }
 
@@ -131,18 +126,4 @@
     100% {
         opacity: 1;
     }
-}
-
-.hexagon {
-    height: auto;
-    stroke: rgb(116, 0, 62);
-    stroke-width: 50;
-}
-
-.hexagon:hover {
-    stroke: rgb(216, 0, 115);
-}
-
-.hexagon:active {
-    stroke: gold;
 }

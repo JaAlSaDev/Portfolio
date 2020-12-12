@@ -1,9 +1,16 @@
 export default class Hexagon {
 
-    constructor(patternID, backgroundImage, icons, width = "", preserveAspectRatio = "none") {
+    constructor(patternID, backgroundImage, icons, width = "", preserveAspectRatio = "none", viewBox = "0 0 300 261.5",
+        stroke = "black", x, y, translate = "27,27", scale = "0.385") {
         this.patternID = patternID;
         this.pattern = `<image width="1" height="1" href=${backgroundImage} preserveAspectRatio="${preserveAspectRatio}" />`
         this.width = width;
+        this.viewBox = viewBox;
+        this.stroke = stroke;
+        this.x = x;
+        this.y = y;
+        this.translate = translate
+        this.scale = scale;
         if (icons.length > 0) {
             this.pattern += `<g x="0.5" y="0.5" fill="white" transform="scale(1)">\n`
             this.pattern += `\t<rect fill="lightblue" x="0" y="0" width="100%" height="100%"/>\n`
@@ -17,7 +24,7 @@ export default class Hexagon {
 
 
     getElement() {
-        return `<svg version="1.1" height="100%" width="${this.width}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 261.5">
+        return `<svg version="1.1" height="100%" width="${this.width}" x="${this.x}%" y="${this.y}%" xmlns="http://www.w3.org/2000/svg" viewBox="${this.viewBox}">
         
         <defs>
             
@@ -25,7 +32,7 @@ export default class Hexagon {
                 ${this.pattern}
             </pattern>
         </defs>
-        <polygon fill="url(#${this.patternID})" class="hexagon"  width="100%" height="100%" stroke-width="0" transform="scale(0.385), translate(27,27)"  points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+        <polygon fill="url(#${this.patternID})" stroke="${this.stroke}" stroke-width="0" class="hexagon"  width="100%" height="100%"  transform="scale(${this.scale}), translate(${this.translate})"  points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
     </svg>`
     }
 }
