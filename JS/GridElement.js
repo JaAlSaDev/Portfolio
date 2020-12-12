@@ -1,7 +1,8 @@
+import Hexagon from "./Hexagon"
 export default class GridElement {
 
-    constructor(content, size, margin, x = 0, y = 0, color = "black") {
-        this.content = "" + content
+    constructor(project, size, margin, x = 0, y = 0, color = "black") {
+        this.content = project
         this.color = color;
         this.size = size
         this.margin = margin
@@ -70,9 +71,6 @@ export default class GridElement {
         }
     }
 
-
-
-
     isLeaf() {
         return this.neighbors.includes(null);
     }
@@ -112,11 +110,17 @@ export default class GridElement {
 
 
     createElement() {
-        return `<svg x="${this.x}%" y="${this.y}%" width="${this.size}%" viewBox="0 0 262.5 225">
-                    
-        <polygon stroke="${this.color.getRGB()}" stroke-width="5" fill="#000"  transform="scale(0.357), translate(0,0)" class="hexagon"     points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
-        <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="60">${this.content}</text>
-    </svg>`
+        let project = this.content;
+        let hexagon = new Hexagon(project.patternID, project.icon, [], this.size, "none", "0 0 262.5 225", this.color.getRGB(), this.x, this.y, "0,0", "0.357")
+
+        return hexagon.getElement();
+        //     return `<svg x="${this.x}%" y="${this.y}%" width="${this.size}%" viewBox="0 0 262.5 225">
+
+        //     <polygon stroke="${this.color.getRGB()}" stroke-width="5" fill="#000"  transform="scale(0.357), translate(0,0)" class="hexagon"     points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+
+        // </svg>`
+
+        // <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="60">${this.content}</text>
     }
 
 }

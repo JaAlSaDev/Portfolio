@@ -47,7 +47,7 @@
 
 #hexagonalGrid .hexagon:hover {
     stroke: rgb(216, 0, 115);
-    fill: rgb(0, 99, 165);
+    /* fill: rgb(0, 99, 165); */
 }
 
 #hexagonalGrid .hexagon:active {

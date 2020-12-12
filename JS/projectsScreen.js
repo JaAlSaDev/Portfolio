@@ -7,6 +7,7 @@ import GridElement from "./GridElement.js"
 // import Hexagon from "./Hexagon";
 // import stevenSketch from "../Images/Steven_Sketch.jpg";
 import soundEffects from "./soundEffects"
+import projects from "./projectsList"
 
 class Color {
     constructor(red, green, blue) {
@@ -30,16 +31,9 @@ let queue = []
 
 const numLayers = 2,
     numOfProjects = 1 + 3 * numLayers * (numLayers + 1),
-    hexagonSize = 22.5,
+    hexagonSize = 30,
     MARGIN = 8,
     DURATION = 300;
-let projects = []
-
-
-for (let i = 0; i < numOfProjects; i++) {
-    projects[i] = i
-
-}
 
 let HexagonalGrid = {
     CentralHexagon: null,
@@ -218,7 +212,6 @@ export let projectsScreen = {
         setTimeout(() => {
             this.elem.fadeIn(3000);
 
-
             if (!backArrow) {
                 // Print the hexagonal grid in some way
                 setTimeout(() => {
@@ -244,7 +237,7 @@ export let projectsScreen = {
 
                     });
 
-                    hexagon.addEventListeners();
+                    // hexagon.addEventListeners();
 
                 }, 1000);
             }
