@@ -41,16 +41,32 @@ body {
     background-size: cover;
 }
 
-#MainMenu .hexagon {
+.hexagon {
     height: auto;
     stroke: rgb(116, 0, 62);
     stroke-width: 50;
 }
 
-#MainMenu .hexagon:hover {
+.hexagon:hover {
     stroke: rgb(216, 0, 115);
+    cursor: pointer;
 }
 
-#MainMenu .hexagon:active {
+.hexagon:active {
     stroke: gold;
+    fill: white;
+}
+
+.unavailable {
+    stroke: rgb(124, 1, 1);
+}
+
+.unavailable:hover {
+    stroke: rgb(182, 1, 1);
+    cursor: not-allowed;
+}
+
+.unavailable:active {
+    stroke: red;
+    fill: transparent;
 }

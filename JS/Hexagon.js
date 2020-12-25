@@ -1,7 +1,10 @@
+import tvStatic from "../Images/Static3.gif";
+
+
 export default class Hexagon {
 
     constructor(patternID, backgroundImage, icons, width = "", preserveAspectRatio = "none", viewBox = "0 0 300 261.5",
-        stroke = "black", x, y, translate = "27,27", scale = "0.385") {
+        stroke = "black", x, y, translate = "27,27", scale = "0.385", unavailable = false) {
         this.patternID = patternID;
         this.pattern = `<image width="1" height="1" href=${backgroundImage} preserveAspectRatio="${preserveAspectRatio}" />`
         this.width = width;
@@ -11,6 +14,11 @@ export default class Hexagon {
         this.y = y;
         this.translate = translate
         this.scale = scale;
+        this.unavailable = unavailable;
+
+        if (this.unavailable) {
+            this.pattern += `\n<image opacity="0.3" width="1" height="1" href=${tvStatic} preserveAspectRatio="${preserveAspectRatio}" />`
+        }
         if (icons.length > 0) {
             this.pattern += `<g x="0.5" y="0.5" fill="white" transform="scale(1)">\n`
             this.pattern += `\t<rect fill="lightblue" x="0" y="0" width="100%" height="100%"/>\n`
@@ -32,7 +40,7 @@ export default class Hexagon {
                 ${this.pattern}
             </pattern>
         </defs>
-        <polygon fill="url(#${this.patternID})" stroke="${this.stroke}" stroke-width="0" class="hexagon"  width="100%" height="100%"  transform="scale(${this.scale}), translate(${this.translate})"  points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+        <polygon fill="url(#${this.patternID})" stroke="${this.stroke}" stroke-width="0" class="hexagon ${(this.unavailable)?"unavailable":""}"  width="100%" height="100%"  transform="scale(${this.scale}), translate(${this.translate})"  points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
     </svg>`
     }
 }
