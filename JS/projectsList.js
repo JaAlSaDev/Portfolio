@@ -12,22 +12,23 @@ import Sunday from "../Images/Sunday.jpg"
 import LightbulbSun from "../Images/Lightbulb_Sun.jpg"
 
 class Project {
-    constructor(title, icon, image, patternID) {
+    constructor(title, icon, image, patternID, available) {
         this.title = title;
         this.icon = icon;
         this.image = image;
         this.patternID = patternID;
+        this.available = available;
     }
 }
 
 
 let projects = [
-    new Project("Fear of a Blank Planet", FOABP, FOABPImg, "FOABP"),
+    new Project("Fear of a Blank Planet", FOABP, FOABPImg, "FOABP", false),
     new Project("In Absentia", IAR, IA, "IA"),
-    new Project("Recordings", Recordings, Recordings, "Recordings"),
-    new Project("Stupid Dream", StupidDream, StupidDream, "StupidDream"),
-    new Project("The Sky Moves Sideways", TSMS, TSMS, "TSMS"),
-    new Project("On the Sunday of Life...", Sunday, Sunday, "Sunday"),
-    new Project("Lightbulb Sun", LightbulbSun, LightbulbSun, "LightbulbSun"),
+    new Project("Recordings", Recordings, Recordings, "Recordings", false),
+    new Project("Stupid Dream", StupidDream, StupidDream, "StupidDream", false),
+    new Project("The Sky Moves Sideways", TSMS, TSMS, "TSMS", false),
+    new Project("On the Sunday of Life...", Sunday, Sunday, "Sunday", false),
+    new Project("Lightbulb Sun", LightbulbSun, LightbulbSun, "LightbulbSun", false),
 ]
 export default projects;

@@ -199,6 +199,12 @@ let HexagonalGrid = {
             let hexElements = Object.values($("#ProjectsScreen .hexagon"));
             let hexElement = hexElements[hexElements.length - 3];
 
+
+
+            hexElement.style.stroke = `${hexagon.color}`;
+            // hexElement.style.strokeWidth = "20";
+            // console.log(hexagon.createElement());
+
             // Event listeners
             {
                 hexElement.addEventListener("click", () => {

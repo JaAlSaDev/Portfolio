@@ -39,18 +39,6 @@
     margin-right: 2%;
 }
 
-#hexagonalGrid .hexagon {
-    height: auto;
-    /* stroke: rgb(116, 0, 62); */
-    stroke-width: 18;
-}
-
-#hexagonalGrid .hexagon:hover {
-    stroke: rgb(216, 0, 115);
-    /* fill: rgb(0, 99, 165); */
-}
-
-#hexagonalGrid .hexagon:active {
-    stroke: gold;
-    fill: white;
+#hexagonalGridContainer .hexagon {
+    stroke-width: 15;
 }
