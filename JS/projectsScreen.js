@@ -4,9 +4,9 @@ import {
     mainMenu
 } from "./mainMenu"
 import GridElement from "./GridElement.js"
-// import Hexagon from "./Hexagon";
-// import stevenSketch from "../Images/Steven_Sketch.jpg";
+
 import soundEffects from "./soundEffects"
+import { music } from "./soundEffects"
 import projects from "./projectsList"
 
 
@@ -199,8 +199,6 @@ let HexagonalGrid = {
             let hexElements = Object.values($("#ProjectsScreen .hexagon"));
             let hexElement = hexElements[hexElements.length - 3];
 
-
-
             hexElement.style.stroke = `${hexagon.color}`;
             // hexElement.style.strokeWidth = "20";
             // console.log(hexagon.createElement());
@@ -209,17 +207,32 @@ let HexagonalGrid = {
             {
                 hexElement.addEventListener("click", () => {
 
-                    soundEffects.playError();
+
+
+                    if (hexagon.project.available) {
+                        soundEffects.playDecision();
+                    } else {
+                        soundEffects.playError();
+                    }
                 });
 
                 hexElement.addEventListener("mouseover", () => {
 
                     previewPanels.changeContent(hexagon.project.image, hexagon.project.title)
                     soundEffects.playSelect();
+
+                    if (hexagon.project.music) {
+
+                        music.play(hexagon.project.music);
+                    }
+
                 });
 
                 hexElement.addEventListener("mouseleave", () => {
+
+
                     previewPanels.changeContent("", "")
+                    music.pause();
                 });
             }
 
