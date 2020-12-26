@@ -17,7 +17,7 @@ window.$ = window.jQuery = jQuery;
 let soundEffectElement = $("#soundEffectsNode")[0]
 let musicElement = $("#musicNode")[0]
 
-
+const MAX_MUSIC_VOLUME = 0.7
 const audioContext1 = new AudioContext();
 const audioContext2 = new AudioContext();
 
@@ -82,7 +82,7 @@ export let music = {
 
     changeVolume: function(change) {
         let newVolume = musicElement.volume + change
-        if (newVolume <= 0.5 && newVolume >= 0) {
+        if (newVolume <= MAX_MUSIC_VOLUME && newVolume >= 0) {
             musicElement.volume += change
             console.log(musicElement.volume);
         }
@@ -92,8 +92,8 @@ export let music = {
             console.log(musicElement.volume);
             musicElement.pause();
 
-        } else if (newVolume > 0.5) {
-            musicElement.volume = 0.5
+        } else if (newVolume > MAX_MUSIC_VOLUME) {
+            musicElement.volume = MAX_MUSIC_VOLUME
             console.log(musicElement.volume);
         }
 
