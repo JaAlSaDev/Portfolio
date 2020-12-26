@@ -4,7 +4,7 @@ import {
     mainMenu
 } from "./mainMenu"
 import GridElement from "./GridElement.js"
-
+import tvStatic from "../Images/Static3.gif";
 import soundEffects from "./soundEffects"
 import { music } from "./soundEffects"
 import projects from "./projectsList"
@@ -218,13 +218,21 @@ let HexagonalGrid = {
 
                 hexElement.addEventListener("mouseover", () => {
 
-                    previewPanels.changeContent(hexagon.project.image, hexagon.project.title)
+
                     soundEffects.playSelect();
+                    if (hexagon.project.available) {
+                        previewPanels.changeContent(hexagon.project.image, hexagon.project.title)
 
-                    if (hexagon.project.music) {
+                        if (hexagon.project.music) {
 
-                        music.play(hexagon.project.music);
+                            music.play(hexagon.project.music);
+                        }
+                    } else {
+                        previewPanels.changeContent(tvStatic, "???")
                     }
+
+
+
 
                 });
 
@@ -232,7 +240,12 @@ let HexagonalGrid = {
 
 
                     previewPanels.changeContent("", "")
-                    music.pause();
+
+
+                    if (hexagon.project.available && hexagon.project.music) {
+
+                        music.pause();
+                    }
                 });
             }
 

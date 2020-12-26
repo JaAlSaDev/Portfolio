@@ -28,10 +28,10 @@ class Project {
 let projects = [
     new Project("Fear of a Blank Planet", FOABP, FOABPImg, "FOABP", true, "../Sound/Sleep_Together.mp3"),
     new Project("In Absentia", IAR, IA, "IA", false, "../Sound/Chloroform.mp3"),
-    new Project("Recordings", Recordings, Recordings, "Recordings", false, "../Sound/Ambulance_Chasing.mp3"),
+    new Project("Recordings", Recordings, Recordings, "Recordings", true, "../Sound/Ambulance_Chasing.mp3"),
     new Project("Stupid Dream", StupidDream, StupidDream, "StupidDream", false, "../Sound/Piano_Lessons.mp3"),
-    new Project("The Sky Moves Sideways", TSMS, TSMS, "TSMS", false, "../Sound/The_Sky_Moves_Sideways_Phase_2.mp3"),
+    new Project("The Sky Moves Sideways", TSMS, TSMS, "TSMS", true, "../Sound/The_Sky_Moves_Sideways_Phase_2.mp3"),
     new Project("On the Sunday of Life...", Sunday, Sunday, "Sunday", false, "../Sound/Radioactive_Toy.mp3"),
-    new Project("Lightbulb Sun", LightbulbSun, LightbulbSun, "LightbulbSun", false, "../Sound/LCTEPEBIR.mp3"),
+    new Project("Lightbulb Sun", LightbulbSun, LightbulbSun, "LightbulbSun", true, "../Sound/LCTEPEBIR.mp3"),
 ]
 export default projects;
