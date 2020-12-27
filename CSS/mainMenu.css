@@ -76,21 +76,18 @@
 
 .ImgPreviewContainer>img {
     position: absolute;
-    /* height: 100vw; */
-    width: 125%;
-    background-size: cover;
+    height: 100%;
+    width: 150%;
+    /* background-size: cover; */
     transform: skewX(-12deg);
-    /* top: -25%; */
-    /* right: -15%; */
+    /* top: -150%;
+    right: -15%; */
+    object-fit: cover;
 }
 
 .previewImg {
     filter: opacity(100%);
     background-repeat: no-repeat;
-}
-
-.previewStatic {
-    width: 125%;
 }
 
 #message {

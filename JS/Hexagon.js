@@ -17,7 +17,7 @@ export default class Hexagon {
         this.unavailable = unavailable;
 
         if (this.unavailable) {
-            this.pattern += `\n<image opacity="0.3" width="1" height="1" href=${tvStatic} preserveAspectRatio="${preserveAspectRatio}" />`
+            this.pattern += `\n<image class="previewStatic" width="1" height="1" href=${tvStatic} preserveAspectRatio="${preserveAspectRatio}" />`
         }
         if (icons.length > 0) {
             this.pattern += `<g x="0.5" y="0.5" fill="white" transform="scale(1)">\n`

@@ -21,6 +21,11 @@
     width: 50%;
 } */
 
+svg .previewStatic {
+    filter: hue-rotate(99deg);
+    opacity: 0.8;
+}
+
 #ProjectsScreen .ItemPreview {
     border: rgb(212, 1, 114) 0.4vw groove;
     /* position: absolute; */

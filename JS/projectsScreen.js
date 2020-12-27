@@ -4,9 +4,9 @@ import {
     mainMenu
 } from "./mainMenu"
 import GridElement from "./GridElement.js"
-// import Hexagon from "./Hexagon";
-// import stevenSketch from "../Images/Steven_Sketch.jpg";
+import tvStatic from "../Images/Static3.gif";
 import soundEffects from "./soundEffects"
+import { music } from "./soundEffects"
 import projects from "./projectsList"
 
 
@@ -48,7 +48,7 @@ let queue = []
 
 const numLayers = 2,
     numOfProjects = 1 + 3 * numLayers * (numLayers + 1),
-    hexagonSize = 30,
+    hexagonSize = 22.5,
     MARGIN = 8,
     DURATION = 300;
 
@@ -193,15 +193,14 @@ let HexagonalGrid = {
 
     showHexagon(hexagon) {
         if (!hexagon.visited) {
-            let hexgrid = $("#hexagonalGrid");
+            hexagon.visited = true;
+            let hexgrid = $("#hexagonalGridContainer > svg");
             hexgrid.append(hexagon.createElement())
 
             let hexElements = Object.values($("#ProjectsScreen .hexagon"));
             let hexElement = hexElements[hexElements.length - 3];
 
-
-
-            hexElement.style.stroke = `${hexagon.color}`;
+            // hexElement.style.stroke = `${hexagon.color}`;
             // hexElement.style.strokeWidth = "20";
             // console.log(hexagon.createElement());
 
@@ -209,22 +208,49 @@ let HexagonalGrid = {
             {
                 hexElement.addEventListener("click", () => {
 
-                    soundEffects.playError();
+
+
+                    if (hexagon.project.available) {
+                        soundEffects.playDecision();
+                    } else {
+                        soundEffects.playError();
+                    }
                 });
 
                 hexElement.addEventListener("mouseover", () => {
 
-                    previewPanels.changeContent(hexagon.project.image, hexagon.project.title)
+
                     soundEffects.playSelect();
+                    if (hexagon.project.available) {
+                        previewPanels.changeContent(hexagon.project.image, hexagon.project.title)
+
+                        if (hexagon.project.music) {
+
+                            music.play(hexagon.project.music);
+                        }
+                    } else {
+                        previewPanels.changeContent(tvStatic, "???")
+                    }
+
+
+
+
                 });
 
                 hexElement.addEventListener("mouseleave", () => {
+
+
                     previewPanels.changeContent("", "")
+
+
+                    if (hexagon.project.available && hexagon.project.music) {
+
+                        music.pause();
+                    }
                 });
             }
 
 
-            hexagon.visited = true;
         }
     }
 }
