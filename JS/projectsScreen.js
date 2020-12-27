@@ -48,7 +48,7 @@ let queue = []
 
 const numLayers = 2,
     numOfProjects = 1 + 3 * numLayers * (numLayers + 1),
-    hexagonSize = 30,
+    hexagonSize = 22.5,
     MARGIN = 8,
     DURATION = 300;
 
@@ -193,13 +193,14 @@ let HexagonalGrid = {
 
     showHexagon(hexagon) {
         if (!hexagon.visited) {
-            let hexgrid = $("#hexagonalGrid");
+            hexagon.visited = true;
+            let hexgrid = $("#hexagonalGridContainer > svg");
             hexgrid.append(hexagon.createElement())
 
             let hexElements = Object.values($("#ProjectsScreen .hexagon"));
             let hexElement = hexElements[hexElements.length - 3];
 
-            hexElement.style.stroke = `${hexagon.color}`;
+            // hexElement.style.stroke = `${hexagon.color}`;
             // hexElement.style.strokeWidth = "20";
             // console.log(hexagon.createElement());
 
@@ -250,7 +251,6 @@ let HexagonalGrid = {
             }
 
 
-            hexagon.visited = true;
         }
     }
 }

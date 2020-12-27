@@ -22,7 +22,7 @@
 } */
 
 svg .previewStatic {
-    filter: hue-rotate(50deg);
+    filter: hue-rotate(99deg);
     opacity: 0.8;
 }
 
