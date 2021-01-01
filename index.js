@@ -1,3 +1,4 @@
+import "babel-polyfill"
 import jQuery from "./JS/jQuery";
 window.$ = window.jQuery = jQuery;
 import {

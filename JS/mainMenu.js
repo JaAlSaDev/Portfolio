@@ -1,17 +1,17 @@
 import jQuery from "./jQuery";
 window.$ = window.jQuery = jQuery;
-import sundayImg from "../Images/onthesunday-background-compress.jpg"
-import handCannotErase from "../Images/qg26Ki.jpg"
-import astronaut from "../Images/tumblr_ockrhsElIo1tmnl7lo1_500.png";
-import sunday from "../Images/Sunday.jpg"
-import astronaut1 from "../Images/Astronaut1.jpg"
-import tvStatic from "../Images/Static3.gif";
-import recordings from "../Images/Recordings.png"
-import gameControllerIcon from "../svg/game-controller.svg";
-import webDevelopmentIcon from "../svg/programming.svg";
-import linkIcon from "../svg/link.svg"
-import glowManPreview from "../Images/gavinharrisonbackground.jpg"
-import glowMan from "../Images/Lasse_Portraits.jpg"
+import sundayImg from "../assets/Images/onthesunday-background-compress.jpg"
+import handCannotErase from "../assets/Images/qg26Ki.jpg"
+import astronaut from "../assets/Images/tumblr_ockrhsElIo1tmnl7lo1_500.png";
+import sunday from "../assets/Images/Sunday.jpg"
+import astronaut1 from "../assets/Images/Astronaut1.jpg"
+import tvStatic from "../assets/Images/Static3.gif";
+import recordings from "../assets/Images/Recordings.png"
+import gameControllerIcon from "../assets/svg/game-controller.svg";
+import webDevelopmentIcon from "../assets/svg/programming.svg";
+import linkIcon from "../assets/svg/link.svg"
+import glowManPreview from "../assets/Images/gavinharrisonbackground.jpg"
+import glowMan from "../assets/Images/Lasse_Portraits.jpg"
 import Hexagon from "./Hexagon";
 import {
     linksScreen

@@ -4,7 +4,7 @@ import {
     mainMenu
 } from "./mainMenu"
 import Hexagon from "./Hexagon";
-import stevenSketch from "../Images/Steven_Sketch.jpg";
+import stevenSketch from "../assets/Images/Steven_Sketch.jpg";
 import soundEffects from "./soundEffects"
 
 

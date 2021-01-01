@@ -1,4 +1,4 @@
-import tvStatic from "../Images/Static3.gif";
+import tvStatic from "../assets/Images/Static3.gif";
 
 
 export default class Hexagon {

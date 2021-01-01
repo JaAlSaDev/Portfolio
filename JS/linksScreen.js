@@ -4,10 +4,10 @@ import {
     mainMenu
 } from "./mainMenu"
 import Hexagon from "./Hexagon";
-import githubIcon from "../svg/github.svg"
-import twitterIcon from "../svg/twitter.svg"
-import linkedinIcon from "../svg/linkedin.svg"
-import gmailIcon from "../svg/gmail.svg"
+import githubIcon from "../assets/svg/github.svg"
+import twitterIcon from "../assets/svg/twitter.svg"
+import linkedinIcon from "../assets/svg/linkedin.svg"
+import gmailIcon from "../assets/svg/gmail.svg"
 import soundEffects from "./soundEffects"
 //Inject hexagons to the DOM
 {

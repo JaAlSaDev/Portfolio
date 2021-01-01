@@ -1,42 +1,13 @@
-require("../Sound/X8Error.mp3")
-require("../Sound/X8StageSelect.mp3")
-require("../Sound/X8Decision.mp3")
-require("../Sound/X8Cancel.mp3")
-
-const songNames = ["Sleep_Together.mp3", "LCTEPEBIR", "Piano_Lessons",
-    "Ambulance_Chasing", "Radioactive_Toy",
-    "The_Sky_Moves_Sideways_Phase_2", "Chloroform"
-]
-
-require("../Sound/Sleep_Together.mp3")
-require("../Sound/LCTEPEBIR.mp3")
-require("../Sound/Piano_Lessons.mp3")
-require("../Sound/Ambulance_Chasing.mp3")
-require("../Sound/Radioactive_Toy.mp3")
-require("../Sound/The_Sky_Moves_Sideways_Phase_2.mp3")
-require("../Sound/.3.mp3")
-
-require("../Sound/The_Court_of_The_Crimson_King.mp3")
-require("../Sound/Starless.mp3")
-
-require("../Sound/Start_Over.mp3")
-require("../Sound/12_THINGS_I_FORGOT.mp3")
-require("../Sound/Hand_Cannot_Erase.mp3")
-require("../Sound/Frog_Forest.mp3")
-
-require("../Sound/Comfortably_Numb.mp3")
-require("../Sound/Money.mp3")
-require("../Sound/Split_Mushroom_Stage.mp3")
-require("../Sound/The_Front_Hall.mp3")
-require("../Sound/Tear_You_Up.mp3")
-require("../Sound/White_Mist.mp3")
+let sounds= require("../assets/Sound/Sound_Effects/*.mp3")
 
 import jQuery from "./jQuery";
 window.$ = window.jQuery = jQuery;
 let soundEffectElement = $("#soundEffectsNode")[0]
 let musicElement = $("#musicNode")[0]
 
-const MAX_MUSIC_VOLUME = 0.1
+const MAX_MUSIC_VOLUME = 0.5
+const MAX_SOUND_EFFECTS_VOLUME= 0.25;
+const FADE_IN_SPEED=MAX_MUSIC_VOLUME*0.01
 const audioContext1 = new AudioContext();
 const audioContext2 = new AudioContext();
 
@@ -47,44 +18,43 @@ track1.connect(audioContext1.destination)
 track2.connect(audioContext2.destination)
 let soundEffects = {
     play: function(src) {
-        soundEffectElement.src = require(src)
-        soundEffectElement.volume = 0.1
+        soundEffectElement.src = src
+        soundEffectElement.volume = MAX_SOUND_EFFECTS_VOLUME
         soundEffectElement.play();
     },
     playSelect: function() {
-        this.play("../Sound/X8StageSelect.mp3")
+        this.play(sounds["X8StageSelect"])
+
     },
     playError: function() {
-        this.play("../Sound/X8Error.mp3")
+        this.play(sounds["X8Error"])
     },
     playDecision: function() {
-        this.play("../Sound/X8Decision.mp3")
+        this.play(sounds["X8Decision"])
     },
     playCancel: function() {
-        this.play("../Sound/X8Cancel.mp3")
+        this.play(sounds["X8Cancel"])
     }
 }
 
 
 let increaseVolumeFunc = () => setInterval(() => {
-    music.changeVolume(0.001)
+    music.changeVolume(FADE_IN_SPEED)
 }, 25);
 
 
 let increaseVolumeInterval = undefined;
 
 let decreaseVolumeFunc = () => setInterval(() => {
-    music.changeVolume(-0.001)
+    music.changeVolume(-FADE_IN_SPEED)
 }, 25);
 
 let decreaseVolumeInterval = undefined;
 
 
 export let music = {
-    play: function(src) {
-
-
-        musicElement.src = require(src)
+    play:  function(src)  {
+        musicElement.src =  src
         musicElement.volume = 0
 
         clearInterval(decreaseVolumeInterval)

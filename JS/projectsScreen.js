@@ -4,7 +4,7 @@ import {
     mainMenu
 } from "./mainMenu"
 import GridElement from "./GridElement.js"
-import tvStatic from "../Images/Static3.gif";
+import tvStatic from "../assets/Images/Static3.gif";
 import soundEffects from "./soundEffects"
 import { music } from "./soundEffects"
 import projects from "./projectsList"
