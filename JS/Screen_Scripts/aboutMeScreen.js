@@ -1,11 +1,11 @@
-import jQuery from "./jQuery";
+import jQuery from "../ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
 import {
     mainMenu
 } from "./mainMenu"
-import Hexagon from "./Hexagon";
-import stevenSketch from "../assets/Images/Steven_Sketch.jpg";
-import soundEffects from "./soundEffects"
+import Hexagon from "../Hexagon/Hexagon";
+import stevenSketch from "../../assets/Images/Steven_Sketch.jpg";
+import soundEffects from "../Sound/soundEffects"
 
 
 //Inject the hexagons into the DOM

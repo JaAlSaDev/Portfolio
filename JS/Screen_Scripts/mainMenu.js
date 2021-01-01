@@ -1,18 +1,20 @@
-import jQuery from "./jQuery";
+import jQuery from "../ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
-import sundayImg from "../assets/Images/onthesunday-background-compress.jpg"
-import handCannotErase from "../assets/Images/qg26Ki.jpg"
-import astronaut from "../assets/Images/tumblr_ockrhsElIo1tmnl7lo1_500.png";
-import sunday from "../assets/Images/Sunday.jpg"
-import astronaut1 from "../assets/Images/Astronaut1.jpg"
-import tvStatic from "../assets/Images/Static3.gif";
-import recordings from "../assets/Images/Recordings.png"
-import gameControllerIcon from "../assets/svg/game-controller.svg";
-import webDevelopmentIcon from "../assets/svg/programming.svg";
-import linkIcon from "../assets/svg/link.svg"
-import glowManPreview from "../assets/Images/gavinharrisonbackground.jpg"
-import glowMan from "../assets/Images/Lasse_Portraits.jpg"
-import Hexagon from "./Hexagon";
+
+let jpgs= require("../../assets/Images/*.jpg")
+let gifs= require("../assets/Images/*.gif")
+let pngs=require("../assets/Images/*.png")
+let svgs=require("../../assets/svg/*.svg")
+let astronaut1= jpgs["Astronaut1"]
+
+let tvStatic=gifs["Static3"];
+let recordings=pngs["Recordings"]
+let gameControllerIcon=svgs["game-controller"];
+let webDevelopmentIcon= svgs["programming"]
+let linkIcon= svgs["link"]
+let glowManPreview=jpgs["glowManPreview"]
+let glowMan=jpgs["Lasse_Portraits"]
+import Hexagon from "../Hexagon/Hexagon";
 import {
     linksScreen
 } from "./linksScreen"
@@ -21,9 +23,9 @@ import { projectsScreen } from "./projectsScreen"
 
 import {
     startPrompt
-} from "../index"
+} from "../../index"
 
-import soundEffects from "./soundEffects"
+import soundEffects from "../Sound/soundEffects"
 
 
 

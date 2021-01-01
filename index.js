@@ -1,11 +1,11 @@
-import "babel-polyfill"
-import jQuery from "./JS/jQuery";
+// import "babel-polyfill"
+import jQuery from "./JS/ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
 import {
     mainMenu
-} from "./JS/mainMenu"
+} from "./JS/Screen_Scripts/mainMenu"
 
-import soundEffects from "./JS/soundEffects"
+import soundEffects from "./JS/Sound/soundEffects"
 
 
 

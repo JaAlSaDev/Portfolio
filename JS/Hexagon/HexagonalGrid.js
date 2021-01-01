@@ -1,30 +1,9 @@
-import jQuery from "./jQuery";
+import GridElement from "../Hexagon/GridElement.js"
+import tvStatic from "../../assets/Images/Static3.gif";
+import music  from "../Sound/music";
+import soundEffects from "../Sound/soundEffects"
+import jQuery from "../ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
-import {
-    mainMenu
-} from "./mainMenu"
-import GridElement from "./GridElement.js"
-import tvStatic from "../assets/Images/Static3.gif";
-import soundEffects from "./soundEffects"
-import { music } from "./soundEffects"
-import projects from "./projectsList"
-
-
-
-let previewPanels = {
-    img: $("#ProjectsScreen .previewImg"),
-    previewStatic: $("#ProjectsScreen .previewStatic"),
-    text: $("#ProjectsScreen .TextPreview")[0],
-
-    changeContent: function(imgSrc, text) {
-        this.img.attr("src", imgSrc);
-        this.text.textContent = text;
-    },
-    staticFlicker: function(duration) {
-        this.previewStatic.fadeTo(duration / 2, 0.1).fadeTo(duration / 2, 0.5);
-    },
-};
-
 
 class Color {
     constructor(red, green, blue) {
@@ -41,10 +20,25 @@ class Color {
         return `rgb(${255-this.red},${255-this.green},${255-this.blue})`
     }
 }
+
 let gridSize = 0;
 let allLeafNodes = new Set();
 let color = [new Color(255, 0, 0), new Color(0, 255, 0), new Color(0, 0, 255), new Color(128, 0, 128), new Color(255, 255, 255)]
 let queue = []
+
+let previewPanels = {
+    img: $("#ProjectsScreen .previewImg"),
+    previewStatic: $("#ProjectsScreen .previewStatic"),
+    text: $("#ProjectsScreen .TextPreview")[0],
+
+    changeContent: function(imgSrc, text) {
+        this.img.attr("src", imgSrc);
+        this.text.textContent = text;
+    },
+    staticFlicker: function(duration) {
+        this.previewStatic.fadeTo(duration / 2, 0.1).fadeTo(duration / 2, 0.5);
+    },
+};
 
 const numLayers = 2,
     numOfProjects = 1 + 3 * numLayers * (numLayers + 1),
@@ -59,10 +53,10 @@ let HexagonalGrid = {
         []
     ],
 
-    construct: function(margin, size) {
+    construct: function(projects) {
 
-        let actualMargin = (0.85 + margin / 100) * size
-        this.CentralHexagon = new GridElement(projects.shift(), size, actualMargin, (100 - size) / 2, 0, color[0]);
+        let actualMargin = (0.85 + MARGIN / 100) * hexagonSize
+        this.CentralHexagon = new GridElement(projects.shift(), hexagonSize, actualMargin, (100 - hexagonSize) / 2, 0, color[0]);
 
 
         color.push(color.shift())
@@ -255,54 +249,4 @@ let HexagonalGrid = {
     }
 }
 
-HexagonalGrid.construct(MARGIN, hexagonSize)
-
-let backArrow = undefined;
-
-export let projectsScreen = {
-    elem: $("#ProjectsScreen"),
-    projects: $("#ProjectsScreen .hexagon"),
-
-    staticFlickerTimer: () => setInterval(() => {
-        previewPanels.staticFlicker(2500);
-    }, 2750),
-
-    control: function() {
-
-        setTimeout(() => {
-            this.elem.fadeIn(3000);
-            this.staticFlickerTimer();
-            if (!backArrow) {
-                // Print the hexagonal grid in some way
-                setTimeout(() => {
-                    HexagonalGrid.showLayerByLayer()
-                }, 2000);
-            }
-
-
-            this.elem.css("display", "flex");
-
-            //Add event listeners to hexagons and backArrow if the backArrow is empty (done once)
-            if (!backArrow) {
-                setTimeout(() => {
-
-                    backArrow = document.querySelector("#ProjectsScreen object").contentDocument.children[0];
-
-                    backArrow.addEventListener("click", () => {
-
-                        projectsScreen.elem.fadeOut(2000);
-
-                        soundEffects.playCancel();
-                        mainMenu.control();
-
-                    });
-
-                    // hexagon.addEventListeners();
-
-                }, 1000);
-            }
-        }, 2000);
-
-
-    }
-};
+export default HexagonalGrid;
