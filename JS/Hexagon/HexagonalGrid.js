@@ -1,6 +1,6 @@
 import GridElement from "../Hexagon/GridElement.js"
 import tvStatic from "../../assets/Images/Static3.gif";
-import music  from "../Sound/music";
+import music from "../Sound/music";
 import soundEffects from "../Sound/soundEffects"
 import jQuery from "../ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
@@ -17,7 +17,7 @@ class Color {
     }
 
     getOpposite() {
-        return `rgb(${255-this.red},${255-this.green},${255-this.blue})`
+        return `rgb(${255 - this.red},${255 - this.green},${255 - this.blue})`
     }
 }
 
@@ -31,11 +31,11 @@ let previewPanels = {
     previewStatic: $("#ProjectsScreen .previewStatic"),
     text: $("#ProjectsScreen .TextPreview")[0],
 
-    changeContent: function(imgSrc, text) {
+    changeContent: function (imgSrc, text) {
         this.img.attr("src", imgSrc);
         this.text.textContent = text;
     },
-    staticFlicker: function(duration) {
+    staticFlicker: function (duration) {
         this.previewStatic.fadeTo(duration / 2, 0.1).fadeTo(duration / 2, 0.5);
     },
 };
@@ -48,12 +48,12 @@ const numLayers = 2,
 
 let HexagonalGrid = {
     CentralHexagon: null,
-    depthQueue: [
+    ringQueues: [
         [],
         []
     ],
 
-    construct: function(projects) {
+    construct: function (projects) {
 
         let actualMargin = (0.85 + MARGIN / 100) * hexagonSize
         this.CentralHexagon = new GridElement(projects.shift(), hexagonSize, actualMargin, (100 - hexagonSize) / 2, 0, color[0]);
@@ -62,54 +62,79 @@ let HexagonalGrid = {
         color.push(color.shift())
 
         //Insert the central hexagon into the queue
-        this.depthQueue[0].unshift(this.CentralHexagon)
+        this.ringQueues[0].unshift(this.CentralHexagon)
 
-        //Iterate through the depth queue
-        while (projects.length) {
-            let interiorQueue = []
+        let constructRing = (currentRing, interiorRing) => {
+            let currentGridElement;
+            while (currentRing.length && projects.length) {
+                currentGridElement = currentRing[0];
 
-            while (this.depthQueue[0].length && projects.length) {
-                if (!this.depthQueue[0][0].isLeaf()) {
+                if (!currentGridElement.isLeaf()) {
 
-                    interiorQueue.unshift(this.depthQueue[0].shift())
+                    let interiorGridElement = currentRing.shift();
+
+                    interiorRing.unshift(interiorGridElement)
 
                 } else {
                     if (projects.length) {
-                        this.depthQueue[0][0].addNeighbor(projects.shift(), color[0]);
-                        this.depthQueue[0][0].connectContigousNeighbors();
+                        currentGridElement.addNeighbor(projects.shift(), color[0]);
+                        currentGridElement.connectContigousNeighbors();
                     }
 
-                    this.depthQueue[0].push(this.depthQueue[0].shift());
+                    // Push the first grid element at the back of the depth queue
+                    currentRing.push(currentRing.shift());
                 }
 
             }
+        }
 
-
-            interiorQueue.forEach(interiorHexagon => {
+        let processInteriorRing = (interiorRing,nextRing) => {
+            interiorRing.forEach(interiorHexagon => {
 
                 interiorHexagon.connectContigousNeighbors();
 
                 interiorHexagon.getLeafNeighbors().forEach(leafNeighbor => {
 
-                    if (!this.depthQueue[1].includes(leafNeighbor)) {
-                        this.depthQueue[1].push(leafNeighbor)
+                    if (!nextRing.includes(leafNeighbor)) {
+                        nextRing.push(leafNeighbor)
                     }
 
                 });
 
-
             });
+        }
 
-            this.depthQueue.forEach(queue => {
+        let prepareForNextRing = (ringQueues, interiorRing, color) => {
+            // Remove front depth queue
+            ringQueues.shift();
+
+            ringQueues.push([]);
+
+            // Cycle the colors
+            color.push(color.shift())
+
+            // Reset the interior queue
+            interiorRing = []
+        }
+
+        let interiorRing = []
+        //Iterate through the depth queue
+        while (projects.length) {
+            // A: Construct a ring around the grid
+            constructRing(this.ringQueues[0], interiorRing);
+
+            // B: Process the interior ring
+            processInteriorRing(interiorRing, this.ringQueues[1]);
+
+            // C: Connect the contigous neighbors of the hexagons in the depth queues.
+            this.ringQueues.forEach(queue => {
                 queue.forEach(hexagon => {
                     hexagon.connectContigousNeighbors();
                 })
             })
 
-            color.push(color.shift())
-            this.depthQueue.shift();
-
-            this.depthQueue.push([]);
+            // D: Prepare for the next ring
+            prepareForNextRing(this.ringQueues, interiorRing, color);
 
         }
     },
