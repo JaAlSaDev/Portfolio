@@ -61,9 +61,10 @@ let HexagonalGrid = {
 
         color.push(color.shift())
 
+        // console.log(this.CentralHexagon);
         //Insert the central hexagon into the queue
-        this.ringQueues[0].unshift(this.CentralHexagon)
-
+        this.ringQueues[0].push(this.CentralHexagon)
+        console.log(this.ringQueues[0][0]);
         let constructRing = (currentRing, interiorRing) => {
             let currentGridElement;
             while (currentRing.length && projects.length) {
@@ -88,7 +89,45 @@ let HexagonalGrid = {
             }
         }
 
-        let processInteriorRing = (interiorRing,nextRing) => {
+        let constructBalancedRing = (currentRing, interiorRing) => {
+            let currentGridElement = null;
+
+            while (currentRing.length && projects.length) {
+                currentGridElement = currentRing[0];
+
+
+                let indexOfCurrentGridElement = currentRing[0].addNeighbor(projects.shift(), color[0]);
+                let indexOfOppositeNeighbor = Math.floor(currentRing.length / 2)
+
+                currentGridElement.connectContigousNeighbors();
+
+
+                if (currentRing.length && projects.length) {
+                    currentRing[indexOfOppositeNeighbor].addNeighbor(projects.shift(), color[0], (indexOfCurrentGridElement + 3) % 6);
+                    currentRing[indexOfOppositeNeighbor].connectContigousNeighbors();
+
+                    if (!currentRing[indexOfOppositeNeighbor].isLeaf()) {
+                        console.log("lol: ", interiorRing, currentRing[indexOfOppositeNeighbor]);
+                        interiorRing.unshift(currentRing.splice(indexOfOppositeNeighbor, 1)[0])
+                    }
+                }
+
+                if (currentRing.length) {
+
+                    if (!currentGridElement.isLeaf()) {
+                        interiorRing.unshift(currentRing.shift())
+                    }
+                    // Push the first grid element at the back of the depth queue
+                    currentRing.push(currentRing.shift());
+                }
+
+
+
+            }
+        }
+
+        let processInteriorRing = (interiorRing, nextRing) => {
+            console.log("interiorRing: ", interiorRing);
             interiorRing.forEach(interiorHexagon => {
 
                 interiorHexagon.connectContigousNeighbors();
@@ -113,15 +152,15 @@ let HexagonalGrid = {
             // Cycle the colors
             color.push(color.shift())
 
-            // Reset the interior queue
-            interiorRing = []
+
         }
 
         let interiorRing = []
         //Iterate through the depth queue
         while (projects.length) {
             // A: Construct a ring around the grid
-            constructRing(this.ringQueues[0], interiorRing);
+            // console.log(this.ringQueues);
+            constructBalancedRing(this.ringQueues[0], interiorRing);
 
             // B: Process the interior ring
             processInteriorRing(interiorRing, this.ringQueues[1]);
@@ -135,6 +174,8 @@ let HexagonalGrid = {
 
             // D: Prepare for the next ring
             prepareForNextRing(this.ringQueues, interiorRing, color);
+            // Reset the interior queue
+            interiorRing = []
 
         }
     },
