@@ -26,14 +26,14 @@ let projects = [
     new Project("The Wall", images["The_Wall"], images["The_Wall_Wallpaper"], "TheWall", true, trackPaths["Comfortably_Numb"] ),
     new Project("Mega Man X4 Sound Collection", images["X4"], images["X4_Wallpaper"], "X4", true, trackPaths["Split_Mushroom_Stage"]),
     new Project("Resident Evil 2: Original Soundtrack", images["BIOHAZARD_2"], images["BIOHAZARD_2_Wallpaper"], "RE2", true, trackPaths["The_Front_Hall"]),
-    // new Project("Your Wilderness", images["Your_Wilderness"], images["Your_Wilderness"], "YW", true, trackPaths["Tear_You_Up"] ),
-    // new Project("Dissolution", images["Dissolution"], images["Dissolution"], "Dissolution", true, trackPaths["White_Mist"]),
-    // new Project("Recordings", images["Recordings"], images["Recordings"], "Recordings", false, null),
-    // new Project("Stupid Dream", images["Stupid_Dream"], images["Stupid_Dream"], "StupidDream", false, null),
-    // new Project("The Sky Moves Sideways", images["skymovesideways"], images["skymovesideways"], "TSMS", false, null),
-    // new Project("Lightbulb Sun", images["Lightbulb_Sun"], images["Lightbulb_Sun"], "LightbulbSun", false, null),
-    // new Project("Fear of a Blank Planet", images["FOABP"], images["FOABP Img 1"], "FOABP", false, null),
-    // new Project("Sonic Heroes", images["Sonic_Heroes"], images["Sonic_Heroes_Wallpaper"], "SonicHeroes", false, null),
+    new Project("Your Wilderness", images["Your_Wilderness"], images["Your_Wilderness"], "YW", true, trackPaths["Tear_You_Up"] ),
+    new Project("Dissolution", images["Dissolution"], images["Dissolution"], "Dissolution", true, trackPaths["White_Mist"]),
+    new Project("Recordings", images["Recordings"], images["Recordings"], "Recordings", false, null),
+    new Project("Stupid Dream", images["Stupid_Dream"], images["Stupid_Dream"], "StupidDream", false, null),
+    new Project("The Sky Moves Sideways", images["skymovesideways"], images["skymovesideways"], "TSMS", false, null),
+    new Project("Lightbulb Sun", images["Lightbulb_Sun"], images["Lightbulb_Sun"], "LightbulbSun", false, null),
+    new Project("Fear of a Blank Planet", images["FOABP"], images["FOABP Img 1"], "FOABP", false, null),
+    new Project("Sonic Heroes", images["Sonic_Heroes"], images["Sonic_Heroes_Wallpaper"], "SonicHeroes", false, null),
 
 ]
 
