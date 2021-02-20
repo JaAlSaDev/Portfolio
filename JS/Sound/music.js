@@ -3,40 +3,43 @@ import jQuery from "../ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
 
 const MAX_MUSIC_VOLUME = 0.5
-const FADE_IN_SPEED=MAX_MUSIC_VOLUME*0.01
+const FADE_IN_SPEED = MAX_MUSIC_VOLUME * 0.01
 
 let musicElement = $("#musicNode")[0]
-const audioContext2 = new AudioContext();
-const track2 = audioContext2.createMediaElementSource(musicElement);
-track2.connect(audioContext2.destination)
+const audioContext = new AudioContext();
+const track2 = audioContext.createMediaElementSource(musicElement);
+track2.connect(audioContext.destination)
 
 let music = {
     increaseVolumeInterval: undefined,
     decreaseVolumeInterval: undefined,
-    increaseVolumeFunc :() => setInterval(() => {
+    increaseVolumeFunc: () => setInterval(() => {
         music.changeVolume(FADE_IN_SPEED)
     }, 25),
 
-    decreaseVolumeFunc :() => setInterval(() => {
+    decreaseVolumeFunc: () => setInterval(() => {
         music.changeVolume(-FADE_IN_SPEED)
     }, 25),
-    play:  function(src)  {
-        musicElement.src =  src
-        musicElement.volume = 0
-
+    play: function (src) {
         clearInterval(this.decreaseVolumeInterval)
 
-        musicElement.play();
+        audioContext.resume().then(() => {
+            musicElement.src = src
+            musicElement.volume = 0
+
+            musicElement.play();
+        })
 
         this.increaseVolumeInterval = this.increaseVolumeFunc();
+
     },
 
-    pause: function() {
+    pause: function () {
         clearInterval(this.increaseVolumeInterval)
         this.decreaseVolumeInterval = this.decreaseVolumeFunc();
     },
 
-    changeVolume: function(change) {
+    changeVolume: function (change) {
         let newVolume = musicElement.volume + change
         if (newVolume <= MAX_MUSIC_VOLUME && newVolume >= 0) {
             musicElement.volume += change
@@ -58,4 +61,4 @@ let music = {
 
 }
 
-export default  music;
+export default music;
