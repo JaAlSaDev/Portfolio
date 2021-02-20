@@ -1,4 +1,4 @@
-import tvStatic from "../Images/Static3.gif";
+import tvStatic from "../../assets/Images/Static3.gif";
 
 
 export default class Hexagon {
@@ -7,11 +7,13 @@ export default class Hexagon {
         stroke = "black", x, y, translate = "27,27", scale = "0.385", unavailable = false) {
         this.patternID = patternID;
         this.pattern = `<image width="1" height="1" href=${backgroundImage} preserveAspectRatio="${preserveAspectRatio}" />`
-        this.width = width;
+
+
+        this.width = width? `width="${width}"`:'';
         this.viewBox = viewBox;
         this.stroke = stroke;
-        this.x = x;
-        this.y = y;
+        this.x = x? `x="${x}%"`:'';
+        this.y = y? `y="${y}%"`:'';
         this.translate = translate
         this.scale = scale;
         this.unavailable = unavailable;
@@ -32,7 +34,7 @@ export default class Hexagon {
 
 
     getElement() {
-        return `<svg version="1.1" height="100%" width="${this.width}" x="${this.x}%" y="${this.y}%" xmlns="http://www.w3.org/2000/svg" viewBox="${this.viewBox}">
+        return `<svg version="1.1" height="100%" ${this.width} ${this.x} ${this.y} xmlns="http://www.w3.org/2000/svg" viewBox="${this.viewBox}">
         
         <defs>
             
@@ -40,7 +42,7 @@ export default class Hexagon {
                 ${this.pattern}
             </pattern>
         </defs>
-        <polygon fill="url(#${this.patternID})" stroke="${this.stroke}" stroke-width="0" class="hexagon ${(this.unavailable)?"unavailable":""}"  width="100%" height="100%"  transform="scale(${this.scale}), translate(${this.translate})"  points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+        <polygon fill="url(#${this.patternID})" stroke="${this.stroke}" stroke-width="0" class="hexagon ${(this.unavailable) ? "unavailable" : ""}"  width="100%" height="100%"  transform="scale(${this.scale}), translate(${this.translate})"  points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
     </svg>`
     }
 }

@@ -13,12 +13,18 @@ export default class GridElement {
 
     }
 
-    addNeighbor(project, color) {
+    addNeighbor(project, color, index = null) {
         let indexOfNull = this.neighbors.indexOf(null);
+
+        if (index != null) {
+            indexOfNull = index;
+        }
 
         let x = this.x + this.margin * Math.cos(((270 + 60 * indexOfNull) % 360) * Math.PI / 180);
         let y = this.y + this.margin * Math.sin(((270 + 60 * indexOfNull) % 360) * Math.PI / 180)
         this.neighbors[indexOfNull] = new GridElement(project, this.size, this.margin, x, y, color)
+
+        return indexOfNull;
     }
 
     // TODO: Implement this more efficiently
@@ -79,7 +85,9 @@ export default class GridElement {
         let leafNeighbors = [];
         let message = "Leaf neighbors of " + this.project + " are "
         for (let i = 0; i < this.neighbors.length; i++) {
+            console.log("index: ", i);
             if (this.neighbors[i].isLeaf()) {
+                console.log("neighbor: ", this.neighbors[i]);
                 leafNeighbors.push(this.neighbors[i]);
                 message += " " + this.neighbors[i].project;
             }
@@ -95,7 +103,7 @@ export default class GridElement {
 
         for (let i = 0; i < this.neighbors.length; i++) {
             let word = "" + ((this.neighbors[i]) ? this.neighbors[i].project : this.neighbors[i])
-                // console.log(word + " " + word.length);
+            // console.log(word + " " + word.length);
 
             // word =
 

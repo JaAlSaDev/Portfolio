@@ -1,14 +1,18 @@
-import jQuery from "./jQuery";
+import jQuery from "../ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
 import {
     mainMenu
 } from "./mainMenu"
-import Hexagon from "./Hexagon";
-import githubIcon from "../svg/github.svg"
-import twitterIcon from "../svg/twitter.svg"
-import linkedinIcon from "../svg/linkedin.svg"
-import gmailIcon from "../svg/gmail.svg"
-import soundEffects from "./soundEffects"
+import Hexagon from "../Hexagon/Hexagon";
+let svgs=require("../../assets/svg/*.svg")
+
+console.log(svgs)
+let githubIcon= svgs["github"];
+let twitterIcon=svgs["twitter"];
+let linkedinIcon=svgs["linkedin"];
+let gmailIcon=svgs["gmail"]
+
+import soundEffects from "../Sound/soundEffects"
 //Inject hexagons to the DOM
 {
     //Hexagon attributes

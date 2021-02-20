@@ -1,7 +1,6 @@
 .cache
 dist
-Images
-sound
+assets
 fonts
 node_modules
 svg
