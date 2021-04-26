@@ -70,3 +70,9 @@ body {
     stroke: red;
     fill: transparent;
 }
+
+
+svg .previewStatic {
+    /* filter: hue-rotate(99deg); */
+    opacity: 0.8;
+}
