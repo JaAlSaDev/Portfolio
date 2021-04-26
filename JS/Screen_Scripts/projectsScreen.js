@@ -44,7 +44,7 @@ export let projectsScreen = {
                 // Print the hexagonal grid in some way
                 setTimeout(() => {
                     HexagonalGrid.showLayerByLayer()
-                }, 2000);
+                }, 1250);
             }
 
 
