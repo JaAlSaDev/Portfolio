@@ -4,6 +4,8 @@ import {
     mainMenu
 } from "./mainMenu"
 import Hexagon from "../Hexagon/Hexagon";
+import {SETTINGS} from "../../settings"
+
 let svgs=require("../../assets/svg/*.svg")
 
 console.log(svgs)
@@ -98,7 +100,7 @@ export let linksScreen = {
     control: function() {
 
         setTimeout(() => {
-            this.elem.fadeIn(3000);
+            this.elem.fadeIn(SETTINGS.screenTransitionTime);
 
             this.elem.css("display", "flex");
 
@@ -110,7 +112,7 @@ export let linksScreen = {
 
                     backArrow.addEventListener("click", () => {
 
-                        linksScreen.elem.fadeOut(2000);
+                        linksScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
 
                         soundEffects.playCancel();
                         mainMenu.control();
@@ -121,9 +123,9 @@ export let linksScreen = {
                     hexagons.addEventListeners();
 
 
-                }, 1000);
+                }, SETTINGS.screenTransitionTime);
             }
 
-        }, 2000);
+        }, SETTINGS.screenTransitionTime);
     }
 };

@@ -6,6 +6,7 @@ import {
 import soundEffects from "../Sound/soundEffects"
 import projects from "../projectsList"
 import HexagonalGrid from "../Hexagon/HexagonalGrid"
+import {SETTINGS} from "../../settings"
 
 let previewPanels = {
     img: $("#ProjectsScreen .previewImg"),
@@ -37,7 +38,7 @@ export let projectsScreen = {
     control: function() {
 
         setTimeout(() => {
-            this.elem.fadeIn(3000);
+            this.elem.fadeIn(SETTINGS.screenTransitionTime);
             this.staticFlickerTimer();
             if (!backArrow) {
                 // Print the hexagonal grid in some way
@@ -57,7 +58,7 @@ export let projectsScreen = {
 
                     backArrow.addEventListener("click", () => {
 
-                        projectsScreen.elem.fadeOut(2000);
+                        projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
 
                         soundEffects.playCancel();
                         mainMenu.control();
@@ -66,9 +67,9 @@ export let projectsScreen = {
 
                     // hexagon.addEventListeners();
 
-                }, 1000);
+                }, SETTINGS.screenTransitionTime);
             }
-        }, 2000);
+        }, SETTINGS.screenTransitionTime);
 
 
     }
