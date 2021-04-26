@@ -51,7 +51,7 @@ import soundEffects from "../Sound/soundEffects"
 
     //Inject the hexagons into the DOM
     for (let i = 0; i < location.length; i++) {
-        $("#linksContainer").append((new Hexagon(patternID[i], [], icons[i])).getElement())
+        $("#linksContainer").append((new Hexagon(patternID[i], [], icons[i])).createElement())
     }
 }
 

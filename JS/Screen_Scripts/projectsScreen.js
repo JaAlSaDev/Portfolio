@@ -6,24 +6,24 @@ import {
 import soundEffects from "../Sound/soundEffects"
 import projects from "../projectsList"
 import HexagonalGrid from "../Hexagon/HexagonalGrid"
-import {SETTINGS} from "../../settings"
+import { SETTINGS } from "../../settings"
 
 let previewPanels = {
     img: $("#ProjectsScreen .previewImg"),
     previewStatic: $("#ProjectsScreen .previewStatic"),
     text: $("#ProjectsScreen .TextPreview")[0],
 
-    changeContent: function(imgSrc, text) {
+    changeContent: function (imgSrc, text) {
         this.img.attr("src", imgSrc);
         this.text.textContent = text;
     },
-    staticFlicker: function(duration) {
+    staticFlicker: function (duration) {
         this.previewStatic.fadeTo(duration / 2, 0.1).fadeTo(duration / 2, 0.5);
     },
 };
 
 
-HexagonalGrid.construct(projects)
+
 
 let backArrow = undefined;
 
@@ -35,17 +35,20 @@ export let projectsScreen = {
         previewPanels.staticFlicker(2500);
     }, 2750),
 
-    control: function() {
+    control: function () {
 
         setTimeout(() => {
             this.elem.fadeIn(SETTINGS.screenTransitionTime);
             this.staticFlickerTimer();
-            if (!backArrow) {
-                // Print the hexagonal grid in some way
-                setTimeout(() => {
-                    HexagonalGrid.showLayerByLayer()
-                }, 1250);
-            }
+            // Print the hexagonal grid in some way
+            setTimeout(() => {
+
+                HexagonalGrid.construct([...projects])
+                HexagonalGrid.showLayerByLayer();
+
+
+            }, 1250);
+
 
 
             this.elem.css("display", "flex");
@@ -57,11 +60,17 @@ export let projectsScreen = {
                     backArrow = document.querySelector("#ProjectsScreen object").contentDocument.children[0];
 
                     backArrow.addEventListener("click", () => {
+                        console.log("Num of Layers: ",);
+                        HexagonalGrid.destroyLayerByLayer();
 
-                        projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
+                        setTimeout(() => {
+                            
+                            projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
 
-                        soundEffects.playCancel();
-                        mainMenu.control();
+                            soundEffects.playCancel();
+                            mainMenu.control();
+                        }, HexagonalGrid.numOfLayers * HexagonalGrid.getDuration());
+
 
                     });
 
