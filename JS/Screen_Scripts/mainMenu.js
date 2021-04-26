@@ -261,13 +261,13 @@ export let mainMenu = {
 
             backArrow.addEventListener("click", () => {
 
-                mainMenu.elem.fadeOut(2000);
+                mainMenu.elem.fadeOut(SETTINGS.screenTransitionTime);
                 soundEffects.playCancel();
                 setTimeout(() => {
-                    $("#StartScreen").fadeIn(2000);
+                    $("#StartScreen").fadeIn(SETTINGS.screenTransitionTime);
 
                     startPrompt.control();
-                }, 3000);
+                }, SETTINGS.screenTransitionTime);
 
 
             });
