@@ -27,6 +27,7 @@ import {
 
 import soundEffects from "../Sound/soundEffects"
 
+import {SETTINGS} from "../../settings"
 
 
 
@@ -215,7 +216,7 @@ let hexagons = {
 
             hexagon.addEventListener("click", () => {
                 if (this.screenIDs[index]) {
-                    $("#MainMenu").fadeOut(2000);
+                    $("#MainMenu").fadeOut(SETTINGS.screenTransitionTime);
 
                     this.screenIDs[index].control();
 
@@ -251,7 +252,7 @@ export let mainMenu = {
         mainMenu.timer3()
     }, 3000),
     timer1: () => setTimeout(() => {
-        mainMenu.elem.fadeIn(2000);
+        mainMenu.elem.fadeIn(SETTINGS.screenTransitionTime);
 
         if (!addedEventListeners) {
             hexagons.addEventListeners();
@@ -281,7 +282,7 @@ export let mainMenu = {
         }
 
 
-    }, 3000),
+    }, SETTINGS.screenTransitionTime),
     control: function() {
         this.timer1();
     }

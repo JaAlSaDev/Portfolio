@@ -8,6 +8,7 @@ import {
 import soundEffects from "./JS/Sound/soundEffects"
 
 
+import {SETTINGS} from "./settings"
 
 const normalDuration = 1250,
     initialFadeInDuration = 1000,
@@ -46,13 +47,13 @@ export let startPrompt = {
         startPrompt.changeSpeed(fastDuration);
         soundEffects.playDecision();
         setTimeout(() => {
-            startScreen.fadeOut(2000);
+            startScreen.fadeOut(SETTINGS.screenTransitionTime);
 
             mainMenu.control();
 
             setTimeout(() => {
                 startPrompt.changeSpeed(normalDuration);
-            }, 2000);
+            }, SETTINGS.screenTransitionTime);
         }, 1250);
 
 
@@ -62,7 +63,7 @@ export let startPrompt = {
 
 
         setTimeout(() => {
-            startScreen.fadeIn(2000)
+            startScreen.fadeIn(SETTINGS.screenTransitionTime)
 
 
             if (!startPrompt.flickerTimer) {

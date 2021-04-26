@@ -6,6 +6,7 @@ import {
 import Hexagon from "../Hexagon/Hexagon";
 import stevenSketch from "../../assets/Images/Steven_Sketch.jpg";
 import soundEffects from "../Sound/soundEffects"
+import {SETTINGS} from "../../settings"
 
 
 //Inject the hexagons into the DOM
@@ -38,7 +39,7 @@ export let aboutMeScreen = {
     control: function() {
 
         setTimeout(() => {
-            this.elem.fadeIn(3000);
+            this.elem.fadeIn(SETTINGS.screenTransitionTime);
 
             this.elem.css("display", "flex");
 
@@ -50,7 +51,7 @@ export let aboutMeScreen = {
 
                     backArrow.addEventListener("click", () => {
 
-                        aboutMeScreen.elem.fadeOut(2000);
+                        aboutMeScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
 
                         soundEffects.playCancel();
                         mainMenu.control();
@@ -59,8 +60,8 @@ export let aboutMeScreen = {
 
                     hexagon.addEventListeners();
 
-                }, 1000);
+                }, SETTINGS.screenTransitionTime);
             }
-        }, 2000);
+        }, SETTINGS.screenTransitionTime);
     }
 };
