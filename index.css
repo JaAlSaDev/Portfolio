@@ -109,8 +109,8 @@ svg .previewStatic {
 @media screen and (orientation: portrait) {
     body {
       /* Rotate the content container */
-      transform: rotate(-90deg);
-      transform-origin: left top;
+      transform: rotate(90deg);
+      transform-origin: right top;
       /* Set content width to viewport height */
       width: 100vh;
       /* Set content height to viewport width */
@@ -118,7 +118,7 @@ svg .previewStatic {
       overflow-x: hidden;
       position: absolute;
       top: 100%;
-      left: 0;
+      right: 0;
     }
 
     .ItemPreviewTitle p{
