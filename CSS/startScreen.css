@@ -20,12 +20,19 @@
 #GameTitle {
     font-size: 10.4vw;
     top: 27.5%;
+    background-color: black;
+    width: 66%;
+    text-align: center;
 }
 
 #StartPrompt {
     font-size: 2.8vw;
     display: none;
     bottom: 15%;
+    background-color: #9e2000;
+    width: 20%;
+    text-align: center;
+    border-radius: 20vw;
 }
 
 #StartPrompt:hover {
