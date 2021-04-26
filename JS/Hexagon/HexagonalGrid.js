@@ -52,10 +52,18 @@ let HexagonalGrid = {
         [],
         []
     ],
+    numOfLayers: 0,
 
     construct: function (projects) {
 
         let actualMargin = (0.85 + MARGIN / 100) * hexagonSize
+
+        this.ringQueues = [
+            [],
+            []
+        ]
+        this.numOfLayers = 0;
+
         this.CentralHexagon = new GridElement(projects.shift(), hexagonSize, actualMargin, (100 - hexagonSize) / 2, 0, color[0]);
 
 
@@ -196,7 +204,58 @@ let HexagonalGrid = {
 
     showLayerByLayer() {
         this.showLayer([this.CentralHexagon])
+        console.log("Num of Layers: ", this.numOfLayers);
     },
+
+    destroyLayerByLayer() {
+        this.destroyLayer([this.CentralHexagon])
+    },
+
+    destroyLayer(currentLayer) {
+        let nextLayer = []
+
+        //1: Destroy the hexagons in the current layer on screen
+        setTimeout(() => {
+            currentLayer.forEach(hexagon => {
+                this.destroyHexagon(hexagon);
+            })
+        }, DURATION);
+
+
+        //2: Prepare the next layer
+        currentLayer.forEach(hexagon => {
+            hexagon.neighbors.forEach(neighbor => {
+
+                /*Add a neighbor to the next layer if it meets the following requirements:
+                    1: If it exists.
+                    2: If it hasn't been visited yet.
+                    3: If it isn't already included in the next layer
+                */
+                if (neighbor && neighbor.visited && !nextLayer.includes(neighbor)) {
+                    nextLayer.push(neighbor)
+                }
+            });
+        });
+
+
+        //3: Go to the next layer
+        if (nextLayer.length) {
+            setTimeout(() => {
+
+                this.destroyLayer(nextLayer)
+            }, DURATION);
+
+        }
+
+    },
+
+    destroyHexagon(hexagon) {
+        if (hexagon.visited) {
+            hexagon.visited = false;
+            hexagon.destroyElement();
+        }
+    },
+
     showHexagonByHexagon() {
         this.printGridBreadthFirst([this.CentralHexagon], this.CentralHexagon);
     },
@@ -228,6 +287,8 @@ let HexagonalGrid = {
     },
 
     showLayer(currentLayer) {
+        
+
         let nextLayer = []
 
         //1: Show the hexagons in the current layer on screen
@@ -240,6 +301,7 @@ let HexagonalGrid = {
 
         //2: Prepare the next layer
         currentLayer.forEach(hexagon => {
+
             hexagon.neighbors.forEach(neighbor => {
 
                 /*Add a neighbor to the next layer if it meets the following requirements:
@@ -255,13 +317,19 @@ let HexagonalGrid = {
 
 
         //3: Go to the next layer
+        // console.log("nextLayer length: ", nextLayer.length);
+        
+        
         if (nextLayer.length) {
             setTimeout(() => {
-
+                this.numOfLayers = this.numOfLayers + 1;
                 this.showLayer(nextLayer)
+
             }, DURATION);
 
         }
+
+
 
     },
 
@@ -326,6 +394,10 @@ let HexagonalGrid = {
 
 
         }
+    },
+
+    getDuration(){
+        return DURATION;
     }
 }
 

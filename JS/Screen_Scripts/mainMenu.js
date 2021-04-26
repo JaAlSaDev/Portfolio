@@ -147,13 +147,13 @@ let previewPanels = {
     for (let i = 0; i < 2; i++) {
 
         $(location[i]).append((new Hexagon(patternID[i], originalImages[i], icons[i],
-            "", "none", "0 0 300 261.5", "black", "", "", "27,27", "0.385", true)).getElement())
+            "", "none", "0 0 300 261.5", "black", "", "", "27,27", "0.385", true)).createElement())
     }
 
-    $(location[2]).after((new Hexagon(patternID[2], originalImages[2], icons[2], "", "xMinYMax slice")).getElement())
+    $(location[2]).after((new Hexagon(patternID[2], originalImages[2], icons[2], "", "xMinYMax slice")).createElement())
 
     for (let i = 3; i < location.length; i++) {
-        $(location[i]).append((new Hexagon(patternID[i], originalImages[i], icons[i])).getElement())
+        $(location[i]).append((new Hexagon(patternID[i], originalImages[i], icons[i])).createElement())
     }
 }
 
@@ -261,13 +261,13 @@ export let mainMenu = {
 
             backArrow.addEventListener("click", () => {
 
-                mainMenu.elem.fadeOut(2000);
+                mainMenu.elem.fadeOut(SETTINGS.screenTransitionTime);
                 soundEffects.playCancel();
                 setTimeout(() => {
-                    $("#StartScreen").fadeIn(2000);
+                    $("#StartScreen").fadeIn(SETTINGS.screenTransitionTime);
 
                     startPrompt.control();
-                }, 3000);
+                }, SETTINGS.screenTransitionTime);
 
 
             });

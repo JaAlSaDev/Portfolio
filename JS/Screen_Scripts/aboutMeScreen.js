@@ -10,7 +10,7 @@ import {SETTINGS} from "../../settings"
 
 
 //Inject the hexagons into the DOM
-$("#ProfilePicContainer").append((new Hexagon("profileImage", stevenSketch, [], "100%")).getElement())
+$("#ProfilePicContainer").append((new Hexagon("profileImage", stevenSketch, [], "100%")).createElement())
 
 
 let hexagon = {
