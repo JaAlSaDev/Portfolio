@@ -47,6 +47,7 @@ const numLayers = 2,
     DURATION = 300;
 
 let HexagonalGrid = {
+    doesExist: false,
     CentralHexagon: null,
     ringQueues: [
         [],
@@ -57,7 +58,7 @@ let HexagonalGrid = {
     construct: function (projects) {
 
         let actualMargin = (0.85 + MARGIN / 100) * hexagonSize
-
+        this.doesExist=true;
         this.ringQueues = [
             [],
             []
@@ -207,6 +208,10 @@ let HexagonalGrid = {
         console.log("Num of Layers: ", this.numOfLayers);
     },
 
+    destroyGrid() {
+        this.destroyLayerByLayer();
+        this.doesExist=false;
+    },
     destroyLayerByLayer() {
         this.destroyLayer([this.CentralHexagon])
     },
@@ -287,7 +292,7 @@ let HexagonalGrid = {
     },
 
     showLayer(currentLayer) {
-        
+
 
         let nextLayer = []
 
@@ -318,8 +323,8 @@ let HexagonalGrid = {
 
         //3: Go to the next layer
         // console.log("nextLayer length: ", nextLayer.length);
-        
-        
+
+
         if (nextLayer.length) {
             setTimeout(() => {
                 this.numOfLayers = this.numOfLayers + 1;
@@ -396,7 +401,7 @@ let HexagonalGrid = {
         }
     },
 
-    getDuration(){
+    getDuration() {
         return DURATION;
     }
 }

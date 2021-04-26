@@ -42,10 +42,10 @@ export let projectsScreen = {
             this.staticFlickerTimer();
             // Print the hexagonal grid in some way
             setTimeout(() => {
-
-                HexagonalGrid.construct([...projects])
-                HexagonalGrid.showLayerByLayer();
-
+                if (!HexagonalGrid.doesExist) {
+                    HexagonalGrid.construct([...projects])
+                    HexagonalGrid.showLayerByLayer();
+                }
 
             }, 1250);
 
@@ -60,11 +60,15 @@ export let projectsScreen = {
                     backArrow = document.querySelector("#ProjectsScreen object").contentDocument.children[0];
 
                     backArrow.addEventListener("click", () => {
-                        console.log("Num of Layers: ",);
-                        HexagonalGrid.destroyLayerByLayer();
+
+                        if (HexagonalGrid.doesExist) {
+                            console.log("Num of Layers: ",);
+                            HexagonalGrid.destroyGrid();
+                        }
+
 
                         setTimeout(() => {
-                            
+
                             projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
 
                             soundEffects.playCancel();
