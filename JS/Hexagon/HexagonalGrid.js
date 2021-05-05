@@ -365,7 +365,7 @@ let HexagonalGrid = {
 
                         previewPanels.changeContent("", "")
                         music.pause();
-                        this.goToDestinationScreen(projectScreen, () => soundEffects.playDecision())
+                        this.goToDestinationScreen(()=>projectScreen.control(hexagon.project), () => soundEffects.playDecision())
                         // soundEffects.playDecision();
 
                         // projectScreen.control();

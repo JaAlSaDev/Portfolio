@@ -39,7 +39,7 @@ export let projectsScreen = {
 
     control: function () {
 
-        const goToDestinationScreen = (destinationScreen, playSoundEffect) => {
+        const goToDestinationScreen = (transitionToDestinationScreen, playSoundEffect) => {
             if (HexagonalGrid.doesExist) {
                 HexagonalGrid.destroyGrid();
             }
@@ -47,7 +47,7 @@ export let projectsScreen = {
             setTimeout(() => {
                 projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
                 playSoundEffect();
-                destinationScreen.control();
+                transitionToDestinationScreen();
             }, HexagonalGrid.numOfLayers * HexagonalGrid.getDuration());
         }
 
@@ -61,7 +61,6 @@ export let projectsScreen = {
                     HexagonalGrid.construct([...projects], goToDestinationScreen)
                     HexagonalGrid.showLayerByLayer();
                 }
-
             }, 1250);
 
 
@@ -76,21 +75,7 @@ export let projectsScreen = {
 
                     backArrow.addEventListener("click", () => {
 
-                        // if (HexagonalGrid.doesExist) {
-                        //     console.log("Num of Layers: ",);
-                        //     HexagonalGrid.destroyGrid();
-                        // }
-
-
-                        // setTimeout(() => {
-
-                        //     projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
-
-                        //     soundEffects.playCancel();
-                        //     mainMenu.control();
-                        // }, HexagonalGrid.numOfLayers * HexagonalGrid.getDuration());
-
-                        goToDestinationScreen(mainMenu,()=>soundEffects.playCancel());
+                        goToDestinationScreen(()=>mainMenu.control(), () => soundEffects.playCancel());
 
                     });
 

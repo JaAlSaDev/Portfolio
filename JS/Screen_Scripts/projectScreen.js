@@ -15,7 +15,7 @@ $("#logoContainer").append((new Hexagon("projectLogo", stevenSketch, [], "100%")
 
 let hexagon = {
     containers: $("#ProjectScreen svg"),
-    // patterns: $("#linksContainer .hexPattern"),
+    pattern: $("#ProjectScreen .hexPattern")[0],
     element: (Object.values($("#ProjectScreen .hexagon")))[0],
 
 
@@ -31,12 +31,26 @@ let hexagon = {
         });
     },
 
+    changeHexImage: function(imgSrc) {
+        this.pattern.firstElementChild.attributes[2].nodeValue = imgSrc;
+    }
+
 }
 let backArrow = undefined;
 
 export let projectScreen = {
     elem: $("#ProjectScreen"),
-    control: function() {
+    control: function(project=null) {
+
+        if (project){
+            console.log("project: ", project);
+
+            $("#projectBackground > img")[0].src=project.image
+            hexagon.changeHexImage(project.icon)
+            console.log("projectBackground: ",$("#projectBackground > img")[0].src);
+            
+            $("#projectTitle").text(project.title);
+        }
 
         setTimeout(() => {
             this.elem.fadeIn(SETTINGS.screenTransitionTime);
