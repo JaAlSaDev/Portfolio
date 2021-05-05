@@ -4,6 +4,7 @@ import music from "../Sound/music";
 import soundEffects from "../Sound/soundEffects"
 import jQuery from "../ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
+import { projectScreen } from "../Screen_Scripts/projectScreen"
 
 class Color {
     constructor(red, green, blue) {
@@ -55,10 +56,13 @@ let HexagonalGrid = {
     ],
     numOfLayers: 0,
 
-    construct: function (projects) {
+    goToDestinationScreen: null,
+
+    construct: function (projects, goToDestinationScreen) {
+        this.goToDestinationScreen = goToDestinationScreen;
 
         let actualMargin = (0.85 + MARGIN / 100) * hexagonSize
-        this.doesExist=true;
+        this.doesExist = true;
         this.ringQueues = [
             [],
             []
@@ -210,7 +214,7 @@ let HexagonalGrid = {
 
     destroyGrid() {
         this.destroyLayerByLayer();
-        this.doesExist=false;
+        this.doesExist = false;
     },
     destroyLayerByLayer() {
         this.destroyLayer([this.CentralHexagon])
@@ -358,7 +362,13 @@ let HexagonalGrid = {
 
 
                     if (hexagon.project.available) {
-                        soundEffects.playDecision();
+
+                        previewPanels.changeContent("", "")
+                        music.pause();
+                        this.goToDestinationScreen(projectScreen, () => soundEffects.playDecision())
+                        // soundEffects.playDecision();
+
+                        // projectScreen.control();
                     } else {
                         soundEffects.playError();
                     }

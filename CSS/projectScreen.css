@@ -1,0 +1,92 @@
+#ProjectScreen {
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#project{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%; 
+}
+
+#projectBackground{
+    height: 30%;
+    border: 10px blue groove;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#projectBackground > img{
+    width: 100%;
+    /* height: 100%; */
+}
+
+#projectBody{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70%;
+    border: 10px yellow groove;
+}
+
+#col1{
+    
+    width: 30%;
+    border: 10px blue groove;
+}
+
+#logoContainer, #description{
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    height: 100%;
+    border: 10px green groove;
+}
+
+.titleContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+    border: 5px white groove;
+}
+
+#project p{
+    margin: 0;
+    color: white;
+    width: 100%;
+    /* border: 5px greenyellow groove; */
+}
+
+#projectTitle{
+    text-align: center;
+    font-size: 300%;
+}
+
+#col2{
+    width: 70%;
+    border: 10px white groove;
+}
+
+#descriptionTitle{
+    font-size: 275%;
+}
+
+#descriptionBody{
+    display: flex;
+    flex-direction: column;
+
+    height: 75%;
+    border: 5px purple groove;
+}
+
+#descriptionBody > p{
+    height: 100%;
+    font-size: 150%;
+}
+

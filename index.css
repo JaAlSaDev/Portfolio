@@ -3,6 +3,8 @@
 @import "./CSS/linksScreen.css";
 @import "./CSS/aboutMeScreen.css";
 @import "./CSS/projectsScreen.css";
+@import "./CSS//projectScreen.css";
+
 * {
     -moz-box-sizing: border-box;
     /* Firexfox */
@@ -40,6 +42,8 @@ body {
     z-index: 0;
     filter: opacity(50%) blur(0.1vw) hue-rotate(50deg);
     background-size: cover;
+    pointer-events:none;
+    z-index: 0;
 }
 
 .ItemPreviewTitle {
@@ -127,3 +131,13 @@ svg .previewStatic {
         
     }
   }
+
+  .arrowContainer {
+    position: absolute;
+    /* background-color: blue; */
+    /* left: 2.5%; */
+    top: 5%;
+    height: 10%;
+    width: 100%;
+    z-index: 2;
+}

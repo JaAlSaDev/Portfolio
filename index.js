@@ -5,6 +5,9 @@ import {
     mainMenu
 } from "./JS/Screen_Scripts/mainMenu"
 
+import {
+    projectScreen
+} from "./JS/Screen_Scripts/projectScreen"
 import soundEffects from "./JS/Sound/soundEffects"
 
 
@@ -124,5 +127,7 @@ export let startPrompt = {
         }, initialFadeInDuration);
     }
 }
+
+projectScreen.control();
 
 startPrompt.control();
