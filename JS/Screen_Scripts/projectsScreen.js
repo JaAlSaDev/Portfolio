@@ -39,9 +39,9 @@ export let projectsScreen = {
 
     control: function () {
 
-        const goToDestinationScreen = (transitionToDestinationScreen, playSoundEffect) => {
+        const goToDestinationScreen = (transitionToDestinationScreen, playSoundEffect, gridElement=null) => {
             if (HexagonalGrid.doesExist) {
-                HexagonalGrid.destroyGrid();
+                HexagonalGrid.destroyGrid(gridElement);
             }
 
             setTimeout(() => {

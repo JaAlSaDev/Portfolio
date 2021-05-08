@@ -212,12 +212,18 @@ let HexagonalGrid = {
         console.log("Num of Layers: ", this.numOfLayers);
     },
 
-    destroyGrid() {
-        this.destroyLayerByLayer();
+    destroyGrid(hexagon = null) {
+
+        this.destroyLayer([hexagon ? hexagon : this.CentralHexagon])
+
+        // if (hexagon){
+        //     this.destroyLayer([hexagon])
+        // } else {
+        //     this.destroyLayer([this.CentralHexagon])
+        // }
+
+
         this.doesExist = false;
-    },
-    destroyLayerByLayer() {
-        this.destroyLayer([this.CentralHexagon])
     },
 
     destroyLayer(currentLayer) {
@@ -359,16 +365,12 @@ let HexagonalGrid = {
             {
                 hexElement.addEventListener("click", () => {
 
-
-
                     if (hexagon.project.available) {
 
                         previewPanels.changeContent("", "")
                         music.pause();
-                        this.goToDestinationScreen(()=>projectScreen.control(hexagon.project), () => soundEffects.playDecision())
-                        // soundEffects.playDecision();
 
-                        // projectScreen.control();
+                        this.goToDestinationScreen(() => projectScreen.control(hexagon.project), () => soundEffects.playDecision(), hexagon)
                     } else {
                         soundEffects.playError();
                     }
