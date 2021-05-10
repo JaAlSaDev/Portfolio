@@ -36,6 +36,29 @@ let hexagon = {
     }
 
 }
+
+
+let overlayMenu = {
+    element: $("#overlayMenuContainer > svg")[0]
+}
+
+console.log(overlayMenu.element);
+let exampleHexagons=[
+    new Hexagon("lol0",stevenSketch, [],  "35%", "none", "0 0 262.5 225", "black", 2.5, 0, "40,33", "0.325", false),
+    new Hexagon("lol1",stevenSketch, [],  "20%", "none", "0 0 262.5 225", "black", 31.625,-16.65 , "40,33", "0.325", false),
+    new Hexagon("lol2",stevenSketch, [],  "20%", "none", "0 0 262.5 225", "black", 31.625,16.65 , "40,33", "0.325", false),
+    new Hexagon("lol3",stevenSketch, [],  "20%", "none", "0 0 262.5 225", "black", 46.05,0 , "40,33", "0.325", false),
+    new Hexagon("lol4",stevenSketch, [],  "20%", "none", "0 0 262.5 225", "black", 60.49,-16.65 , "40,33", "0.325", false),
+    new Hexagon("lol5",stevenSketch, [],  "20%", "none", "0 0 262.5 225", "black", 60.49,16.65 , "40,33", "0.325", false),
+    new Hexagon("lol6",stevenSketch, [],  "20%", "none", "0 0 262.5 225", "black",74.915,0 , "40,33", "0.325", false),
+];
+
+exampleHexagons.forEach(hexagon => {
+    overlayMenu.element.append(hexagon.createElement())
+});
+
+
+
 let backArrow = undefined;
 
 export let projectScreen = {
@@ -45,11 +68,10 @@ export let projectScreen = {
         if (project){
             console.log("project: ", project);
 
-            $("#projectBackground > img")[0].src=project.image
-            hexagon.changeHexImage(project.icon)
-            console.log("projectBackground: ",$("#projectBackground > img")[0].src);
+            $("#ProjectScreen > .BackgroundImg")[0].src=project.image
+            // hexagon.changeHexImage(project.icon)
             
-            $("#projectTitle").text(project.title);
+            // $("#projectTitle").text(project.title);
         }
 
         setTimeout(() => {
@@ -72,7 +94,7 @@ export let projectScreen = {
 
                     });
 
-                    hexagon.addEventListeners();
+                    // hexagon.addEventListeners();
 
                 }, SETTINGS.screenTransitionTime);
             }

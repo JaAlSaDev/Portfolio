@@ -216,13 +216,6 @@ let HexagonalGrid = {
 
         this.destroyLayer([hexagon ? hexagon : this.CentralHexagon])
 
-        // if (hexagon){
-        //     this.destroyLayer([hexagon])
-        // } else {
-        //     this.destroyLayer([this.CentralHexagon])
-        // }
-
-
         this.doesExist = false;
     },
 

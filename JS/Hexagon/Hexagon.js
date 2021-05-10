@@ -36,7 +36,7 @@ export default class Hexagon {
 
     createElement() {
         this.element = $(`<svg version="1.1" height="100%" ${this.width} ${this.x} ${this.y} xmlns="http://www.w3.org/2000/svg" viewBox="${this.viewBox}">
-        
+
         <defs>
             
             <pattern class="hexPattern" id=${this.patternID} x="0" y="0" width="100%" height="100%" patternContentUnits="objectBoundingBox">
@@ -47,7 +47,7 @@ export default class Hexagon {
     </svg>`);
 
 
-        return this.element;
+        return this.element[0];
 
     }
 
