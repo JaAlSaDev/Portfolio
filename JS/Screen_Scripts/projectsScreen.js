@@ -39,16 +39,26 @@ export let projectsScreen = {
 
     control: function () {
 
-        const goToDestinationScreen = (transitionToDestinationScreen, playSoundEffect, gridElement=null) => {
+        const goToDestinationScreen = (transitionToDestinationScreen, playSoundEffect, gridElement = null) => {
+            let ringNumberOfGridElement = 0
+
             if (HexagonalGrid.doesExist) {
                 HexagonalGrid.destroyGrid(gridElement);
+
+                if (gridElement) {
+                    ringNumberOfGridElement = gridElement.ringNumber;
+                }
+
+                console.log("fadeTime: ", (HexagonalGrid.numOfLayers + ringNumberOfGridElement));
+
+                setTimeout(() => {
+                    projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
+                    playSoundEffect();
+                    transitionToDestinationScreen();
+                }, (HexagonalGrid.numOfLayers + ringNumberOfGridElement) * HexagonalGrid.getDuration());
             }
 
-            setTimeout(() => {
-                projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
-                playSoundEffect();
-                transitionToDestinationScreen();
-            }, HexagonalGrid.numOfLayers * HexagonalGrid.getDuration());
+
         }
 
 
@@ -75,7 +85,7 @@ export let projectsScreen = {
 
                     backArrow.addEventListener("click", () => {
 
-                        goToDestinationScreen(()=>mainMenu.control(), () => soundEffects.playCancel());
+                        goToDestinationScreen(() => mainMenu.control(), () => soundEffects.playCancel());
 
                     });
 

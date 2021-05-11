@@ -1,7 +1,7 @@
 import Hexagon from "./Hexagon"
 export default class GridElement {
 
-    constructor(project, size, margin, x = 0, y = 0, color = "black") {
+    constructor(project, size, margin, x = 0, y = 0, color = "black",ringNumber) {
         this.project = project
         this.color = color;
         this.size = size
@@ -10,10 +10,11 @@ export default class GridElement {
         this.y = y;
         this.neighbors = [null, null, null, null, null, null];
         this.visited = false;
+        this.ringNumber=ringNumber;
 
     }
 
-    addNeighbor(project, color, index = null) {
+    addNeighbor(project, color, index = null, ringNumber) {
         let indexOfNull = this.neighbors.indexOf(null);
 
         if (index != null) {
@@ -22,7 +23,7 @@ export default class GridElement {
 
         let x = this.x + this.margin * Math.cos(((270 + 60 * indexOfNull) % 360) * Math.PI / 180);
         let y = this.y + this.margin * Math.sin(((270 + 60 * indexOfNull) % 360) * Math.PI / 180)
-        this.neighbors[indexOfNull] = new GridElement(project, this.size, this.margin, x, y, color)
+        this.neighbors[indexOfNull] = new GridElement(project, this.size, this.margin, x, y, color, ringNumber)
 
         return indexOfNull;
     }
