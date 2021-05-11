@@ -45,7 +45,7 @@ const numLayers = 2,
     numOfProjects = 1 + 3 * numLayers * (numLayers + 1),
     hexagonSize = 22.5,
     MARGIN = 8,
-    DURATION = 300;
+    DURATION = 185;
 
 let HexagonalGrid = {
     doesExist: false,

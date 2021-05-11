@@ -64,21 +64,27 @@ let overlayMenu = {
         isCreated: false,
 
         create: function () {
+            if (this.elements.length != 0) {
+                return;
+            }
             this.isCreated = true;
 
-            this.hexagons.forEach(hexagon => {
-                let element = hexagon.createElement();
+            this.hexagons.forEach((hexagon, index) => {
+                setTimeout(() => {
+                    let element = hexagon.createElement();
 
-                overlayMenu.element.append(element);
+                    overlayMenu.element.append(element);
 
-                this.elements.push(element);
+                    this.elements.push(element);
 
-                this.patterns.push($(`#${hexagon.patternID}`)[0]);
+                    this.patterns.push($(`#${hexagon.patternID}`)[0]);
 
-                element.addEventListener("click", () => {
-                    soundEffects.playDecision();
-                    overlayMenu.options.destroy();
-                })
+                    element.addEventListener("click", () => {
+                        soundEffects.playDecision();
+                        overlayMenu.options.destroy();
+                    })
+                }, 50 * (index + 1));
+
 
 
             });
@@ -87,10 +93,25 @@ let overlayMenu = {
         },
 
         destroy: function () {
+
+            if (this.hexagons.length != this.elements.length) {
+                return;
+            }
             this.isCreated = false;
-            this.hexagons.forEach(hexagon => {
-                hexagon.destroyElement()
+
+            this.hexagons.reverse().forEach((hexagon, index) => {
+                setTimeout(() => {
+                    hexagon.destroyElement()
+                    this.elements.pop();
+
+                    this.patterns.pop();
+                }, 50 * (index + 1));
+
             });
+            this.hexagons.reverse()
+
+
+
         },
 
         toggle: function () {
