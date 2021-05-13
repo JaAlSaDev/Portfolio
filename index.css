@@ -105,6 +105,12 @@ body {
 }
 
 
+.option {
+    stroke: rgb(3, 1, 124);
+    stroke-width: 25;
+}
+
+
 svg .previewStatic {
     /* filter: hue-rotate(99deg); */
     opacity: 0.8;

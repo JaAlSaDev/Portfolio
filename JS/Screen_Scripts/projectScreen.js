@@ -50,12 +50,12 @@ let overlayMenu = {
 
     options: {
         hexagons: [
-            new Hexagon("description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.625, -16.65, "40,33", "0.325", false,"Description","rgb(237,0,126)"),
-            new Hexagon("gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.625, 16.65, "40,33", "0.325", false,"Gallery","rgb(237,0,126)"),
-            new Hexagon("technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 46.05, 0, "40,33", "0.325", false,"Technologies","rgb(237,0,126)"),
-            new Hexagon("links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 60.49, -16.65, "40,33", "0.325", false,"Links","rgb(237,0,126)"),
-            new Hexagon("domainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 60.49, 16.65, "40,33", "0.325", false,"Domains & Skills","rgb(237,0,126)"),
-            new Hexagon("team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 74.915, 0, "40,33", "0.325", false, "Team","rgb(237,0,126)")
+            new Hexagon("description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, -16.0625, "40,33", "0.325", false,"Description","rgb(237,0,126)", true),
+            new Hexagon("gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, 16.0625, "40,33", "0.325", false,"Gallery","rgb(237,0,126)",true),
+            new Hexagon("technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 45.35, 0, "40,33", "0.325", false,"Technologies","rgb(237,0,126)",true),
+            new Hexagon("links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, -16.0625, "40,33", "0.325", false,"Links","rgb(237,0,126)",true),
+            new Hexagon("domainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, 16.0625, "40,33", "0.325", false,"Domains & Skills","rgb(237,0,126)",true),
+            new Hexagon("team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 73.13125, 0, "40,33", "0.325", false, "Team","rgb(237,0,126)",true)
         ],
 
         patterns: [],

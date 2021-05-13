@@ -5,7 +5,7 @@ window.$ = window.jQuery = jQuery;
 export default class Hexagon {
 
     constructor(patternID, backgroundImage, icons, width = "", preserveAspectRatio = "none", viewBox = "0 0 300 261.5",
-        stroke = "black", x, y, translate = "27,27", scale = "0.385", unavailable = false, text = null, backgroundFillColor = "lightblue") {
+        stroke = "black", x, y, translate = "27,27", scale = "0.385", unavailable = false, text = null, backgroundFillColor = "lightblue",isOption=false) {
         this.patternID = patternID;
         this.pattern = `<image width="1" height="1" href=${backgroundImage} preserveAspectRatio="${preserveAspectRatio}" />`
 
@@ -20,6 +20,8 @@ export default class Hexagon {
         this.unavailable = unavailable;
         this.text = text;
         this.textPattern = "";
+        this.isOption=isOption;
+        
         if (this.unavailable) {
             this.pattern += `\n<image class="previewStatic" width="1" height="1" href=${tvStatic} preserveAspectRatio="${preserveAspectRatio}" />`
         }
@@ -63,7 +65,7 @@ export default class Hexagon {
                  
             </pattern>
         </defs>
-        <polygon fill="url(#${this.patternID})" stroke="${this.stroke}" stroke-width="0" class="hexagon ${(this.unavailable) ? "unavailable" : ""}"  width="100%" height="100%"  transform="scale(${this.scale}), translate(${this.translate})"  points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
+        <polygon fill="url(#${this.patternID})" stroke="${this.stroke}" stroke-width="0" class="hexagon ${(this.unavailable) ? "unavailable" : ""} ${(this.isOption) ? "option" : ""}"  width="100%" height="100%"  transform="scale(${this.scale}), translate(${this.translate})"  points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
 
         ${this.textPattern}
         
