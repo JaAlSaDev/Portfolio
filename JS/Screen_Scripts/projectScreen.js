@@ -50,12 +50,12 @@ let overlayMenu = {
 
     options: {
         hexagons: [
-            new Hexagon("description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.625, -16.65, "40,33", "0.325", false),
-            new Hexagon("gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.625, 16.65, "40,33", "0.325", false),
-            new Hexagon("technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 46.05, 0, "40,33", "0.325", false),
-            new Hexagon("links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 60.49, -16.65, "40,33", "0.325", false),
-            new Hexagon("domainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 60.49, 16.65, "40,33", "0.325", false),
-            new Hexagon("team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 74.915, 0, "40,33", "0.325", false)
+            new Hexagon("description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.625, -16.65, "40,33", "0.325", false,"Description","rgb(237,0,126)"),
+            new Hexagon("gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.625, 16.65, "40,33", "0.325", false,"Gallery","rgb(237,0,126)"),
+            new Hexagon("technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 46.05, 0, "40,33", "0.325", false,"Technologies","rgb(237,0,126)"),
+            new Hexagon("links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 60.49, -16.65, "40,33", "0.325", false,"Links","rgb(237,0,126)"),
+            new Hexagon("domainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 60.49, 16.65, "40,33", "0.325", false,"Domains & Skills","rgb(237,0,126)"),
+            new Hexagon("team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 74.915, 0, "40,33", "0.325", false, "Team","rgb(237,0,126)")
         ],
 
         patterns: [],
