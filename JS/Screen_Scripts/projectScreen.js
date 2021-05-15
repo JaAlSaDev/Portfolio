@@ -50,23 +50,24 @@ let overlayMenu = {
 
     options: {
         hexagons: [
-            new Hexagon("description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, -16.0625, "40,33", "0.325", false,"Description","rgb(237,0,126)", true),
-            new Hexagon("gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, 16.0625, "40,33", "0.325", false,"Gallery","rgb(237,0,126)",true),
-            new Hexagon("technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 45.35, 0, "40,33", "0.325", false,"Technologies","rgb(237,0,126)",true),
-            new Hexagon("links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, -16.0625, "40,33", "0.325", false,"Links","rgb(237,0,126)",true),
-            new Hexagon("domainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, 16.0625, "40,33", "0.325", false,"Domains & Skills","rgb(237,0,126)",true),
-            new Hexagon("team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 73.13125, 0, "40,33", "0.325", false, "Team","rgb(237,0,126)",true)
+            new Hexagon("description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, -16.0625, "40,33", "0.325", false, "Description", "rgb(237,0,126)", true),
+            new Hexagon("gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, 16.0625, "40,33", "0.325", false, "Gallery", "rgb(237,0,126)", true),
+            new Hexagon("technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 45.35, 0, "40,33", "0.325", false, "Technologies", "rgb(237,0,126)", true),
+            new Hexagon("links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, -16.0625, "40,33", "0.325", false, "Links", "rgb(237,0,126)", true),
+            new Hexagon("domainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, 16.0625, "40,33", "0.325", false, "Domains & Skills", "rgb(237,0,126)", true),
+            new Hexagon("team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 73.13125, 0, "40,33", "0.325", false, "Team", "rgb(237,0,126)", true)
         ],
 
         patterns: [],
         elements: [],
-
+        textElements: [],
         isCreated: false,
 
         create: function () {
             if (this.elements.length != 0) {
                 return;
             }
+
             this.isCreated = true;
 
             this.hexagons.forEach((hexagon, index) => {
@@ -78,17 +79,36 @@ let overlayMenu = {
                     this.elements.push(element);
 
                     this.patterns.push($(`#${hexagon.patternID}`)[0]);
-
+                    // console.log("textes",document.querySelectorAll(`#${hexagon.patternID}SVG text`)[0]);
+                    hexagon.setTextElement(document.querySelectorAll(`#${hexagon.patternID}SVG text`)[0])
+                    // this.textElements.push($(`#${hexagon.patternID}SVG text`)[0]);
+                    hexagon.rotateText();
+                    hexagon.resetTextRotation();
+                    
                     element.addEventListener("click", () => {
                         soundEffects.playDecision();
+                        hexagon.resetTextRotation();
                         overlayMenu.options.destroy();
                     })
+
+                    element.addEventListener("mouseover", () => {
+                        hexagon.rotateText();
+                    })
+
+                    element.addEventListener("mouseleave", () => {
+                        hexagon.resetTextRotation();
+                    })
+
+
                 }, 50 * (index + 1));
 
-
+                
+                
 
             });
 
+
+            
 
         },
 

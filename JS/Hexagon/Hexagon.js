@@ -5,7 +5,7 @@ window.$ = window.jQuery = jQuery;
 export default class Hexagon {
 
     constructor(patternID, backgroundImage, icons, width = "", preserveAspectRatio = "none", viewBox = "0 0 300 261.5",
-        stroke = "black", x, y, translate = "27,27", scale = "0.385", unavailable = false, text = null, backgroundFillColor = "lightblue",isOption=false) {
+        stroke = "black", x, y, translate = "27,27", scale = "0.385", unavailable = false, text = null, backgroundFillColor = "lightblue", isOption = false) {
         this.patternID = patternID;
         this.pattern = `<image width="1" height="1" href=${backgroundImage} preserveAspectRatio="${preserveAspectRatio}" />`
 
@@ -20,8 +20,9 @@ export default class Hexagon {
         this.unavailable = unavailable;
         this.text = text;
         this.textPattern = "";
-        this.isOption=isOption;
-        
+        this.isOption = isOption;
+        this.textElement = "";
+
         if (this.unavailable) {
             this.pattern += `\n<image class="previewStatic" width="1" height="1" href=${tvStatic} preserveAspectRatio="${preserveAspectRatio}" />`
         }
@@ -36,7 +37,7 @@ export default class Hexagon {
             this.pattern += `</g>`
 
             if (this.text) {
-                this.textPattern = `<text x="50%" y="53%" font-size="30" text-anchor="middle"  fill="white">${this.text}</text>`
+                this.textPattern = `<text x="50%" y="53%" font-size="30" text-anchor="middle"  fill="white" transform-origin="50% 53%" transform="rotate(0)">${this.text}</text>`
                 // const words = this.text.split(" ")
                 // if (words.length==1){
                 //     this.textPattern = `<text x="50%" y="53%" font-size="30" text-anchor="middle"  fill="white">${this.text}</text>`
@@ -56,7 +57,7 @@ export default class Hexagon {
 
 
     createElement() {
-        this.element = $(`<svg version="1.1" height="100%" ${this.width} ${this.x} ${this.y} xmlns="http://www.w3.org/2000/svg" viewBox="${this.viewBox}">
+        this.element = $(`<svg id="${this.patternID}SVG" version="1.1" height="100%" ${this.width} ${this.x} ${this.y} xmlns="http://www.w3.org/2000/svg" viewBox="${this.viewBox}">
 
         <defs>
             
@@ -79,5 +80,31 @@ export default class Hexagon {
 
     destroyElement() {
         this.element.remove();
+    }
+
+    setTextElement(textElement) {
+        this.textElement = textElement;
+    }
+    rotateText() {
+
+        this.resetTextRotation();
+        let angle = 0;
+
+        let rotationInterval = () => setInterval(() => {
+            this.textElement.setAttributeNS(null, "transform", `rotate(${angle})`);
+            angle += 5;
+        }, 2);
+
+
+        this.ActualRotation = rotationInterval()
+
+
+
+    }
+
+    resetTextRotation() {
+
+        clearInterval(this.ActualRotation);
+        this.textElement.setAttributeNS(null, "transform", `rotate(0)`);
     }
 }
