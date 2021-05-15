@@ -22,6 +22,7 @@ export default class Hexagon {
         this.textPattern = "";
         this.isOption = isOption;
         this.textElement = "";
+        this.hexagonElement="";
 
         if (this.unavailable) {
             this.pattern += `\n<image class="previewStatic" width="1" height="1" href=${tvStatic} preserveAspectRatio="${preserveAspectRatio}" />`
@@ -37,7 +38,7 @@ export default class Hexagon {
             this.pattern += `</g>`
 
             if (this.text) {
-                this.textPattern = `<text x="50%" y="53%" font-size="30" text-anchor="middle"  fill="white" transform-origin="50% 53%" transform="rotate(0)">${this.text}</text>`
+                this.textPattern = `<text  x="50%" y="53%" font-size="30" text-anchor="middle"  fill="white" transform-origin="50% 53%" transform="rotate(0)">${this.text}</text>`
                 // const words = this.text.split(" ")
                 // if (words.length==1){
                 //     this.textPattern = `<text x="50%" y="53%" font-size="30" text-anchor="middle"  fill="white">${this.text}</text>`
@@ -66,8 +67,14 @@ export default class Hexagon {
                  
             </pattern>
         </defs>
+
+        
+
+        
         <polygon fill="url(#${this.patternID})" stroke="${this.stroke}" stroke-width="0" class="hexagon ${(this.unavailable) ? "unavailable" : ""} ${(this.isOption) ? "option" : ""}"  width="100%" height="100%"  transform="scale(${this.scale}), translate(${this.translate})"  points="723,314 543,625.769145 183,625.769145 3,314 183,2.230855 543,2.230855 723,314" />
 
+
+    
         ${this.textPattern}
         
     </svg>`);
@@ -85,26 +92,44 @@ export default class Hexagon {
     setTextElement(textElement) {
         this.textElement = textElement;
     }
-    rotateText() {
 
-        this.resetTextRotation();
-        let angle = 0;
-
-        let rotationInterval = () => setInterval(() => {
-            this.textElement.setAttributeNS(null, "transform", `rotate(${angle})`);
-            angle += 5;
-        }, 2);
+    clickStyle(){
+        this.hexagonElement.classList.remove('optionHover');
+        this.hexagonElement.classList.add('optionClick');
+        this.textElement.remove();
+    }
 
 
-        this.ActualRotation = rotationInterval()
+    hoverStyle() {
+
+        // this.resetTextRotation();
+        // let angle = 0;
+
+        // let rotationInterval = () => setInterval(() => {
+        //     this.textElement.setAttributeNS(null, "transform", `rotate(${angle})`);
+        //     angle += 5;
+        // }, 2);
 
 
+        // this.ActualRotation = rotationInterval()
+
+        // this.textElement.setAttributeNS(null, "filter", `drop-shadow(16px 16px 20px red)`);
+        this.hexagonElement.classList.add('optionHover');
+        this.textElement.classList.add('glowing');
 
     }
 
-    resetTextRotation() {
+    resetStyle() {
 
-        clearInterval(this.ActualRotation);
-        this.textElement.setAttributeNS(null, "transform", `rotate(0)`);
+        // clearInterval(this.ActualRotation);
+        // this.textElement.setAttributeNS(null, "transform", `rotate(0)`);
+        this.hexagonElement.classList.remove('optionHover');
+        this.textElement.classList.remove('glowing');
     }
+
+    setHexagonElement(hexagonElement){
+        this.hexagonElement=hexagonElement;
+    }
+
+
 }

@@ -13,14 +13,37 @@
 }
 
 #overlayMenuContainer {
-    position: relative;
-    height: 100%;
+    position: absolute;
+    height: 94%;
     width: 100%;
     /* background-color: blue; */
+    top: 6%;
     display: flex;
     justify-content: space-evenly;
     align-self: center;
+    /* border: 25px blue dashed; */
+    overflow: hidden;
+    padding: 0;
 }
+
+#overlayMenu{
+    position: relative;
+    /* width: 100%; */
+    bottom:22.5%;
+    height: 150%;
+    /* border: 25px green dashed; */
+}
+
+
+.glowing {
+    /* filter: drop-shadow(16px 16px 20px red); */
+    text-shadow: 
+    0 0 1px #00e1ff,
+    0 0 5px #00e1ff,
+    0 0 10px #00e1ff,
+    0 0 15px #00e1ff;
+ }
+
 
 
 

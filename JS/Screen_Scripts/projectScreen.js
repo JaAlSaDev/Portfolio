@@ -9,7 +9,7 @@ import soundEffects from "../Sound/soundEffects"
 import { SETTINGS } from "../../settings"
 
 
-
+const optionHexagonBackgroundColor="rgb(3,143,178)";
 
 let overlayMenu = {
     element: $("#overlayMenuContainer > svg")[0],
@@ -50,12 +50,12 @@ let overlayMenu = {
 
     options: {
         hexagons: [
-            new Hexagon("description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, -16.0625, "40,33", "0.325", false, "Description", "rgb(237,0,126)", true),
-            new Hexagon("gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, 16.0625, "40,33", "0.325", false, "Gallery", "rgb(237,0,126)", true),
-            new Hexagon("technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 45.35, 0, "40,33", "0.325", false, "Technologies", "rgb(237,0,126)", true),
-            new Hexagon("links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, -16.0625, "40,33", "0.325", false, "Links", "rgb(237,0,126)", true),
-            new Hexagon("domainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, 16.0625, "40,33", "0.325", false, "Domains & Skills", "rgb(237,0,126)", true),
-            new Hexagon("team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 73.13125, 0, "40,33", "0.325", false, "Team", "rgb(237,0,126)", true)
+            new Hexagon("description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, -16.0625, "40,33", "0.325", false, "Description", optionHexagonBackgroundColor, true),
+            new Hexagon("gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, 16.0625, "40,33", "0.325", false, "Gallery", optionHexagonBackgroundColor, true),
+            new Hexagon("technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 45.35, 0, "40,33", "0.325", false, "Technologies", optionHexagonBackgroundColor, true),
+            new Hexagon("links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, -16.0625, "40,33", "0.325", false, "Links", optionHexagonBackgroundColor, true),
+            new Hexagon("domainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, 16.0625, "40,33", "0.325", false, "Domains & Skills", optionHexagonBackgroundColor, true),
+            new Hexagon("team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 73.13125, 0, "40,33", "0.325", false, "Team", optionHexagonBackgroundColor, true)
         ],
 
         patterns: [],
@@ -82,21 +82,26 @@ let overlayMenu = {
                     // console.log("textes",document.querySelectorAll(`#${hexagon.patternID}SVG text`)[0]);
                     hexagon.setTextElement(document.querySelectorAll(`#${hexagon.patternID}SVG text`)[0])
                     // this.textElements.push($(`#${hexagon.patternID}SVG text`)[0]);
-                    hexagon.rotateText();
-                    hexagon.resetTextRotation();
                     
+                    hexagon.setHexagonElement(document.querySelectorAll(`#${hexagon.patternID}SVG polygon`)[0])
+
                     element.addEventListener("click", () => {
                         soundEffects.playDecision();
-                        hexagon.resetTextRotation();
+                        hexagon.clickStyle();
                         overlayMenu.options.destroy();
                     })
 
+                    hexagon.textElement.addEventListener("mouseover", () => {
+                        hexagon.hoverStyle();
+                        
+                    })
+
                     element.addEventListener("mouseover", () => {
-                        hexagon.rotateText();
+                        hexagon.hoverStyle();
                     })
 
                     element.addEventListener("mouseleave", () => {
-                        hexagon.resetTextRotation();
+                        hexagon.resetStyle();
                     })
 
 
