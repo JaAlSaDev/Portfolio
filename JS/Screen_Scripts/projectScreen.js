@@ -10,6 +10,7 @@ import { SETTINGS } from "../../settings"
 
 
 const optionHexagonBackgroundColor = "rgb(3,143,178)";
+const foreignObject = document.querySelector("foreignObject");
 
 let overlayMenu = {
     element: $("#overlayMenuContainer > svg")[0],
@@ -55,26 +56,30 @@ let overlayMenu = {
 
     options: {
         hexagons: [
-            new Hexagon("description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, -16.0625, "40,33", "0.325", false, "Description", optionHexagonBackgroundColor, true),
-            new Hexagon("gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, 16.0625, "40,33", "0.325", false, "Gallery", optionHexagonBackgroundColor, true),
-            new Hexagon("technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 45.35, 0, "40,33", "0.325", false, "Technologies", optionHexagonBackgroundColor, true),
-            new Hexagon("links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, -16.0625, "40,33", "0.325", false, "Links", optionHexagonBackgroundColor, true),
-            new Hexagon("domainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, 16.0625, "40,33", "0.325", false, "Domains & Skills", optionHexagonBackgroundColor, true),
-            new Hexagon("team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 73.13125, 0, "40,33", "0.325", false, "Team", optionHexagonBackgroundColor, true)
+            new Hexagon("Description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, -16.0625, "40,33", "0.325", false, "Description", optionHexagonBackgroundColor, true),
+            new Hexagon("Gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, 16.0625, "40,33", "0.325", false, "Gallery", optionHexagonBackgroundColor, true),
+            new Hexagon("Technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 45.35, 0, "40,33", "0.325", false, "Technologies", optionHexagonBackgroundColor, true),
+            new Hexagon("Links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, -16.0625, "40,33", "0.325", false, "Links", optionHexagonBackgroundColor, true),
+            new Hexagon("DomainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, 16.0625, "40,33", "0.325", false, "Domains & Skills", optionHexagonBackgroundColor, true),
+            new Hexagon("Team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 73.13125, 0, "40,33", "0.325", false, "Team", optionHexagonBackgroundColor, true)
         ],
 
         patterns: [],
         elements: [],
         textElements: [],
         isCreated: false,
+        contents: [],
 
         create: function () {
+
+
+         
             if (this.elements.length != 0) {
                 return;
             }
 
             this.isCreated = true;
-
+            this.hideContent();
             this.hexagons.forEach((hexagon, index) => {
                 setTimeout(() => {
                     let element = hexagon.createElement();
@@ -84,9 +89,11 @@ let overlayMenu = {
                     this.elements.push(element);
 
                     this.patterns.push($(`#${hexagon.patternID}`)[0]);
-                    // console.log("textes",document.querySelectorAll(`#${hexagon.patternID}SVG text`)[0]);
+
+                    this.contents.push(document.querySelector(`#project${hexagon.patternID}`))
+
+
                     hexagon.setTextElement(document.querySelectorAll(`#${hexagon.patternID}SVG text`)[0])
-                    // this.textElements.push($(`#${hexagon.patternID}SVG text`)[0]);
 
                     hexagon.setHexagonElement(document.querySelectorAll(`#${hexagon.patternID}SVG polygon`)[0])
 
@@ -94,6 +101,12 @@ let overlayMenu = {
                         soundEffects.playDecision();
                         hexagon.clickStyle();
                         overlayMenu.options.destroy();
+
+                        this.showContent(index);
+
+                        console.log("ID: ", hexagon.patternID);
+
+
                     })
 
                     hexagon.textElement.addEventListener("mouseover", () => {
@@ -124,6 +137,8 @@ let overlayMenu = {
 
         destroy: function () {
 
+            this.hideContent();
+            
             if (this.hexagons.length != this.elements.length) {
                 return;
             }
@@ -140,6 +155,7 @@ let overlayMenu = {
             });
             this.hexagons.reverse()
 
+           
 
 
         },
@@ -152,7 +168,29 @@ let overlayMenu = {
                 this.destroy();
             }
         },
+
+        showContent: function (index) {
+
+            this.hideContent();
+
+            if (this.contents[index]) {
+                console.log();
+                foreignObject.style.display = "flex"
+                this.contents[index].style.display = "flex"
+            }
+
+        },
+
+        hideContent: function(){
+            foreignObject.style.display = "none"
+            this.contents.forEach(content => {
+                if (content) {
+                    content.style.display = "none"
+                }
+            });
+        }
     },
+
     create: function () {
         this.logo.create();
     },
@@ -177,7 +215,7 @@ export let projectScreen = {
             setTimeout(() => {
                 overlayMenu.create();
                 overlayMenu.logo.changeHexImage(project.icon)
-            }, SETTINGS.screenTransitionTime+1000);
+            }, SETTINGS.screenTransitionTime + 1000);
 
 
 
