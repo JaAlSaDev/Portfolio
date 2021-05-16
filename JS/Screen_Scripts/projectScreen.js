@@ -73,7 +73,7 @@ let overlayMenu = {
         create: function () {
 
 
-         
+
             if (this.elements.length != 0) {
                 return;
             }
@@ -102,7 +102,10 @@ let overlayMenu = {
                         hexagon.clickStyle();
                         overlayMenu.options.destroy();
 
-                        this.showContent(index);
+                        setTimeout(() => {
+                            this.showContent(index);
+                        }, 500);
+
 
                         console.log("ID: ", hexagon.patternID);
 
@@ -138,7 +141,7 @@ let overlayMenu = {
         destroy: function () {
 
             this.hideContent();
-            
+
             if (this.hexagons.length != this.elements.length) {
                 return;
             }
@@ -155,7 +158,7 @@ let overlayMenu = {
             });
             this.hexagons.reverse()
 
-           
+
 
 
         },
@@ -181,7 +184,7 @@ let overlayMenu = {
 
         },
 
-        hideContent: function(){
+        hideContent: function () {
             foreignObject.style.display = "none"
             this.contents.forEach(content => {
                 if (content) {
