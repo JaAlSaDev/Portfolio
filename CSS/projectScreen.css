@@ -1,5 +1,5 @@
 #ProjectScreen {
-    display: flex;
+    display: none;
     flex-direction: column;
     background-size: cover;
     background-repeat: no-repeat;
@@ -32,6 +32,17 @@
     bottom:22.5%;
     height: 150%;
     /* border: 25px green dashed; */
+}
+
+
+
+#optionContent{
+    border: white dashed 1px;
+    height: 63%;
+    width: 56%;
+    position: absolute;
+    top:19%;
+    left: 37.5%;
 }
 
 

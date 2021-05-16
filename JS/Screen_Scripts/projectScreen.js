@@ -9,7 +9,7 @@ import soundEffects from "../Sound/soundEffects"
 import { SETTINGS } from "../../settings"
 
 
-const optionHexagonBackgroundColor="rgb(3,143,178)";
+const optionHexagonBackgroundColor = "rgb(3,143,178)";
 
 let overlayMenu = {
     element: $("#overlayMenuContainer > svg")[0],
@@ -29,7 +29,12 @@ let overlayMenu = {
             overlayMenu.options.create();
         },
 
+        destroy: function () {
+            this.element.remove();
+            this.pattern = null;
 
+            overlayMenu.options.destroy();
+        },
 
         addEventListeners: function () {
             this.element.addEventListener("click", () => {
@@ -82,7 +87,7 @@ let overlayMenu = {
                     // console.log("textes",document.querySelectorAll(`#${hexagon.patternID}SVG text`)[0]);
                     hexagon.setTextElement(document.querySelectorAll(`#${hexagon.patternID}SVG text`)[0])
                     // this.textElements.push($(`#${hexagon.patternID}SVG text`)[0]);
-                    
+
                     hexagon.setHexagonElement(document.querySelectorAll(`#${hexagon.patternID}SVG polygon`)[0])
 
                     element.addEventListener("click", () => {
@@ -93,7 +98,7 @@ let overlayMenu = {
 
                     hexagon.textElement.addEventListener("mouseover", () => {
                         hexagon.hoverStyle();
-                        
+
                     })
 
                     element.addEventListener("mouseover", () => {
@@ -107,13 +112,13 @@ let overlayMenu = {
 
                 }, 50 * (index + 1));
 
-                
-                
+
+
 
             });
 
 
-            
+
 
         },
 
@@ -151,9 +156,13 @@ let overlayMenu = {
     create: function () {
         this.logo.create();
     },
+
+    destroy: function () {
+        this.logo.destroy();
+    }
 }
 
-overlayMenu.create();
+
 
 let backArrow = undefined;
 
@@ -165,7 +174,13 @@ export let projectScreen = {
 
             $("#ProjectScreen > .BackgroundImg")[0].src = project.image
 
-            overlayMenu.logo.changeHexImage(project.icon)
+            setTimeout(() => {
+                overlayMenu.create();
+                overlayMenu.logo.changeHexImage(project.icon)
+            }, SETTINGS.screenTransitionTime+1000);
+
+
+
         }
 
         setTimeout(() => {
@@ -180,7 +195,7 @@ export let projectScreen = {
                     backArrow = document.querySelector("#ProjectScreen object").contentDocument.children[0];
 
                     backArrow.addEventListener("click", () => {
-
+                        overlayMenu.destroy();
                         projectScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
 
                         soundEffects.playCancel();
