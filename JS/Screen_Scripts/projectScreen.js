@@ -11,6 +11,7 @@ import { SETTINGS } from "../../settings"
 
 const optionHexagonBackgroundColor = "rgb(3,143,178)";
 const foreignObject = document.querySelector("foreignObject");
+const optionTitle= document.querySelector("#optionTitle");
 
 let overlayMenu = {
     element: $("#overlayMenuContainer > svg")[0],
@@ -103,7 +104,7 @@ let overlayMenu = {
                         overlayMenu.options.destroy();
 
                         setTimeout(() => {
-                            this.showContent(index);
+                            this.showContent(index,hexagon.patternID);
                         }, 500);
 
 
@@ -172,7 +173,7 @@ let overlayMenu = {
             }
         },
 
-        showContent: function (index) {
+        showContent: function (index,title) {
 
             this.hideContent();
 
@@ -180,6 +181,7 @@ let overlayMenu = {
                 console.log();
                 foreignObject.style.display = "flex"
                 this.contents[index].style.display = "flex"
+                optionTitle.textContent=title;
             }
 
         },
