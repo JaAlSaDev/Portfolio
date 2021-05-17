@@ -114,14 +114,27 @@ body {
 
 .optionHover  {
     stroke: gold;
-    stroke-width: 25;
+    animation: optionBorderAnimate 0.75s ease-in-out infinite alternate;
 }
 
 .option:hover  {
-    stroke: gold;
-
+    animation: optionBorderAnimate 0.75s ease-in-out infinite alternate;
 }
 
+ @keyframes optionBorderAnimate {
+    from {
+        stroke: gold;
+    }
+    to {
+        
+        stroke: rgb(122, 104, 0);
+    }
+  }
+
+.option:active  {
+    stroke: gold;
+    fill: white;
+}
 .optionClick  {
     stroke: gold;
     fill: white;
