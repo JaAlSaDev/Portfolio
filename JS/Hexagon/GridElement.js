@@ -120,7 +120,7 @@ export default class GridElement {
 
     createElement() {
         let project = this.project;
-        this.hexagon = new Hexagon(project.patternID, project.icon, [], this.size + "%", "none", "0 0 262.5 225", this.color.getRGB(), this.x, this.y, "0,0", "0.357", !this.project.available)
+        this.hexagon = new Hexagon(project.patternID, project.icon, [], this.size + "%", "none", "0 0 262.5 225", this.color.getRGB(), this.x, this.y, "12,7", "0.35", !this.project.available)
         console.log(!this.project.available);
         return this.hexagon.createElement();
     }

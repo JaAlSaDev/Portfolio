@@ -43,7 +43,7 @@ let previewPanels = {
 
 const numLayers = 2,
     numOfProjects = 1 + 3 * numLayers * (numLayers + 1),
-    hexagonSize = 22.5,
+    hexagonSize = 36.5,
     MARGIN = 8,
     DURATION = 185;
 

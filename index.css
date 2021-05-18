@@ -103,7 +103,7 @@ body {
 
 .unavailable:active {
     stroke: red;
-    fill: transparent;
+    fill: black;
 }
 
 
