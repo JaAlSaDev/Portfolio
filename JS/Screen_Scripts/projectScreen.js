@@ -11,10 +11,11 @@ import { SETTINGS } from "../../settings"
 
 const optionHexagonBackgroundColor = "rgb(3,143,178)";
 const foreignObject = document.querySelector("foreignObject");
-const optionTitle= document.querySelector("#optionTitle");
+const optionTitle = document.querySelector("#optionTitle");
 
 let overlayMenu = {
     element: $("#overlayMenuContainer > svg")[0],
+    project: null,
     logo: {
         hexagon: new Hexagon("projectLogo", stevenSketch, [], "35%", "none", "0 0 262.5 225", "black", 2.5, 0, "40,33", "0.325", false),
         pattern: null,
@@ -70,10 +71,9 @@ let overlayMenu = {
         textElements: [],
         isCreated: false,
         contents: [],
+        currentContentTitle: "",
 
         create: function () {
-
-
 
             if (this.elements.length != 0) {
                 return;
@@ -104,7 +104,7 @@ let overlayMenu = {
                         overlayMenu.options.destroy();
 
                         setTimeout(() => {
-                            this.showContent(index,hexagon.patternID);
+                            this.showContent(index, hexagon.patternID);
                         }, 500);
 
 
@@ -173,21 +173,74 @@ let overlayMenu = {
             }
         },
 
-        showContent: function (index,title) {
+        showContent: function (index, title) {
 
             this.hideContent();
 
             if (this.contents[index]) {
-                console.log();
+                this.currentContentTitle = title;
+
                 foreignObject.style.display = "flex"
                 this.contents[index].style.display = "flex"
-                optionTitle.textContent=title;
+                this.contents[index].scrollTop = 0;
+                optionTitle.textContent = title;
+
+
+                switch (title) {
+                    case "Description":
+
+                        let paragraphElem = document.createElement("p");
+                        paragraphElem.innerText = overlayMenu.project.description;
+                        this.contents[index].append(paragraphElem)
+                        break;
+                    case "Gallery":
+
+                        overlayMenu.project.gallery.forEach(imageSrc => {
+                            let imageElem = document.createElement("img");
+                            imageElem.src = imageSrc;
+                            this.contents[index].append(imageElem)
+                        });
+
+                        break;
+                    case "Technologies":
+                        break;
+                    case "Links":
+                        break;
+                    case "DomainsAndSkills":
+                        break;
+                    case "Team":
+                        break;
+
+                }
             }
 
         },
 
         hideContent: function () {
             foreignObject.style.display = "none"
+            // content.style.display = "none"
+            switch (this.currentContentTitle) {
+                case "Description":
+                    while (this.contents[0].firstChild) {
+                        this.contents[0].removeChild(this.contents[0].firstChild);
+                    }
+                    break;
+                case "Gallery":
+
+                    while (this.contents[1].firstChild) {
+                        this.contents[1].removeChild(this.contents[1].firstChild);
+                    }
+                    break;
+                case "Technologies":
+                    break;
+                case "Links":
+                    break;
+                case "DomainsAndSkills":
+                    break;
+                case "Team":
+                    break;
+
+            }
             this.contents.forEach(content => {
                 if (content) {
                     content.style.display = "none"
@@ -196,7 +249,8 @@ let overlayMenu = {
         }
     },
 
-    create: function () {
+    create: function (project) {
+        this.project = project;
         this.logo.create();
     },
 
@@ -218,7 +272,7 @@ export let projectScreen = {
             $("#ProjectScreen > .BackgroundImg")[0].src = project.image
 
             setTimeout(() => {
-                overlayMenu.create();
+                overlayMenu.create(project);
                 overlayMenu.logo.changeHexImage(project.icon)
             }, SETTINGS.screenTransitionTime + 1000);
 

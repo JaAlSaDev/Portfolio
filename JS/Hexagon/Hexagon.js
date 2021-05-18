@@ -101,28 +101,12 @@ export default class Hexagon {
 
 
     hoverStyle() {
-
-        // this.resetTextRotation();
-        // let angle = 0;
-
-        // let rotationInterval = () => setInterval(() => {
-        //     this.textElement.setAttributeNS(null, "transform", `rotate(${angle})`);
-        //     angle += 5;
-        // }, 2);
-
-
-        // this.ActualRotation = rotationInterval()
-
-        // this.textElement.setAttributeNS(null, "filter", `drop-shadow(16px 16px 20px red)`);
         this.hexagonElement.classList.add('optionHover');
         this.textElement.classList.add('glowing');
 
     }
 
     resetStyle() {
-
-        // clearInterval(this.ActualRotation);
-        // this.textElement.setAttributeNS(null, "transform", `rotate(0)`);
         this.hexagonElement.classList.remove('optionHover');
         this.textElement.classList.remove('glowing');
     }
