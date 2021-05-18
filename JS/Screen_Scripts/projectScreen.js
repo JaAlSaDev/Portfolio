@@ -271,12 +271,11 @@ export let projectScreen = {
 
             $("#ProjectScreen > .BackgroundImg")[0].src = project.image
 
+            document.querySelector("#projectTitle").textContent=project.title;
             setTimeout(() => {
                 overlayMenu.create(project);
                 overlayMenu.logo.changeHexImage(project.icon)
             }, SETTINGS.screenTransitionTime + 1000);
-
-
 
         }
 

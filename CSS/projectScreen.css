@@ -42,6 +42,26 @@ foreignObject{
     display: none;
 }
 
+#projectTitle{
+    border: rgb(212, 1, 114) 0.5rem groove;
+    
+    padding: 0 2.5% 0 2.5%;
+    margin: 0;
+    position: absolute;
+    color: white;
+    font-size: 10vh;
+    /* width: 100%; */
+    text-align: center;
+    top: 4%;
+    background-color: black;
+    text-shadow: 
+        0 0 1px #00e1ff,
+        0 0 5px #00e1ff,
+        0 0 10px #00e1ff,
+        0 0 15px #00e1ff;
+}
+
+
 
 
 #optionContent{
@@ -82,13 +102,11 @@ foreignObject{
 
 #projectDescription >p{
     position: relative;
-    /* border: white dashed 1px; */
     width: 100%;
-    /* height: 75%; */
     margin: 0;
     font-size: 20%;
     color: white;
-    /* overflow-y: scroll; */
+    
 }
 
 
@@ -113,13 +131,6 @@ foreignObject{
     border-color: gold;
     cursor: pointer;
 }
-
-
-
-
-
-
-
 
 
 .glowing {
@@ -147,4 +158,8 @@ foreignObject{
 
 
 
-
+  @media screen and (orientation: portrait) {
+    #projectTitle{
+        font-size: 10vw;
+    }
+}
