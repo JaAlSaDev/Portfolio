@@ -118,8 +118,6 @@ foreignObject{
     flex-direction: row;
     justify-content: space-between;
     /* align-items: flex-start; */
-
-    
 }
 
 #technologyDescriptionBox{
@@ -171,7 +169,7 @@ foreignObject{
 #technologyLogos > img{
     border: rgb(212, 1, 114) 0.00125rem groove;
     background-color: black;
-    /* height: 25%; */
+    height: 25%;
     width: 25%;
     margin: 7.5% 5.5% 0 0;
 }

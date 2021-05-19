@@ -1,16 +1,27 @@
-let images = require("../assets/Images/*.jpg")
-let trackPaths = require("../assets/Sound/Music/*.mp3")
+let images = require("../assets/Images/*.jpg");
+let trackPaths = require("../assets/Sound/Music/*.mp3");
+let svgImages= require("../assets/svg/*.svg");
 
+console.log("svgImages: ",svgImages);
 class Project {
-    constructor(title, icon, image, patternID, available, music, description="",gallery=[]) {
+    constructor(title, icon, image, patternID, available, music, description="",gallery=[],technologies=[]) {
         this.title = title;
         this.icon = icon;
         this.image = image;
         this.description = description;
         this.gallery=gallery;
+        this.technologies=technologies;
         this.patternID = patternID;
         this.available = available;
         this.music = music;
+    }
+}
+
+class Technology {
+    constructor(name="",iconSrc="",description=""){
+        this.name=name;
+        this.iconSrc=iconSrc;
+        this.description=description;
     }
 }
 
@@ -50,12 +61,20 @@ const descriptions={
     This game differs from other Sonic games by allowing the player to take control of one of four teams, each with three characters, who each have unique abilities to use. The game received mixed reviews from critics but it performed commercially well, becoming a million-seller and making the best-selling lists for all three of its original platforms. `,
 }
 
+const technologies={
+    onTheSundayOfLife:[
+        new Technology("Guitar",svgImages["guitar"],`The guitar is a fretted musical instrument that typically has six strings. It is held flat against the player's body and played by strumming or plucking the strings with the dominant hand, while simultaneously pressing the strings against frets with the fingers of the opposite hand. A plectrum or individual finger picks may be used to strike the strings. The sound of the guitar is projected either acoustically, by means of a resonant chamber on the instrument, or amplified by an electronic pickup and an amplifier.`),
+        new Technology("Drum",svgImages["drums"],`The drum is a member of the percussion group of musical instruments. In the Hornbostel-Sachs classification system, it is a membranophone.[1] Drums consist of at least one membrane, called a drumhead or drum skin, that is stretched over a shell and struck, either directly with the player's hands, or with a percussion mallet, to produce sound. There is usually a resonance head on the underside of the drum, typically tuned to a slightly lower pitch than the top drumhead. Other techniques have been used to cause drums to make sound, such as the thumb roll. Drums are the world's oldest and most ubiquitous musical instruments, and the basic design has remained virtually unchanged for thousands of years.`),
+        new Technology("Oboe",svgImages["oboe"],`The oboe (/ˈoʊboʊ/ OH-boh) is a type of double reed woodwind instrument. Oboes are usually made of wood, but may also be made of synthetic materials, such as plastic, resin or hybrid composites. The most common oboe plays in the treble or soprano range. A soprano oboe measures roughly 65 cm (25+1⁄2 in) long, with metal keys, a conical bore and a flared bell. Sound is produced by blowing into the reed at a sufficient air pressure, causing it to vibrate with the air column. The distinctive tone is versatile and has been described as "bright". When the word oboe is used alone, it is generally taken to mean the treble instrument rather than other instruments of the family, such as the bass oboe, the cor anglais (English horn), or oboe d'amore.`)
+    ]
+}
+
 let projects = [
     new Project("In the Court of the Crimson King", images["In_The_Court_of_The_Crimson_King"], images["In_The_Court_of_The_Crimson_King_Wallpaper"], "ITCOTCK", true, trackPaths["The_Court_of_The_Crimson_King"]),
     new Project("Humanistic", images["Humanistic"], images["Humanistic_Demos"], "Humanistic", true, trackPaths["Start_Over"]),
     new Project("The Future Bites", images["The_Future_Bites"], images["The_Future_Bites_Wallpaper"], "TFB", true, trackPaths["12_THINGS_I_FORGOT"]),
     new Project("In Absentia", images["In_Absentia_Right"], images["In_Absentia_Right"], "IA", true, trackPaths["Dot 3"]),
-    new Project("On the Sunday of Life...", images["Sunday"], images["Sunday"], "Sunday", true, trackPaths["Radioactive_Toy"],descriptions.onTheSundayOfLife,galleries.onTheSundayOfLife),
+    new Project("On the Sunday of Life...", images["Sunday"], images["Sunday"], "Sunday", true, trackPaths["Radioactive_Toy"],descriptions.onTheSundayOfLife,galleries.onTheSundayOfLife,technologies.onTheSundayOfLife),
     new Project("The Dark Side of the Moon", images["TDSOTM"], images["TDSOTM_Wallpaper"], "TDSOTM", true, trackPaths["Money"]),
     new Project("The Wall", images["The_Wall"], images["The_Wall_Wallpaper"], "TheWall", true, trackPaths["Comfortably_Numb"]),
     new Project("Mega Man X4 Sound Collection", images["X4"], images["X4_Wallpaper"], "X4", true, trackPaths["Split_Mushroom_Stage"]),

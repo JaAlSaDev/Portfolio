@@ -13,6 +13,13 @@ const optionHexagonBackgroundColor = "rgb(3,143,178)";
 const foreignObject = document.querySelector("foreignObject");
 const optionTitle = document.querySelector("#optionTitle");
 
+const technologyLogos = document.querySelector("#technologyLogos");
+const technologyDescriptionBox = document.querySelector("#technologyDescriptionBox");
+
+const technologyTitle = document.querySelector("#technologyTitle");
+const technologyDescription = document.querySelector("#technologyDescription");
+
+
 let overlayMenu = {
     element: $("#overlayMenuContainer > svg")[0],
     project: null,
@@ -203,6 +210,25 @@ let overlayMenu = {
 
                         break;
                     case "Technologies":
+
+
+
+                        technologyLogos.scrollTop = 0;
+                        technologyDescriptionBox.scrollTop = 0;
+
+                        overlayMenu.project.technologies.forEach(technology => {
+                            let imgElement = document.createElement('img');
+                            imgElement.src = technology.iconSrc;
+
+                            technologyLogos.appendChild(imgElement);
+
+                            imgElement.addEventListener("mouseover", () => {
+                                technologyTitle.innerText = technology.name;
+                                technologyDescription.innerText = technology.description;
+                            })
+                        });
+                        // const 
+
                         break;
                     case "Links":
                         break;
@@ -232,6 +258,13 @@ let overlayMenu = {
                     }
                     break;
                 case "Technologies":
+                    technologyTitle.innerText = "";
+                    technologyDescription.innerText = "";
+                    
+                    while (technologyLogos.firstChild) {
+                        technologyLogos.removeChild(technologyLogos.firstChild);
+                    }
+
                     break;
                 case "Links":
                     break;
@@ -271,7 +304,7 @@ export let projectScreen = {
 
             $("#ProjectScreen > .BackgroundImg")[0].src = project.image
 
-            document.querySelector("#projectTitle").textContent=project.title;
+            document.querySelector("#projectTitle").textContent = project.title;
             setTimeout(() => {
                 overlayMenu.create(project);
                 overlayMenu.logo.changeHexImage(project.icon)
