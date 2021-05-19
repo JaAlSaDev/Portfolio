@@ -12,7 +12,29 @@
     /* Safari/Chrome/iOS/Android */
     box-sizing: border-box;
     /* IE */
+    
 }
+
+:root {
+    --scrollbarWidth: 0.25rem;
+    --scrollbarBg: rgb(161, 0, 27);
+    --scrollbarThumb: rgb(244, 63, 94);
+  }
+  * {
+    scrollbar-width: var(--scrollbarWidth) ;
+    scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+  }
+  *::-webkit-scrollbar {
+    width: var(--scrollbarWidth);
+  }
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbarBg);
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarThumb);
+    border-radius: 0.025rem;
+    border: 0.025rem solid var(--scrollbarBg);
+  }
 
 body {
     /* position: relative; */

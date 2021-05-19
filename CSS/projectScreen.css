@@ -110,6 +110,77 @@ foreignObject{
 }
 
 
+#projectTechnologies{
+    /* border: blue dashed 1px; */
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: flex-start; */
+
+    
+}
+
+#technologyDescriptionBox{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    border: rgb(212, 1, 114) 0.125rem groove;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0% 0 0 5%;
+    scrollbar-width: thin;
+}
+
+#technologyDescriptionBox > p{
+   /* border: rgb(212, 1, 114) 0.125rem groove;  */
+    width: 100%;
+    color:white;
+}
+
+#technologyTitle{
+    margin: 2% 0 0 0;
+    font-size: 0.4rem;
+    
+}
+
+#technologyDescription{
+    font-size: 0.125rem;
+}
+
+
+
+#technologyLogos{
+    height: 100%;
+    width: 50%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: rgb(212, 1, 114) 0.125rem groove;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+
+
+#technologyLogos > img{
+    border: rgb(212, 1, 114) 0.00125rem groove;
+    background-color: black;
+    /* height: 25%; */
+    width: 25%;
+    margin: 7.5% 5.5% 0 0;
+}
+
+#technologyLogos > img:hover{
+    cursor: pointer;
+    border: gold 0.00125rem groove;
+}
+
 #projectGallery{
     height: 70%;
     width: 100%;
