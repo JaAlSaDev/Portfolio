@@ -202,6 +202,92 @@ foreignObject{
 }
 
 
+#projectTeam{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* border: blue dashed 1px; */
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: flex-start;
+}
+
+.contributor{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    width: 30.25%;
+    /* height: 100%; */
+    border: rgb(212, 1, 114) 0.00125rem groove;
+    background-color: rgb(71, 0, 38);
+    padding: 2.5% 3%;
+    margin: 0% 1.5%;
+    margin-bottom: 1.5%;
+}
+
+.contributor > p,a{
+    /* max-width: 100%; */
+    /* font-size: 0.2rem; */
+    color: white;
+    /* border: blue dashed 1px; */
+    margin: 0;
+}
+
+.contributorName{
+    align-self: center;
+    text-align: center;
+    font-size: 0.22rem;
+    width: 100%;
+    font-weight: bold;
+    /* border: blue dashed 1px; */
+}
+
+.contributorRole{
+    align-self: left;
+    text-align: left;
+    font-size: 0.2rem;
+    /* border: blue dashed 1px; */
+}
+
+.contributor > button{
+    align-self: center;
+    /* width: 60%; */
+    text-align: center;
+    font-size: 0.15rem;
+    /* font-style: italic; */
+    /* text-decoration: underline; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(192, 1, 103);
+    padding: 2% 10%;
+    border: solid 0.00125rem rgb(121, 0, 64);
+    border-radius: 0.125rem;
+}
+
+.contributor > button:hover{
+    cursor: pointer;
+    color: white;
+    background-color: rgb(250, 0, 133);
+    border-color: rgb(121, 0, 64);
+    
+}
+
+.contributor > button:active{
+    cursor: pointer;
+    /* background-color: blue; */
+}
+
+.contributorImg{
+    width: 100%;
+    margin-bottom: 3%;
+    border: rgb(212, 1, 114) 0.001025rem groove;
+
+    /* height: 25%; */
+}
+
+
 .glowing {
     /* filter: drop-shadow(16px 16px 20px red); */
     animation: glow 0.75s ease-in-out infinite alternate;

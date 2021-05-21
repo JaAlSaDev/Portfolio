@@ -191,7 +191,7 @@ let overlayMenu = {
                 this.contents[index].style.display = "flex"
                 this.contents[index].scrollTop = 0;
                 optionTitle.textContent = title;
-
+                
 
                 switch (title) {
                     case "Description":
@@ -235,6 +235,11 @@ let overlayMenu = {
                     case "DomainsAndSkills":
                         break;
                     case "Team":
+                        console.log("Team: ",overlayMenu.project.team);
+
+                        overlayMenu.project.team.forEach(contributor =>{
+                            this.contents[index].append(contributor.getElement())
+                        })
                         break;
 
                 }
@@ -243,6 +248,12 @@ let overlayMenu = {
         },
 
         hideContent: function () {
+
+            const removeChildren = index =>{
+                while (this.contents[index].firstChild) {
+                    this.contents[index].removeChild(this.contents[index].firstChild);
+                }
+            }
             foreignObject.style.display = "none"
             // content.style.display = "none"
             switch (this.currentContentTitle) {
@@ -271,6 +282,7 @@ let overlayMenu = {
                 case "DomainsAndSkills":
                     break;
                 case "Team":
+                    removeChildren(5);
                     break;
 
             }
