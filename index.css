@@ -19,7 +19,7 @@
     --scrollbarWidth: 0.25rem;
     --scrollbarBg: rgb(161, 0, 27);
     --scrollbarThumb: rgb(244, 63, 94);
-  }
+}
   * {
     scrollbar-width: var(--scrollbarWidth) ;
     scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);

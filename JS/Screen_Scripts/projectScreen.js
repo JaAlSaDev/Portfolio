@@ -19,12 +19,60 @@ const technologyDescriptionBox = document.querySelector("#technologyDescriptionB
 const technologyTitle = document.querySelector("#technologyTitle");
 const technologyDescription = document.querySelector("#technologyDescription");
 
+const technologyArrowLeft = document.querySelector("#leftArrow");
+
+const technologyArrowRight = document.querySelector("#rightArrow");
+
+const technologyLogosScroll = (scrollStep) => {
+    technologyLogos.scrollLeft+=scrollStep;
+}
+
+const technologyLogosScrollTimer= (scrollStep) => setInterval(() => {
+    technologyLogosScroll(scrollStep);
+}, 50);
+
+let technologyLogosScrollInterval= null;
+
+technologyArrowRight.addEventListener("mousedown", ()=>{
+    technologyLogosScrollInterval=technologyLogosScrollTimer(5)
+});
+
+technologyArrowRight.addEventListener("touchstart", ()=>{
+    technologyLogosScrollInterval=technologyLogosScrollTimer(5)
+});
+
+
+technologyArrowRight.addEventListener("touchend", ()=>{
+    clearInterval(technologyLogosScrollInterval)
+});
+
+technologyArrowRight.addEventListener("mouseup", ()=>{
+    clearInterval(technologyLogosScrollInterval)
+});
+
+
+technologyArrowLeft.addEventListener("mousedown", ()=>{
+    technologyLogosScrollInterval=technologyLogosScrollTimer(-5)
+})
+
+technologyArrowLeft.addEventListener("touchstart", ()=>{
+    technologyLogosScrollInterval=technologyLogosScrollTimer(-5)
+})
+
+technologyArrowLeft.addEventListener("mouseup", ()=>{
+    clearInterval(technologyLogosScrollInterval)
+})
+
+technologyArrowLeft.addEventListener("touchend", ()=>{
+    clearInterval(technologyLogosScrollInterval)
+})
+
 
 let overlayMenu = {
     element: $("#overlayMenuContainer > svg")[0],
     project: null,
     logo: {
-        hexagon: new Hexagon("projectLogo", stevenSketch, [], "35%", "none", "0 0 262.5 225", "black", 2.5, 0, "40,33", "0.325", false),
+        hexagon: new Hexagon("projectLogo", stevenSketch, [], "30%", "none", "0 0 262.5 225", "black", 2.5, 0, "40,33", "0.325", false),
         pattern: null,
         element: null,
 
@@ -65,12 +113,12 @@ let overlayMenu = {
 
     options: {
         hexagons: [
-            new Hexagon("Description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, -16.0625, "40,33", "0.325", false, "Description", optionHexagonBackgroundColor, true),
-            new Hexagon("Gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 31.46875, 16.0625, "40,33", "0.325", false, "Gallery", optionHexagonBackgroundColor, true),
-            new Hexagon("Technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 45.35, 0, "40,33", "0.325", false, "Technologies", optionHexagonBackgroundColor, true),
-            new Hexagon("Links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, -16.0625, "40,33", "0.325", false, "Links", optionHexagonBackgroundColor, true),
-            new Hexagon("DomainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 59.25, 16.0625, "40,33", "0.325", false, "Domains & Skills", optionHexagonBackgroundColor, true),
-            new Hexagon("Team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 73.13125, 0, "40,33", "0.325", false, "Team", optionHexagonBackgroundColor, true)
+            new Hexagon("Description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, -16.0625, "40,33", "0.325", false, "Description", optionHexagonBackgroundColor, true),
+            new Hexagon("Gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, 16.0625, "40,33", "0.325", false, "Gallery", optionHexagonBackgroundColor, true),
+            new Hexagon("Technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 40.44375, 0, "40,33", "0.325", false, "Technologies", optionHexagonBackgroundColor, true),
+            new Hexagon("Links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, -16.0625, "40,33", "0.325", false, "Links", optionHexagonBackgroundColor, true),
+            new Hexagon("DomainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, 16.0625, "40,33", "0.325", false, "Domains & Skills", optionHexagonBackgroundColor, true),
+            new Hexagon("Team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 68.225, 0, "40,33", "0.325", false, "Team", optionHexagonBackgroundColor, true)
         ],
 
         patterns: [],
@@ -191,7 +239,7 @@ let overlayMenu = {
                 this.contents[index].style.display = "flex"
                 this.contents[index].scrollTop = 0;
                 optionTitle.textContent = title;
-                
+
 
                 switch (title) {
                     case "Description":
@@ -226,6 +274,11 @@ let overlayMenu = {
                                 technologyTitle.innerText = technology.name;
                                 technologyDescription.innerText = technology.description;
                             })
+
+                            imgElement.addEventListener("click", () => {
+                                technologyTitle.innerText = technology.name;
+                                technologyDescription.innerText = technology.description;
+                            })
                         });
                         // const 
 
@@ -235,9 +288,9 @@ let overlayMenu = {
                     case "DomainsAndSkills":
                         break;
                     case "Team":
-                        console.log("Team: ",overlayMenu.project.team);
+                        console.log("Team: ", overlayMenu.project.team);
 
-                        overlayMenu.project.team.forEach(contributor =>{
+                        overlayMenu.project.team.forEach(contributor => {
                             this.contents[index].append(contributor.getElement())
                         })
                         break;
@@ -249,7 +302,7 @@ let overlayMenu = {
 
         hideContent: function () {
 
-            const removeChildren = index =>{
+            const removeChildren = index => {
                 while (this.contents[index].firstChild) {
                     this.contents[index].removeChild(this.contents[index].firstChild);
                 }
@@ -271,7 +324,7 @@ let overlayMenu = {
                 case "Technologies":
                     technologyTitle.innerText = "";
                     technologyDescription.innerText = "";
-                    
+
                     while (technologyLogos.firstChild) {
                         technologyLogos.removeChild(technologyLogos.firstChild);
                     }
