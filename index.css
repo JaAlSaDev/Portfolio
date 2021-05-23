@@ -66,12 +66,14 @@ body {
     
     
     filter: opacity(50%) blur(0.1vw) hue-rotate(50deg);
-    background-size: auto;
+    background-size: cover;
     pointer-events:none;
     z-index: 0;
 }
 
-
+#MainMenu > .BackgroundImg {
+    filter: none;
+}
 
 .hexagon {
     height: auto;
