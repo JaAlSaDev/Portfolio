@@ -367,7 +367,8 @@ foreignObject {
     font-size: 18%;
     color: white;
     /* padding-left: 5%; */
-    text-align: center;
+    padding-left: 5.5%;
+    text-align: left;
     /* border: purple solid 1px; */
 }
 
@@ -385,12 +386,11 @@ foreignObject {
 
 .actualLink>a {
     width: 100%;
-    /* height: 100%; */
     font-size: 18%;
-    color: rgb(0, 109, 252);
+    color: #ffd452;
     padding: 2.5%;
-    text-decoration: none;
-    /* border: purple solid 1px; */
+    /* text-decoration-thickness: 0.005rem;
+    text-underline-position: below; */
 }
 
 @media screen and (orientation: portrait) {
