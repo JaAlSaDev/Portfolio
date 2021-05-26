@@ -5,11 +5,11 @@
     background-repeat: no-repeat;
 }
 
-#project{
+#project {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%; 
+    height: 100%;
 }
 
 #overlayMenuContainer {
@@ -26,25 +26,23 @@
     padding: 0;
 }
 
-#overlayMenu{
+#overlayMenu {
     position: relative;
     /* width: 100%; */
-    bottom:22.5%;
+    bottom: 22.5%;
     height: 150%;
     /* border: 25px green dashed; */
 }
 
-foreignObject{
+foreignObject {
     /* border: blue dashed 50px; */
     width: 100%;
     height: 100%;
-
     display: none;
 }
 
-#projectTitle{
+#projectTitle {
     border: rgb(212, 1, 114) 0.5rem groove;
-    
     padding: 0 2.5% 0 2.5%;
     margin: 0;
     position: absolute;
@@ -54,28 +52,21 @@ foreignObject{
     text-align: center;
     top: 4%;
     background-color: black;
-    text-shadow: 
-        0 0 1px #00e1ff,
-        0 0 5px #00e1ff,
-        0 0 10px #00e1ff,
-        0 0 15px #00e1ff;
+    text-shadow: 0 0 1px #00e1ff, 0 0 5px #00e1ff, 0 0 10px #00e1ff, 0 0 15px #00e1ff;
 }
 
-
-
-
-#optionContent{
+#optionContent {
     border: rgb(212, 1, 114) 0.15rem groove;
     height: 70%;
     width: 62.5%;
     position: absolute;
-    top:19%;
+    top: 19%;
     left: 32.1%;
     background-color: rgb(122, 0, 65);
     padding: 0 2.5% 0 2.5%;
 }
 
-#optionTitle{
+#optionTitle {
     position: relative;
     /* border: white dashed 1px; */
     width: 100%;
@@ -86,10 +77,7 @@ foreignObject{
     color: white;
 }
 
-
-
-
-#projectDescription{
+#projectDescription {
     /* border: blue dashed 1px; */
     height: 70%;
     width: 100%;
@@ -97,20 +85,17 @@ foreignObject{
     flex-direction: column;
     align-items: flex-start;
     overflow-y: scroll;
-    
 }
 
-#projectDescription >p{
+#projectDescription>p {
     position: relative;
     width: 100%;
     margin: 0;
     font-size: 0.22rem;
     color: white;
-    
 }
 
-
-#projectTechnologies{
+#projectTechnologies {
     /* border: blue dashed 1px; */
     height: 70%;
     width: 100%;
@@ -120,7 +105,7 @@ foreignObject{
     align-items: center;
 }
 
-#technologyDescriptionBox{
+#technologyDescriptionBox {
     width: 100%;
     height: 100%;
     display: flex;
@@ -133,65 +118,58 @@ foreignObject{
     scrollbar-width: thin;
 }
 
-#technologyDescriptionBox > p{
-   /* border: rgb(212, 1, 114) 0.125rem groove;  */
+#technologyDescriptionBox>p {
+    /* border: rgb(212, 1, 114) 0.125rem groove;  */
     width: 100%;
-    color:white;
+    color: white;
 }
 
-#technologyTitle{
+#technologyTitle {
     margin: 2% 0 0 0;
     font-size: 0.4rem;
-    
 }
 
-#technologyDescription{
+#technologyDescription {
     font-size: 0.18rem;
 }
 
-
-
-#technologyLogosContainer{
+#technologyLogosContainer {
     height: 28%;
     width: 100%;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     /* align-items: center; */
     /* flex-wrap: wrap; */
     border: rgb(212, 1, 114) 0.125rem groove;
-
 }
 
-.technologyArrow{
+.technologyArrow {
     background-color: rgb(71, 0, 38);
     height: 100%;
     border: rgb(255, 255, 255) 0.125rem groove;
-    
 }
 
-.technologyArrow:hover{
+.technologyArrow:hover {
     background-color: rgb(206, 0, 110);
     height: 100%;
     /* border: rgb(212, 1, 114) 0.125rem groove; */
     /* filter: contrast(50) */
 }
 
-.technologyArrow:active{
+.technologyArrow:active {
     background-color: rgb(255, 138, 200);
     height: 100%;
     /* border: rgb(212, 1, 114) 0.125rem groove; */
 }
 
-#rightArrow{
+#rightArrow {
     transform: rotate(180deg);
 }
 
-#technologyLogos{
+#technologyLogos {
     height: 100%;
     width: 80%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -202,9 +180,7 @@ foreignObject{
     scrollbar-width: none;
 }
 
-
-
-#technologyLogos > img{
+#technologyLogos>img {
     border: rgb(212, 1, 114) 0.00125rem groove;
     background-color: black;
     height: 100%;
@@ -212,12 +188,12 @@ foreignObject{
     margin: 1% 0% 1% 4.5%;
 }
 
-#technologyLogos > img:hover{
+#technologyLogos>img:hover {
     cursor: pointer;
     border: gold 0.00125rem groove;
 }
 
-#projectGallery{
+#projectGallery {
     height: 70%;
     width: 100%;
     display: flex;
@@ -228,19 +204,18 @@ foreignObject{
     justify-content: space-evenly;
 }
 
-#projectGallery> img{
+#projectGallery>img {
     border: black solid 0.00125rem;
     height: 57%;
     margin: 1.5% 0.5%;
 }
 
-#projectGallery> img:hover{
+#projectGallery>img:hover {
     border-color: gold;
     cursor: pointer;
 }
 
-
-#projectTeam{
+#projectTeam {
     height: 70%;
     width: 100%;
     display: flex;
@@ -251,7 +226,7 @@ foreignObject{
     justify-content: flex-start;
 }
 
-.contributor{
+.contributor {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -264,7 +239,7 @@ foreignObject{
     margin-bottom: 1.5%;
 }
 
-.contributor > p,a{
+.contributor>p, a {
     /* max-width: 100%; */
     /* font-size: 0.2rem; */
     color: white;
@@ -272,7 +247,7 @@ foreignObject{
     margin: 0;
 }
 
-.contributorName{
+.contributorName {
     align-self: center;
     text-align: center;
     font-size: 0.21rem;
@@ -281,14 +256,14 @@ foreignObject{
     /* border: blue dashed 1px; */
 }
 
-.contributorRole{
+.contributorRole {
     align-self: left;
     text-align: left;
     font-size: 0.2rem;
     /* border: blue dashed 1px; */
 }
 
-.contributor > button{
+.contributor>button {
     align-self: center;
     /* width: 60%; */
     text-align: center;
@@ -304,55 +279,122 @@ foreignObject{
     border-radius: 0.125rem;
 }
 
-.contributor > button:hover{
+.contributor>button:hover {
     cursor: pointer;
     color: white;
     background-color: rgb(250, 0, 133);
     border-color: rgb(121, 0, 64);
-    
 }
 
-.contributor > button:active{
+.contributor>button:active {
     cursor: pointer;
     /* background-color: blue; */
 }
 
-.contributorImg{
+.contributorImg {
     width: 100%;
     margin-bottom: 3%;
     border: rgb(212, 1, 114) 0.001025rem groove;
-
     /* height: 25%; */
 }
-
 
 .glowing {
     /* filter: drop-shadow(16px 16px 20px red); */
     animation: glow 0.75s ease-in-out infinite alternate;
- }
+}
 
-
- @keyframes glow {
+@keyframes glow {
     from {
-        text-shadow: 
-        0 0 1px #00e1ff,
-        0 0 5px #00e1ff,
-        0 0 10px #00e1ff,
-        0 0 15px #00e1ff;
+        text-shadow: 0 0 1px #00e1ff, 0 0 5px #00e1ff, 0 0 10px #00e1ff, 0 0 15px #00e1ff;
     }
     to {
-        text-shadow: 
-        0 0 0.25px #00e1ff,
-        0 0 1.25px #00e1ff,
-        0 0 2.5px #00e1ff,
-        0 0 3.75px #00e1ff;
+        text-shadow: 0 0 0.25px #00e1ff, 0 0 1.25px #00e1ff, 0 0 2.5px #00e1ff, 0 0 3.75px #00e1ff;
     }
-  }
+}
 
+#projectLinks {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* border: blue dashed 1px; */
+    /* flex-wrap: wrap; */
+    overflow-y: scroll;
+    justify-content: flex-start;
+    align-items: center;
+}
 
+.link {
+    margin-top: 2.5%;
+    width: 95%;
+    height: 30%;
+    border: rgb(212, 1, 114) 0.00125rem groove;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(71, 0, 38);
 
-  @media screen and (orientation: portrait) {
-    #projectTitle{
+}
+
+.linkLogoContainer {
+    width: 11.8%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: blue solid 1px; */
+    background-color: black;
+}
+
+.linkLogoContainer>img {
+    height: 80%;
+    /* border: blue solid 1px; */
+}
+
+.linkName {
+    width: 33.2%;
+    height: 100%;
+    border-left: rgb(212, 1, 114) 0.00125rem groove;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkName>p {
+    width: 100%;
+    /* height: 100%; */
+    font-size: 18%;
+    color: white;
+    /* padding-left: 5%; */
+    text-align: center;
+    /* border: purple solid 1px; */
+}
+
+.actualLink {
+    width: 55%;
+    height: 100%;
+    /* border: blue solid 1px; */
+    border-left: rgb(212, 1, 114) 0.00125rem groove;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.actualLink>a {
+    width: 100%;
+    /* height: 100%; */
+    font-size: 18%;
+    color: rgb(0, 109, 252);
+    padding: 2.5%;
+    text-decoration: none;
+    /* border: purple solid 1px; */
+}
+
+@media screen and (orientation: portrait) {
+    #projectTitle {
         font-size: 10vw;
     }
 }
