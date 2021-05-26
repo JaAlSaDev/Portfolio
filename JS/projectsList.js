@@ -6,17 +6,18 @@ console.log("svgImages: ", svgImages);
 
 
 class Project {
-    constructor(title, icon, image, patternID, available, music, description = "", gallery = [], technologies = [],team=[]) {
+    constructor(title, icon, image, patternID, available, music, description = "", gallery = [], technologies = [], team = [], links=[]) {
         this.title = title;
         this.icon = icon;
         this.image = image;
         this.description = description;
         this.gallery = gallery;
         this.technologies = technologies;
-        this.team=team;
+        this.team = team;
         this.patternID = patternID;
         this.available = available;
         this.music = music;
+        this.links=links;
     }
 }
 
@@ -28,6 +29,56 @@ class Technology {
     }
 }
 
+class Link {
+    constructor(logoSrc, title, actualLink) {
+        this.logoSrc = logoSrc;
+        this.title = title;
+        this.actualLink = actualLink;
+    }
+
+
+    getElement() {
+        const linkDiv = document.createElement("div");
+        linkDiv.className = "link";
+        linkDiv.innerHTML =
+            `<div class="linkLogoContainer">
+            <img src="${this.logoSrc}" alt="">
+        </div>
+        <div class="linkName">
+            <p>
+                ${this.title}
+            </p>
+        </div>
+        <div class="actualLink">
+            <a target="_blank"
+                href="${this.actualLink}">${this.actualLink}</a>
+        </div>`
+
+        return linkDiv;
+    }
+}
+
+class Contributor {
+    constructor(name, role, imgSrc, linkName, link) {
+        this.name = name;
+        this.role = role;
+        this.imgSrc = imgSrc;
+        this.linkName = linkName;
+        this.link = link;
+    }
+
+    getElement() {
+        const contributorDiv = document.createElement("div");
+        contributorDiv.className = "contributor";
+        contributorDiv.innerHTML =
+            `<img class="contributorImg" src="${this.imgSrc}">
+            <p class="contributorName">${this.name}</p>
+            <p class="contributorRole">${this.role}</p>
+            <button onClick="window.open('${this.link}');">${this.linkName}</button>`
+
+        return contributorDiv;
+    }
+}
 const galleries = {
     onTheSundayOfLife: [
         "https://img.discogs.com/VKAujdvctCHJ2689wbhw_Lr98xk=/fit-in/595x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1604791-1272887967.jpeg.jpg",
@@ -81,43 +132,26 @@ const technologies = {
         new Technology("Oboe", svgImages["oboe"], `The oboe (/ˈoʊboʊ/ OH-boh) is a type of double reed woodwind instrument. Oboes are usually made of wood, but may also be made of synthetic materials, such as plastic, resin or hybrid composites. The most common oboe plays in the treble or soprano range. A soprano oboe measures roughly 65 cm (25+1⁄2 in) long, with metal keys, a conical bore and a flared bell. Sound is produced by blowing into the reed at a sufficient air pressure, causing it to vibrate with the air column. The distinctive tone is versatile and has been described as "bright". When the word oboe is used alone, it is generally taken to mean the treble instrument rather than other instruments of the family, such as the bass oboe, the cor anglais (English horn), or oboe d'amore.`)
     ]
 }
-
-class Contributor {
-    constructor(name, role, imgSrc, linkName, link) {
-        this.name = name;
-        this.role = role;
-        this.imgSrc = imgSrc;
-        this.linkName = linkName;
-        this.link = link;
-    }
-
-    getElement() {
-        const contributorDiv = document.createElement("div");
-        contributorDiv.className = "contributor";
-        contributorDiv.innerHTML =
-            `<img class="contributorImg" src="${this.imgSrc}">
-            <p class="contributorName">${this.name}</p>
-            <p class="contributorRole">${this.role}</p>
-            <button onClick="window.open('${this.link}');">${this.linkName}</button>`
-
-        return contributorDiv;
-    }
+const links={
+    Humanistic:[
+        new Link(svgImages["youtube"],"Full Album on Youtube","https://www.youtube.com/watch?v=ePulfgjures"),
+        new Link(svgImages["amazon"],"CD on Amazon","https://www.amazon.com/Humanistic-Abandoned-Pools/dp/B00005OAE0"),
+    ]
 }
-
-const teams={
-    Recordings:[new Contributor("Steven Wilson","Guitarist","https://writteninmusic.com/wp-content/uploads/2016/09/cover-steven-wilson-transience.jpg","Official Website","https://stevenwilsonhq.com/sw/"),
-        new Contributor("Richard Barbieri","Keyboardist","https://d1mdxzfl9p8pzo.cloudfront.net/7/123548597_1_400.jpg","Bandcamp","https://richardbarbieri.bandcamp.com/"),
-        new Contributor("Colin Edwin","Bassist","https://www.betreutesproggen.de/wp-content/uploads/2020/06/colin_edwin.jpg","Official Website","http://www.colinedwin.co.uk/"),
-        new Contributor("Chris Maitland","Drummer",images["ChrisMaitland"],"Official Website","http://www.chrismaitland.com/")]
+const teams = {
+    Recordings: [new Contributor("Steven Wilson", "Guitarist", "https://writteninmusic.com/wp-content/uploads/2016/09/cover-steven-wilson-transience.jpg", "Official Website", "https://stevenwilsonhq.com/sw/"),
+    new Contributor("Richard Barbieri", "Keyboardist", "https://d1mdxzfl9p8pzo.cloudfront.net/7/123548597_1_400.jpg", "Bandcamp", "https://richardbarbieri.bandcamp.com/"),
+    new Contributor("Colin Edwin", "Bassist", "https://www.betreutesproggen.de/wp-content/uploads/2020/06/colin_edwin.jpg", "Official Website", "http://www.colinedwin.co.uk/"),
+    new Contributor("Chris Maitland", "Drummer", images["ChrisMaitland"], "Official Website", "http://www.chrismaitland.com/")]
 }
 
 let projects = [
     new Project("Sonic Heroes", images["Sonic_Heroes"], images["Sonic_Heroes_Wallpaper"], "SonicHeroes", true, trackPaths["Frog_Forest"], descriptions.SonicHeroes, galleries.SonicHeroes),
     new Project("In the Court of the Crimson King", images["In_The_Court_of_The_Crimson_King"], images["In_The_Court_of_The_Crimson_King_Wallpaper"], "ITCOTCK", true, trackPaths["The_Court_of_The_Crimson_King"]),
-    new Project("Humanistic", images["Humanistic"], images["Humanistic_Demos"], "Humanistic", true, trackPaths["Start_Over"]),
+    new Project("Humanistic", images["Humanistic"], images["Humanistic_Demos"], "Humanistic", true, trackPaths["Start_Over"],"", [], [], [],links.Humanistic),
     new Project("The Future Bites", images["The_Future_Bites"], images["The_Future_Bites_Wallpaper"], "TFB", true, trackPaths["12_THINGS_I_FORGOT"]),
     new Project("In Absentia", images["In_Absentia_Right"], images["In_Absentia_Right"], "IA", true, trackPaths["Dot 3"]),
-    new Project("Recordings", images["Recordings"], images["Recordings"], "Recordings", true, trackPaths["Access_Denied"],"",[],[],teams.Recordings),
+    new Project("Recordings", images["Recordings"], images["Recordings"], "Recordings", true, trackPaths["Access_Denied"], "", [], [], teams.Recordings),
     new Project("On the Sunday of Life...", images["Sunday"], images["Sunday"], "Sunday", true, trackPaths["Radioactive_Toy"], descriptions.onTheSundayOfLife, galleries.onTheSundayOfLife, technologies.onTheSundayOfLife),
     new Project("The Dark Side of the Moon", images["TDSOTM"], images["TDSOTM_Wallpaper"], "TDSOTM", true, trackPaths["Money"]),
     new Project("The Wall", images["The_Wall"], images["The_Wall_Wallpaper"], "TheWall", true, trackPaths["Comfortably_Numb"]),

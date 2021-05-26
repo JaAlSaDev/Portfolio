@@ -258,9 +258,6 @@ let overlayMenu = {
 
                         break;
                     case "Technologies":
-
-
-
                         technologyLogos.scrollTop = 0;
                         technologyDescriptionBox.scrollTop = 0;
 
@@ -284,6 +281,12 @@ let overlayMenu = {
 
                         break;
                     case "Links":
+                        console.log("links: ",overlayMenu.project.links);
+
+                        overlayMenu.project.links.forEach(link => {
+                            this.contents[index].append(link.getElement())
+                        })
+
                         break;
                     case "DomainsAndSkills":
                         break;
@@ -331,6 +334,9 @@ let overlayMenu = {
 
                     break;
                 case "Links":
+                    while (this.contents[3].firstChild) {
+                        this.contents[3].removeChild(this.contents[3].firstChild);
+                    }
                     break;
                 case "DomainsAndSkills":
                     break;
