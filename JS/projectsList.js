@@ -2,7 +2,7 @@ let images = require("../assets/Images/*.jpg");
 let trackPaths = require("../assets/Sound/Music/*.mp3");
 let svgImages = require("../assets/svg/*.svg");
 
-console.log("svgImages: ", svgImages);
+import Hexagon from "./Hexagon/Hexagon";
 
 
 class Project {
@@ -38,21 +38,25 @@ class Link {
 
 
     getElement() {
+        
+        
+        // const hexagon=new Hexagon(this.logoSrc, this.logoSrc,[],"100%");
+        const hexagon=new Hexagon(this.logoSrc, this.logoSrc,[],"100%", "none", "0 0 262.5 225", null, "", "", "50,35", "0.325", true, null, "white", false,"0.225","0.125","0.7 0.8");
+        
         const linkDiv = document.createElement("div");
         linkDiv.className = "link";
         linkDiv.innerHTML =
             `<div class="linkLogoContainer">
-            <img src="${this.logoSrc}" alt="">
-        </div>
-        <div class="linkName">
-            <p>
-                ${this.title}
-            </p>
-        </div>
-        <div class="actualLink">
-            <a target="_blank"
-                href="${this.actualLink}">${this.actualLink}</a>
-        </div>`
+                ${hexagon.createElement().outerHTML}
+            </div>
+            <div class="linkName">
+                <p>
+                    ${this.title}
+                </p>
+            </div>
+            <div class="actualLink">
+                <a target="_blank" href="${this.actualLink}">${this.actualLink}</a>
+            </div>`
 
         return linkDiv;
     }

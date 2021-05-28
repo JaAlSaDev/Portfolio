@@ -328,33 +328,63 @@ foreignObject {
     margin-top: 2.5%;
     width: 95%;
     height: 30%;
-    border: rgb(212, 1, 114) 0.00125rem groove;
+    /* border: rgb(212, 1, 114) 0.00125rem groove; */
     display: flex;
     flex-direction: row;
-    background-color: rgb(71, 0, 38);
+    
 
 }
 
 .linkLogoContainer {
     width: 11.8%;
     height: 100%;
+    position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    /* border: blue solid 1px; */
-    background-color: white;
+    overflow: visible;
+    /* align-items: center; */
+    border: transparent solid 1px;
+    /* background-color: white; */
 }
 
-.linkLogoContainer>img {
-    height: 80%;
-    /* border: blue solid 1px; */
+
+.linkLogoContainer > svg{
+    
+    position: absolute;
+    width: 135%;
+    margin-right: 30%;
+    transform-origin: center center;
+    /* transform: rotate(30deg); */
+}
+
+
+
+
+
+
+.linkLogoContainer .hexagon {
+    height: auto;
+    stroke: rgb(212, 1, 114);
+    stroke-width: 50;
+}
+
+.linkLogoContainer .hexagon:hover {
+    stroke: rgb(216, 0, 115);
+    cursor: pointer;
+}
+
+.linkLogoContainer .hexagon:active {
+    stroke: unset;
+    fill: unset;
 }
 
 .linkName {
     width: 33.2%;
     height: 100%;
-    border-left: rgb(212, 1, 114) 0.00125rem groove;
+    border: rgb(212, 1, 114) 0.00125rem groove;
+    background-color: rgb(71, 0, 38);
+    /* border-left: rgb(212, 1, 114) 0.00125rem groove; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -376,7 +406,9 @@ foreignObject {
     width: 55%;
     height: 100%;
     /* border: blue solid 1px; */
-    border-left: rgb(212, 1, 114) 0.00125rem groove;
+    border: rgb(212, 1, 114) 0.00125rem groove;
+    background-color: rgb(71, 0, 38);
+    /* border-left: rgb(212, 1, 114) 0.00125rem groove; */
     display: flex;
     flex-direction: row;
     justify-content: center;

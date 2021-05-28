@@ -72,7 +72,7 @@ let overlayMenu = {
     element: $("#overlayMenuContainer > svg")[0],
     project: null,
     logo: {
-        hexagon: new Hexagon("projectLogo", stevenSketch, [], "30%", "none", "0 0 262.5 225", "black", 2.5, 0, "40,33", "0.325", false),
+        hexagon: new Hexagon("projectLogo", stevenSketch, [], "30%", "none", "0 0 262.5 225", "black", 2.5, 0, "40,33", "0.325"),
         pattern: null,
         element: null,
 
@@ -113,12 +113,12 @@ let overlayMenu = {
 
     options: {
         hexagons: [
-            new Hexagon("Description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, -16.0625, "40,33", "0.325", false, "Description", optionHexagonBackgroundColor, true),
-            new Hexagon("Gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, 16.0625, "40,33", "0.325", false, "Gallery", optionHexagonBackgroundColor, true),
-            new Hexagon("Technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 40.44375, 0, "40,33", "0.325", false, "Technologies", optionHexagonBackgroundColor, true),
-            new Hexagon("Links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, -16.0625, "40,33", "0.325", false, "Links", optionHexagonBackgroundColor, true),
-            new Hexagon("DomainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, 16.0625, "40,33", "0.325", false, "Domains & Skills", optionHexagonBackgroundColor, true),
-            new Hexagon("Team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 68.225, 0, "40,33", "0.325", false, "Team", optionHexagonBackgroundColor, true)
+            new Hexagon("Description", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, -16.0625, "40,33", "0.325", true, "Description", optionHexagonBackgroundColor, true),
+            new Hexagon("Gallery", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, 16.0625, "40,33", "0.325", true, "Gallery", optionHexagonBackgroundColor, true),
+            new Hexagon("Technologies", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 40.44375, 0, "40,33", "0.325", true, "Technologies", optionHexagonBackgroundColor, true),
+            new Hexagon("Links", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, -16.0625, "40,33", "0.325", true, "Links", optionHexagonBackgroundColor, true),
+            new Hexagon("DomainsAndSkills", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, 16.0625, "40,33", "0.325", true, "Domains & Skills", optionHexagonBackgroundColor, true),
+            new Hexagon("Team", stevenSketch, [], "20%", "none", "0 0 262.5 225", "black", 68.225, 0, "40,33", "0.325", true, "Team", optionHexagonBackgroundColor, true)
         ],
 
         patterns: [],
