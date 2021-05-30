@@ -8,6 +8,7 @@ import stevenSketch from "../../assets/Images/Stupid_Dream.jpg";
 import soundEffects from "../Sound/soundEffects"
 import { SETTINGS } from "../../settings"
 
+import imageOverlay from "../ImageOverlay/imageOverlay"
 
 const optionHexagonBackgroundColor = "rgb(3,143,178)";
 const foreignObject = document.querySelector("foreignObject");
@@ -250,10 +251,17 @@ let overlayMenu = {
                         break;
                     case "Gallery":
 
-                        overlayMenu.project.gallery.forEach(imageSrc => {
+                        overlayMenu.project.gallery.forEach((imageSrc, i) => {
                             let imageElem = document.createElement("img");
                             imageElem.src = imageSrc;
                             this.contents[index].append(imageElem)
+
+
+                            imageElem.addEventListener("click", () => { 
+                                console.log("Image index: ",i);
+                                imageOverlay.receiveImages(overlayMenu.project.gallery,i)
+                            })
+
                         });
 
                         break;
