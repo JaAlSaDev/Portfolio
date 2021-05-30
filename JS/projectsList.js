@@ -6,7 +6,7 @@ import Hexagon from "./Hexagon/Hexagon";
 
 
 class Project {
-    constructor(title, icon, image, patternID, available, music, description = "", gallery = [], technologies = [], team = [], links=[]) {
+    constructor(title, icon, image, patternID, available, music, description = "", gallery = [], technologies = [], team = [], links=[],skills=[]) {
         this.title = title;
         this.icon = icon;
         this.image = image;
@@ -18,6 +18,7 @@ class Project {
         this.available = available;
         this.music = music;
         this.links=links;
+        this.skills=skills;
     }
 }
 
@@ -38,8 +39,6 @@ class Link {
 
 
     getElement() {
-        
-        
         // const hexagon=new Hexagon(this.logoSrc, this.logoSrc,[],"100%");
         const hexagon=new Hexagon(this.logoSrc, this.logoSrc,[],"100%", "none", "0 0 262.5 225", null, "", "", "50,35", "0.325", true, null, "white", false,"0.225","0.125","0.7 0.8");
         
@@ -149,10 +148,14 @@ const teams = {
     new Contributor("Chris Maitland", "Drummer", images["ChrisMaitland"], "Official Website", "http://www.chrismaitland.com/")]
 }
 
+const skills={
+    Humanistic:["Songwriting","Vocals"]
+}
+
 let projects = [
     new Project("Sonic Heroes", images["Sonic_Heroes"], images["Sonic_Heroes_Wallpaper"], "SonicHeroes", true, trackPaths["Frog_Forest"], descriptions.SonicHeroes, galleries.SonicHeroes),
     new Project("In the Court of the Crimson King", images["In_The_Court_of_The_Crimson_King"], images["In_The_Court_of_The_Crimson_King_Wallpaper"], "ITCOTCK", true, trackPaths["The_Court_of_The_Crimson_King"]),
-    new Project("Humanistic", images["Humanistic"], images["Humanistic_Demos"], "Humanistic", true, trackPaths["Start_Over"],"", [], [], [],links.Humanistic),
+    new Project("Humanistic", images["Humanistic"], images["Humanistic_Demos"], "Humanistic", true, trackPaths["Start_Over"],"", [], [], [],links.Humanistic,skills.Humanistic),
     new Project("The Future Bites", images["The_Future_Bites"], images["The_Future_Bites_Wallpaper"], "TFB", true, trackPaths["12_THINGS_I_FORGOT"]),
     new Project("In Absentia", images["In_Absentia_Right"], images["In_Absentia_Right"], "IA", true, trackPaths["Dot 3"]),
     new Project("Recordings", images["Recordings"], images["Recordings"], "Recordings", true, trackPaths["Access_Denied"], "", [], [], teams.Recordings),

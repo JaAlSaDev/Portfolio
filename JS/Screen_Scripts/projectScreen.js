@@ -24,46 +24,46 @@ const technologyArrowLeft = document.querySelector("#leftArrow");
 const technologyArrowRight = document.querySelector("#rightArrow");
 
 const technologyLogosScroll = (scrollStep) => {
-    technologyLogos.scrollLeft+=scrollStep;
+    technologyLogos.scrollLeft += scrollStep;
 }
 
-const technologyLogosScrollTimer= (scrollStep) => setInterval(() => {
+const technologyLogosScrollTimer = (scrollStep) => setInterval(() => {
     technologyLogosScroll(scrollStep);
 }, 50);
 
-let technologyLogosScrollInterval= null;
+let technologyLogosScrollInterval = null;
 
-technologyArrowRight.addEventListener("mousedown", ()=>{
-    technologyLogosScrollInterval=technologyLogosScrollTimer(5)
+technologyArrowRight.addEventListener("mousedown", () => {
+    technologyLogosScrollInterval = technologyLogosScrollTimer(5)
 });
 
-technologyArrowRight.addEventListener("touchstart", ()=>{
-    technologyLogosScrollInterval=technologyLogosScrollTimer(5)
+technologyArrowRight.addEventListener("touchstart", () => {
+    technologyLogosScrollInterval = technologyLogosScrollTimer(5)
 });
 
 
-technologyArrowRight.addEventListener("touchend", ()=>{
+technologyArrowRight.addEventListener("touchend", () => {
     clearInterval(technologyLogosScrollInterval)
 });
 
-technologyArrowRight.addEventListener("mouseup", ()=>{
+technologyArrowRight.addEventListener("mouseup", () => {
     clearInterval(technologyLogosScrollInterval)
 });
 
 
-technologyArrowLeft.addEventListener("mousedown", ()=>{
-    technologyLogosScrollInterval=technologyLogosScrollTimer(-5)
+technologyArrowLeft.addEventListener("mousedown", () => {
+    technologyLogosScrollInterval = technologyLogosScrollTimer(-5)
 })
 
-technologyArrowLeft.addEventListener("touchstart", ()=>{
-    technologyLogosScrollInterval=technologyLogosScrollTimer(-5)
+technologyArrowLeft.addEventListener("touchstart", () => {
+    technologyLogosScrollInterval = technologyLogosScrollTimer(-5)
 })
 
-technologyArrowLeft.addEventListener("mouseup", ()=>{
+technologyArrowLeft.addEventListener("mouseup", () => {
     clearInterval(technologyLogosScrollInterval)
 })
 
-technologyArrowLeft.addEventListener("touchend", ()=>{
+technologyArrowLeft.addEventListener("touchend", () => {
     clearInterval(technologyLogosScrollInterval)
 })
 
@@ -281,14 +281,25 @@ let overlayMenu = {
 
                         break;
                     case "Links":
-                        console.log("links: ",overlayMenu.project.links);
+                        console.log("links: ", overlayMenu.project.links);
 
                         overlayMenu.project.links.forEach(link => {
                             this.contents[index].append(link.getElement())
                         })
 
                         break;
-                    case "DomainsAndSkills":
+                    case "Skills":
+                        console.log("links: ", overlayMenu.project.links);
+
+
+                        overlayMenu.project.skills.forEach(skill => {
+
+                            const skillDiv = document.createElement("div");
+                            skillDiv.className = "skillContainer";
+                            skillDiv.innerHTML = `<p>${skill}</p>`
+                            this.contents[index].append(skillDiv)
+                        })
+
                         break;
                     case "Team":
                         console.log("Team: ", overlayMenu.project.team);
@@ -338,7 +349,8 @@ let overlayMenu = {
                         this.contents[3].removeChild(this.contents[3].firstChild);
                     }
                     break;
-                case "DomainsAndSkills":
+                case "Skills":
+                    removeChildren(4);
                     break;
                 case "Team":
                     removeChildren(5);
