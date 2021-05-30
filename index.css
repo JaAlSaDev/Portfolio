@@ -1,3 +1,4 @@
+@import "./CSS/imageOverlay.css";
 @import "./CSS//mainMenu.css";
 @import "./CSS/startScreen.css";
 @import "./CSS/linksScreen.css";
@@ -5,6 +6,7 @@
 @import "./CSS/projectsScreen.css";
 @import "./CSS//projectScreen.css";
 @import "./CSS/itemPreview.css";
+
 
 * {
     -moz-box-sizing: border-box;
