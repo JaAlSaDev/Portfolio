@@ -1,4 +1,4 @@
-#imageOverlay{
+#imageOverlay {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -6,62 +6,71 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.6);
-    z-index: 5;
+    z-index: 2;
+    /* background-color: rgba(0, 0, 0,0.4);
+    filter: blur(100%) opacity(50%) grayscale(100%);
+    
+    backdrop-filter: blur(100%) opacity(50%) grayscale(100%); */
 }
 
-#imgOverlayContainer{
+#imageOverlayBackground {
+    /* z-index: 0; */
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    filter: blur(100%) opacity(50%) grayscale(100%);
+    backdrop-filter: blur(100%) opacity(50%) grayscale(100%);
+}
+
+#imgOverlayContainer {
     height: 84%;
     max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 3;
     /* border: blue 1px solid; */
     /* max-height: 90%; */
 }
 
-#imgOverlayContainer > img{
+#imgOverlayContainer>img {
     border: rgb(212, 1, 114) 0.25rem groove;
     background-color: rgb(122, 0, 65);
     width: auto;
     height: 90%;
     padding: 10% auto;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
-
-#imageOverlayButtons{
+#imageOverlayButtons {
     /* border: blue 1px solid; */
-
     height: 15%;
     width: 65%;
     margin-bottom: 1%;
     display: flex;
     justify-content: space-evenly;
+    z-index: 3;
     /* background-color: rgba(229, 225, 255, 0.178); */
-   
 }
 
-.imageArrow{
+.imageArrow {
     position: relative;
     height: 100%;
-    
 }
 
-.imageArrow:hover{
+.imageArrow:hover {
     cursor: pointer;
 }
 
-#imageArrowRight{
+#imageArrowRight {
     transform: rotate(180deg);
 }
 
-
-
-#hideImageOverlayBtn{
+#hideImageOverlayBtn {
     height: 100%;
 }
 
-#hideImageOverlayBtn:hover{
-    cursor: pointer; 
+#hideImageOverlayBtn:hover {
+    cursor: pointer;
 }

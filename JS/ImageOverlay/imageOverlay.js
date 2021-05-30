@@ -4,7 +4,7 @@ const rightArrow = document.querySelector("#imageArrowRight");
 const leftArrow = document.querySelector("#imageArrowLeft");
 const hideButton = document.querySelector("#hideImageOverlayBtn");
 
-export default imageOverlay = {
+ const imageOverlay = {
     element: document.querySelector("#imageOverlay"),
     imageElement: document.querySelector("#imgOverlayContainer > img"),
     images: [
@@ -65,3 +65,5 @@ hideButton.addEventListener("click", () => {
     imageOverlay.hide();
 })
 
+
+export default imageOverlay;
