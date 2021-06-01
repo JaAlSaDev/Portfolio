@@ -114,12 +114,7 @@ let overlayMenu = {
 
     options: {
         hexagons: [
-            new Hexagon("Description", null, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, -16.0625, "40,33", "0.325", true, "Description", optionHexagonBackgroundColor, true),
-            new Hexagon("Gallery", null, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, 16.0625, "40,33", "0.325", true, "Gallery", optionHexagonBackgroundColor, true),
-            new Hexagon("Technologies", null, [], "20%", "none", "0 0 262.5 225", "black", 40.44375, 0, "40,33", "0.325", true, "Technologies", optionHexagonBackgroundColor, true),
-            new Hexagon("Links", null, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, -16.0625, "40,33", "0.325", true, "Links", optionHexagonBackgroundColor, true),
-            new Hexagon("Skills", null, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, 16.0625, "40,33", "0.325", true, "Skills", optionHexagonBackgroundColor, true),
-            new Hexagon("Team", null, [], "20%", "none", "0 0 262.5 225", "black", 68.225, 0, "40,33", "0.325", true, "Team", optionHexagonBackgroundColor, true)
+
         ],
 
         patterns: [],
@@ -130,13 +125,34 @@ let overlayMenu = {
         currentContentTitle: "",
 
         create: function () {
+            const createOptionHexagons = () => {
+                const project = overlayMenu.project;
+                const doesDescriptionExist = project.description != "",
+                    doesGalleryExist = project.gallery.length > 0,
+                    doTechnologiesExist = project.technologies.length > 0,
+                    doLinksExist = project.links.length > 0,
+                    doSkillsExist = project.skills.length > 0,
+                    doesTeamExist = project.team.length > 0;
 
+                overlayMenu.options.hexagons = [
+                    new Hexagon("Description", null, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, -16.0625, "40,33", "0.325", doesDescriptionExist, "Description", optionHexagonBackgroundColor, true),
+                    new Hexagon("Gallery", null, [], "20%", "none", "0 0 262.5 225", "black", 26.5625, 16.0625, "40,33", "0.325", doesGalleryExist, "Gallery", optionHexagonBackgroundColor, true),
+                    new Hexagon("Technologies", null, [], "20%", "none", "0 0 262.5 225", "black", 40.44375, 0, "40,33", "0.325", doTechnologiesExist, "Technologies", optionHexagonBackgroundColor, true),
+                    new Hexagon("Links", null, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, -16.0625, "40,33", "0.325", doLinksExist, "Links", optionHexagonBackgroundColor, true),
+                    new Hexagon("Skills", null, [], "20%", "none", "0 0 262.5 225", "black", 54.34375, 16.0625, "40,33", "0.325", doSkillsExist, "Skills", optionHexagonBackgroundColor, true),
+                    new Hexagon("Team", null, [], "20%", "none", "0 0 262.5 225", "black", 68.225, 0, "40,33", "0.325", doesTeamExist, "Team", optionHexagonBackgroundColor, true)
+                ]
+            }
             if (this.elements.length != 0) {
                 return;
             }
 
             this.isCreated = true;
             this.hideContent();
+
+
+            createOptionHexagons();
+
             this.hexagons.forEach((hexagon, index) => {
                 setTimeout(() => {
                     let element = hexagon.createElement();
@@ -155,31 +171,45 @@ let overlayMenu = {
                     hexagon.setHexagonElement(document.querySelectorAll(`#${hexagon.patternID}SVG polygon`)[0])
 
                     element.addEventListener("click", () => {
-                        soundEffects.playDecision();
-                        hexagon.clickStyle();
-                        overlayMenu.options.destroy();
 
-                        setTimeout(() => {
-                            this.showContent(index, hexagon.patternID);
-                        }, 500);
+                        if (hexagon.isAvailable) {
+                            soundEffects.playDecision();
+                            hexagon.clickStyle();
+                            overlayMenu.options.destroy();
+
+                            setTimeout(() => {
+                                this.showContent(index, hexagon.patternID);
+                            }, 500);
+                        } else {
+                            soundEffects.playError();
+                        }
 
 
-                        console.log("ID: ", hexagon.patternID);
+
 
 
                     })
 
                     hexagon.textElement.addEventListener("mouseover", () => {
-                        hexagon.hoverStyle();
+                        if (hexagon.isAvailable) {
+                            hexagon.hoverStyle();
+                        }
+
 
                     })
 
                     element.addEventListener("mouseover", () => {
-                        hexagon.hoverStyle();
+                        if (hexagon.isAvailable) {
+                            hexagon.hoverStyle();
+                        }
                     })
 
                     element.addEventListener("mouseleave", () => {
-                        hexagon.resetStyle();
+
+                        if (hexagon.isAvailable) {
+                            hexagon.resetStyle();
+                        }
+
                     })
 
 
@@ -257,9 +287,9 @@ let overlayMenu = {
                             this.contents[index].append(imageElem)
 
 
-                            imageElem.addEventListener("click", () => { 
-                                console.log("Image index: ",i);
-                                imageOverlay.receiveImages(overlayMenu.project.gallery,i)
+                            imageElem.addEventListener("click", () => {
+                                console.log("Image index: ", i);
+                                imageOverlay.receiveImages(overlayMenu.project.gallery, i)
                             })
 
                         });

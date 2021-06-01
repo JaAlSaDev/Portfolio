@@ -82,6 +82,8 @@ class Contributor {
         return contributorDiv;
     }
 }
+
+
 const galleries = {
     onTheSundayOfLife: [
         "https://img.discogs.com/VKAujdvctCHJ2689wbhw_Lr98xk=/fit-in/595x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1604791-1272887967.jpeg.jpg",
@@ -92,17 +94,19 @@ const galleries = {
 
     ],
     SonicHeroes: [
-        "https://static.wikia.nocookie.net/sonic/images/c/c5/Sonic_Heroes_Official_ST.jpg",
-        "https://static.wikia.nocookie.net/sonic/images/d/d3/Sonic_Heroes_logo_with_outline.png",
-        "https://static.wikia.nocookie.net/sonic/images/1/12/Heroes-sh_e3_art_stg01.png",
-        "https://static.wikia.nocookie.net/sonic/images/a/a3/Heroes_Concept_artwork_3.jpg",
-        "https://static.wikia.nocookie.net/sonic/images/9/9d/Heroes_Concept_artwork_5.jpg",
-        "https://static.wikia.nocookie.net/sonic/images/9/9e/Heroes_Concept_artwork_7.jpg",
-        "https://static.wikia.nocookie.net/sonic/images/3/3e/Heroes_Concept_artwork_1.jpg",
-        "https://static.wikia.nocookie.net/sonic/images/c/c5/Heroes_Concept_artwork_4.jpg",
-        "https://static.wikia.nocookie.net/sonic/images/2/2d/Sonic_Heroes_Artwork_-_Team_Sonic.png",
-        "https://static.wikia.nocookie.net/sonic/images/7/7d/Team_rose.png",
-        "https://static.wikia.nocookie.net/sonic/images/6/6a/SonicHeroes_TeamDark.png"
+        
+        images["Sonic_Heroes_Original_Soundtrax"],
+        images["Complete_Trinity_back_cover_art"],
+        images["HeroesPSDLogoFixed"],
+        images["Heroes_Concept_artwork_1"],
+        images["Heroes_Concept_artwork_6"],
+        images["Sonic_Heroes_Coverart"],
+        images["Sonic_Heroes_Artwork_-_Team_Sonic"],
+        images["SonicHeroes_TeamDark"],
+        images["SonicHeroes_TeamDark"],
+        images["Team_chaotix"],
+        images["Team_rose"],
+
     ]
 }
 
@@ -133,6 +137,12 @@ const technologies = {
         new Technology("Guitar", svgImages["guitar"], `The guitar is a fretted musical instrument that typically has six strings. It is held flat against the player's body and played by strumming or plucking the strings with the dominant hand, while simultaneously pressing the strings against frets with the fingers of the opposite hand. A plectrum or individual finger picks may be used to strike the strings. The sound of the guitar is projected either acoustically, by means of a resonant chamber on the instrument, or amplified by an electronic pickup and an amplifier.`),
         new Technology("Drum", svgImages["drums"], `The drum is a member of the percussion group of musical instruments. In the Hornbostel-Sachs classification system, it is a membranophone.[1] Drums consist of at least one membrane, called a drumhead or drum skin, that is stretched over a shell and struck, either directly with the player's hands, or with a percussion mallet, to produce sound. There is usually a resonance head on the underside of the drum, typically tuned to a slightly lower pitch than the top drumhead. Other techniques have been used to cause drums to make sound, such as the thumb roll. Drums are the world's oldest and most ubiquitous musical instruments, and the basic design has remained virtually unchanged for thousands of years.`),
         new Technology("Oboe", svgImages["oboe"], `The oboe (/ˈoʊboʊ/ OH-boh) is a type of double reed woodwind instrument. Oboes are usually made of wood, but may also be made of synthetic materials, such as plastic, resin or hybrid composites. The most common oboe plays in the treble or soprano range. A soprano oboe measures roughly 65 cm (25+1⁄2 in) long, with metal keys, a conical bore and a flared bell. Sound is produced by blowing into the reed at a sufficient air pressure, causing it to vibrate with the air column. The distinctive tone is versatile and has been described as "bright". When the word oboe is used alone, it is generally taken to mean the treble instrument rather than other instruments of the family, such as the bass oboe, the cor anglais (English horn), or oboe d'amore.`)
+    ],
+
+    SonicHeroes:[
+        new Technology("RenderWare ", images["renderware"], `RenderWare is a 3D API and graphics rendering engine used in computer games, Active Worlds, and some VRML browsers. RW is developed by Criterion Software Limited (which used to be a wholly owned subsidiary of Canon but is now owned by Electronic Arts).
+
+        It originated in the era of software rendering on PCs prior to the appearance of GPUs, competing with other libraries such as Argonaut's BRender and RenderMorphics' Reality Lab (the latter was acquired by Microsoft and became Direct3D). `),
     ]
 }
 const links={
@@ -142,10 +152,17 @@ const links={
     ]
 }
 const teams = {
-    Recordings: [new Contributor("Steven Wilson", "Guitarist", "https://writteninmusic.com/wp-content/uploads/2016/09/cover-steven-wilson-transience.jpg", "Official Website", "https://stevenwilsonhq.com/sw/"),
-    new Contributor("Richard Barbieri", "Keyboardist", "https://d1mdxzfl9p8pzo.cloudfront.net/7/123548597_1_400.jpg", "Bandcamp", "https://richardbarbieri.bandcamp.com/"),
-    new Contributor("Colin Edwin", "Bassist", "https://www.betreutesproggen.de/wp-content/uploads/2020/06/colin_edwin.jpg", "Official Website", "http://www.colinedwin.co.uk/"),
-    new Contributor("Chris Maitland", "Drummer", images["ChrisMaitland"], "Official Website", "http://www.chrismaitland.com/")]
+    Recordings: [
+        new Contributor("Steven Wilson", "Guitarist", "https://writteninmusic.com/wp-content/uploads/2016/09/cover-steven-wilson-transience.jpg", "Official Website", "https://stevenwilsonhq.com/sw/"),
+        new Contributor("Richard Barbieri", "Keyboardist", "https://d1mdxzfl9p8pzo.cloudfront.net/7/123548597_1_400.jpg", "Bandcamp", "https://richardbarbieri.bandcamp.com/"),
+        new Contributor("Colin Edwin", "Bassist", "https://www.betreutesproggen.de/wp-content/uploads/2020/06/colin_edwin.jpg", "Official Website", "http://www.colinedwin.co.uk/"),
+        new Contributor("Chris Maitland", "Drummer", images["ChrisMaitland"], "Official Website", "http://www.chrismaitland.com/")],
+    SonicHeroes: [
+        new Contributor("Naofumi Hataya", "Composer", images["NaofumiHataya"], "VGMdb", "https://vgmdb.net/artist/449"),
+        new Contributor("Hideaki Kobayashi", "Composer", images["HideakiKobayash"], "VGMdb", "https://vgmdb.net/artist/255"),
+        new Contributor("Fumie Kumatani", "Composer", images["Fumie_Kumatani"], "VGMdb", "https://vgmdb.net/artist/256"),
+        new Contributor("Yutaka Minobe", "Composer", images["YutakaMinobe"], "VGMdb", "https://vgmdb.net/artist/553"),
+    ]
 }
 
 const skills={
@@ -153,7 +170,7 @@ const skills={
 }
 
 let projects = [
-    new Project("Sonic Heroes", images["Sonic_Heroes"], images["Sonic_Heroes_Wallpaper"], "SonicHeroes", true, trackPaths["Frog_Forest"], descriptions.SonicHeroes, galleries.SonicHeroes),
+    new Project("Sonic Heroes Original Soundtrack", images["Sonic_Heroes"], images["Sonic_Heroes_Wallpaper"], "SonicHeroes", true, trackPaths["Frog_Forest"], descriptions.SonicHeroes, galleries.SonicHeroes,technologies.SonicHeroes, teams.SonicHeroes),
     new Project("In the Court of the Crimson King", images["In_The_Court_of_The_Crimson_King"], images["In_The_Court_of_The_Crimson_King_Wallpaper"], "ITCOTCK", true, trackPaths["The_Court_of_The_Crimson_King"]),
     new Project("Humanistic", images["Humanistic"], images["Humanistic_Demos"], "Humanistic", true, trackPaths["Start_Over"],"", [], [], [],links.Humanistic,skills.Humanistic),
     new Project("The Future Bites", images["The_Future_Bites"], images["The_Future_Bites_Wallpaper"], "TFB", true, trackPaths["12_THINGS_I_FORGOT"]),

@@ -93,21 +93,6 @@ body {
     fill: white;
 }
 
-.unavailable {
-    stroke: rgb(124, 1, 1);
-}
-
-.unavailable:hover {
-    stroke: rgb(182, 1, 1);
-    cursor: not-allowed;
-}
-
-.unavailable:active {
-    stroke: red;
-    fill: black;
-}
-
-
 .option {
     stroke: rgb(0, 0, 0);
     stroke-width: 25;
@@ -140,6 +125,24 @@ body {
     stroke: gold;
     fill: white;
 }
+
+
+.unavailable {
+    stroke: rgb(124, 1, 1);
+}
+
+.unavailable:hover {
+    stroke: rgb(182, 1, 1);
+    cursor: not-allowed;
+}
+
+.unavailable:active {
+    stroke: red;
+    fill: black;
+}
+
+
+
 
 
 svg .previewStatic {
