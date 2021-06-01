@@ -1,8 +1,13 @@
+@import "./CSS/imageOverlay.css";
 @import "./CSS//mainMenu.css";
 @import "./CSS/startScreen.css";
 @import "./CSS/linksScreen.css";
 @import "./CSS/aboutMeScreen.css";
 @import "./CSS/projectsScreen.css";
+@import "./CSS//projectScreen.css";
+@import "./CSS/itemPreview.css";
+
+
 * {
     -moz-box-sizing: border-box;
     /* Firexfox */
@@ -10,7 +15,29 @@
     /* Safari/Chrome/iOS/Android */
     box-sizing: border-box;
     /* IE */
+    
 }
+
+:root {
+    --scrollbarWidth: 0.25rem;
+    --scrollbarBg: rgb(161, 0, 27);
+    --scrollbarThumb: rgb(244, 63, 94);
+}
+  * {
+    scrollbar-width: var(--scrollbarWidth) ;
+    scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+  }
+  *::-webkit-scrollbar {
+    width: var(--scrollbarWidth);
+  }
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbarBg);
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarThumb);
+    border-radius: 0.025rem;
+    border: 0.025rem solid var(--scrollbarBg);
+  }
 
 body {
     /* position: relative; */
@@ -30,44 +57,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     /* border: white dashed 5px; */
 }
 
 .BackgroundImg {
     position: absolute;
+    /* width: 100%; */
     width: 100%;
-    height: 100%;
-    z-index: 0;
+    
+    
     filter: opacity(50%) blur(0.1vw) hue-rotate(50deg);
     background-size: cover;
+    pointer-events:none;
+    z-index: 0;
 }
 
-.ItemPreviewTitle {
-    /* position: absolute; */
-    border: rgb(212, 1, 114) 0.4vw groove;
-    background-color: rgb(122, 0, 65);
-    position: absolute;
-    top: -5%;
-    /* height: 25%; */
-
-    width: 75%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items:center ;
-    justify-content: center;
-}
-
-.ItemPreviewTitle p{
-    /* position: relative;
-    top: -50%; */
-    text-align: center;
-    color: white;
-    font-size: 4vh;
-    /* background-color: blue; */
-    /* width: 100%; */
-    height: 25%;
-    margin: 0 5vh 0 5vh;
+#MainMenu > .BackgroundImg {
+    filter: none;
 }
 
 .hexagon {
@@ -86,6 +93,40 @@ body {
     fill: white;
 }
 
+.option {
+    stroke: rgb(0, 0, 0);
+    stroke-width: 25;
+}
+
+.optionHover  {
+    stroke: gold;
+    animation: optionBorderAnimate 0.75s ease-in-out infinite alternate;
+}
+
+.option:hover  {
+    animation: optionBorderAnimate 0.75s ease-in-out infinite alternate;
+}
+
+ @keyframes optionBorderAnimate {
+    from {
+        stroke: gold;
+    }
+    to {
+        
+        stroke: rgb(122, 104, 0);
+    }
+  }
+
+.option:active  {
+    stroke: gold;
+    fill: white;
+}
+.optionClick  {
+    stroke: gold;
+    fill: white;
+}
+
+
 .unavailable {
     stroke: rgb(124, 1, 1);
 }
@@ -97,8 +138,11 @@ body {
 
 .unavailable:active {
     stroke: red;
-    fill: transparent;
+    fill: black;
 }
+
+
+
 
 
 svg .previewStatic {
@@ -121,9 +165,36 @@ svg .previewStatic {
       right: 0;
     }
 
-    .ItemPreviewTitle p{
+    
+
+    .BackgroundImg {
+        height: 100%;
+        width: auto;
         
-        font-size: 5vw;
-        
+
     }
+  }
+
+  .arrowContainer {
+    position: absolute;
+    /* background-color: blue; */
+    /* left: 2.5%; */
+    top: 5%;
+    height: 10%;
+    width: 100%;
+    z-index: 2;
+}
+
+p, text {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
+
+  text{
+      cursor: pointer;
   }

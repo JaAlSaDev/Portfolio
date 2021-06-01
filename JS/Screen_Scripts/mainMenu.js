@@ -147,7 +147,7 @@ let previewPanels = {
     for (let i = 0; i < 2; i++) {
 
         $(location[i]).append((new Hexagon(patternID[i], originalImages[i], icons[i],
-            "", "none", "0 0 300 261.5", "black", "", "", "27,27", "0.385", true)).createElement())
+            "", "none", "0 0 300 261.5", "black", "", "", "27,27", "0.385", false)).createElement())
     }
 
     $(location[2]).after((new Hexagon(patternID[2], originalImages[2], icons[2], "", "xMinYMax slice")).createElement())

@@ -1,0 +1,471 @@
+#ProjectScreen {
+    display: none;
+    flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#project {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+#overlayMenuContainer {
+    position: absolute;
+    height: 94%;
+    width: 100%;
+    /* background-color: blue; */
+    top: 6%;
+    display: flex;
+    justify-content: space-evenly;
+    align-self: center;
+    /* border: 25px blue dashed; */
+    overflow: hidden;
+    padding: 0;
+}
+
+#overlayMenu {
+    position: relative;
+    /* width: 100%; */
+    bottom: 22.5%;
+    height: 150%;
+    /* border: 25px green dashed; */
+}
+
+foreignObject {
+    /* border: blue dashed 50px; */
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#projectTitle {
+    border: rgb(212, 1, 114) 0.5rem groove;
+    padding: 0 2.5% 0 2.5%;
+    margin: 0;
+    position: absolute;
+    color: white;
+    font-size: 10vh;
+    /* width: 100%; */
+    text-align: center;
+    top: 4%;
+    background-color: black;
+    text-shadow: 0 0 1px #00e1ff, 0 0 5px #00e1ff, 0 0 10px #00e1ff, 0 0 15px #00e1ff;
+}
+
+#optionContent {
+    border: rgb(212, 1, 114) 0.15rem groove;
+    height: 70%;
+    width: 62.5%;
+    position: absolute;
+    top: 19%;
+    left: 32.1%;
+    background-color: rgb(122, 0, 65);
+    padding: 0 2.5% 0 2.5%;
+}
+
+#optionTitle {
+    position: relative;
+    /* border: white dashed 1px; */
+    width: 100%;
+    height: 25%;
+    margin: 0;
+    font-size: 50%;
+    padding-top: 2%;
+    color: white;
+}
+
+#projectDescription {
+    /* border: blue dashed 1px; */
+    height: 70%;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: scroll;
+}
+
+#projectDescription>p {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    font-size: 0.22rem;
+    color: white;
+}
+
+#projectTechnologies {
+    /* border: blue dashed 1px; */
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#technologyDescriptionBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    border: rgb(212, 1, 114) 0.125rem groove;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0% 0 0 5%;
+    scrollbar-width: thin;
+}
+
+#technologyDescriptionBox>p {
+    /* border: rgb(212, 1, 114) 0.125rem groove;  */
+    width: 100%;
+    color: white;
+}
+
+#technologyTitle {
+    margin: 2% 0 0 0;
+    font-size: 0.4rem;
+}
+
+#technologyDescription {
+    font-size: 0.18rem;
+}
+
+#technologyLogosContainer {
+    height: 28%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
+    /* flex-wrap: wrap; */
+    border: rgb(212, 1, 114) 0.125rem groove;
+}
+
+.technologyArrow {
+    background-color: rgb(71, 0, 38);
+    height: 100%;
+    border: rgb(255, 255, 255) 0.125rem groove;
+}
+
+.technologyArrow:hover {
+    background-color: rgb(206, 0, 110);
+    height: 100%;
+    /* border: rgb(212, 1, 114) 0.125rem groove; */
+    /* filter: contrast(50) */
+}
+
+.technologyArrow:active {
+    background-color: rgb(255, 138, 200);
+    height: 100%;
+    /* border: rgb(212, 1, 114) 0.125rem groove; */
+}
+
+#rightArrow {
+    transform: rotate(180deg);
+}
+
+#technologyLogos {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* border: rgb(212, 1, 114) 0.125rem groove; */
+    overflow: hidden;
+    scrollbar-width: none;
+}
+
+#technologyLogos>img {
+    border: rgb(212, 1, 114) 0.00125rem groove;
+    background-color: black;
+    height: 100%;
+    /* width: 25%; */
+    margin: 1% 0% 1% 4.5%;
+}
+
+#technologyLogos>img:hover {
+    cursor: pointer;
+    border: gold 0.00125rem groove;
+}
+
+#projectGallery {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* border: blue dashed 1px; */
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: space-evenly;
+}
+
+#projectGallery>img {
+    border: black solid 0.00125rem;
+    height: 57%;
+    margin: 1.5% 0.5%;
+}
+
+#projectGallery>img:hover {
+    border-color: gold;
+    cursor: pointer;
+}
+
+#projectTeam {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* border: blue dashed 1px; */
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: flex-start;
+}
+
+.contributor {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    width: 28.5%;
+    /* height: 100%; */
+    border: rgb(212, 1, 114) 0.00125rem groove;
+    background-color: rgb(71, 0, 38);
+    padding: 2.5% 3%;
+    margin: 0% 1.5%;
+    margin-bottom: 1.5%;
+}
+
+.contributor>p, a {
+    /* max-width: 100%; */
+    /* font-size: 0.2rem; */
+    color: white;
+    /* border: blue dashed 1px; */
+    margin: 0;
+}
+
+.contributorName {
+    align-self: center;
+    text-align: center;
+    font-size: 0.21rem;
+    width: 100%;
+    font-weight: bold;
+    /* border: blue dashed 1px; */
+}
+
+.contributorRole {
+    align-self: left;
+    text-align: left;
+    font-size: 0.2rem;
+    /* border: blue dashed 1px; */
+}
+
+.contributor>button {
+    align-self: center;
+    /* width: 60%; */
+    text-align: center;
+    font-size: 0.15rem;
+    /* font-style: italic; */
+    /* text-decoration: underline; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(192, 1, 103);
+    padding: 2% 10%;
+    border: solid 0.00125rem rgb(121, 0, 64);
+    border-radius: 0.125rem;
+}
+
+.contributor>button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(250, 0, 133);
+    border-color: rgb(121, 0, 64);
+}
+
+.contributor>button:active {
+    cursor: pointer;
+    /* background-color: blue; */
+}
+
+.contributorImg {
+    width: 100%;
+    margin-bottom: 3%;
+    border: rgb(212, 1, 114) 0.001025rem groove;
+    /* height: 25%; */
+}
+
+.glowing {
+    /* filter: drop-shadow(16px 16px 20px red); */
+    animation: glow 0.75s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 1px #00e1ff, 0 0 5px #00e1ff, 0 0 10px #00e1ff, 0 0 15px #00e1ff;
+    }
+    to {
+        text-shadow: 0 0 0.25px #00e1ff, 0 0 1.25px #00e1ff, 0 0 2.5px #00e1ff, 0 0 3.75px #00e1ff;
+    }
+}
+
+#projectLinks {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* border: blue dashed 1px; */
+    /* flex-wrap: wrap; */
+    overflow-y: scroll;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.link {
+    margin-top: 2.5%;
+    width: 95%;
+    height: 30%;
+    /* border: rgb(212, 1, 114) 0.00125rem groove; */
+    display: flex;
+    flex-direction: row;
+    
+
+}
+
+.linkLogoContainer {
+    width: 11.8%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow: visible;
+    /* align-items: center; */
+    border: transparent solid 1px;
+    /* background-color: white; */
+}
+
+
+.linkLogoContainer > svg{
+    
+    position: absolute;
+    width: 135%;
+    margin-right: 30%;
+    transform-origin: center center;
+    /* transform: rotate(30deg); */
+}
+
+
+
+
+
+
+.linkLogoContainer .hexagon {
+    height: auto;
+    stroke: rgb(212, 1, 114);
+    stroke-width: 50;
+}
+
+.linkLogoContainer .hexagon:hover {
+    stroke: rgb(216, 0, 115);
+    cursor: pointer;
+}
+
+.linkLogoContainer .hexagon:active {
+    stroke: unset;
+    fill: unset;
+}
+
+.linkName {
+    width: 33.2%;
+    height: 100%;
+    border: rgb(212, 1, 114) 0.00125rem groove;
+    background-color: rgb(71, 0, 38);
+    /* border-left: rgb(212, 1, 114) 0.00125rem groove; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkName>p {
+    width: 100%;
+    /* height: 100%; */
+    font-size: 18%;
+    color: white;
+    /* padding-left: 5%; */
+    padding-left: 5.5%;
+    text-align: left;
+    /* border: purple solid 1px; */
+}
+
+.actualLink {
+    width: 55%;
+    height: 100%;
+    /* border: blue solid 1px; */
+    border: rgb(212, 1, 114) 0.00125rem groove;
+    background-color: rgb(71, 0, 38);
+    /* border-left: rgb(212, 1, 114) 0.00125rem groove; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.actualLink>a {
+    width: 100%;
+    font-size: 18%;
+    color: #ffd452;
+    padding: 2.5%;
+    /* text-decoration-thickness: 0.005rem;
+    text-underline-position: below; */
+}
+
+#projectSkills {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    overflow-y: scroll;
+    
+    flex-wrap: wrap;
+}
+
+#projectSkills > .skillContainer{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 5%;
+    margin-right: 4%;
+    /* width: 10%; */
+    padding: 2% 3%;
+    height: 18%;
+
+    border-radius: 25%;
+    border: rgb(212, 1, 114) 0.00125rem groove;
+
+    background-color: rgb(71, 0, 38);
+    
+
+}
+
+.skillContainer > p{
+    font-size: 0.3rem;
+    /* border: blue dashed 1px; */
+    color: white;
+    
+    text-align: center;
+}
+
+@media screen and (orientation: portrait) {
+    #projectTitle {
+        font-size: 10vw;
+    }
+}

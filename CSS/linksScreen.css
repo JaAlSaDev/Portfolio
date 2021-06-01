@@ -2,14 +2,7 @@
     display: none;
 }
 
-.arrowContainer {
-    position: absolute;
-    /* background-color: blue; */
-    /* left: 2.5%; */
-    top: 5%;
-    height: 10%;
-    width: 100%;
-}
+
 
 .backArrow {
     height: 100%;

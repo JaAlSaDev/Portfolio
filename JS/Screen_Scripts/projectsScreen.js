@@ -1,5 +1,7 @@
 import jQuery from "../ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
+
+
 import {
     mainMenu
 } from "./mainMenu"
@@ -37,16 +39,38 @@ export let projectsScreen = {
 
     control: function () {
 
+        const goToDestinationScreen = (transitionToDestinationScreen, playSoundEffect, gridElement = null) => {
+            let ringNumberOfGridElement = 0
+
+            if (HexagonalGrid.doesExist) {
+                HexagonalGrid.destroyGrid(gridElement);
+
+                if (gridElement) {
+                    ringNumberOfGridElement = gridElement.ringNumber;
+                }
+
+                console.log("fadeTime: ", (HexagonalGrid.numOfLayers + ringNumberOfGridElement));
+
+                setTimeout(() => {
+                    projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
+                    playSoundEffect();
+                    transitionToDestinationScreen();
+                }, (HexagonalGrid.numOfLayers + ringNumberOfGridElement) * HexagonalGrid.getDuration());
+            }
+
+
+        }
+
+
         setTimeout(() => {
             this.elem.fadeIn(SETTINGS.screenTransitionTime);
             this.staticFlickerTimer();
             // Print the hexagonal grid in some way
             setTimeout(() => {
                 if (!HexagonalGrid.doesExist) {
-                    HexagonalGrid.construct([...projects])
+                    HexagonalGrid.construct([...projects], goToDestinationScreen)
                     HexagonalGrid.showLayerByLayer();
                 }
-
             }, 1250);
 
 
@@ -61,20 +85,7 @@ export let projectsScreen = {
 
                     backArrow.addEventListener("click", () => {
 
-                        if (HexagonalGrid.doesExist) {
-                            console.log("Num of Layers: ",);
-                            HexagonalGrid.destroyGrid();
-                        }
-
-
-                        setTimeout(() => {
-
-                            projectsScreen.elem.fadeOut(SETTINGS.screenTransitionTime);
-
-                            soundEffects.playCancel();
-                            mainMenu.control();
-                        }, HexagonalGrid.numOfLayers * HexagonalGrid.getDuration());
-
+                        goToDestinationScreen(() => mainMenu.control(), () => soundEffects.playCancel());
 
                     });
 

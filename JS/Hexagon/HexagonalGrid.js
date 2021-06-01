@@ -4,6 +4,7 @@ import music from "../Sound/music";
 import soundEffects from "../Sound/soundEffects"
 import jQuery from "../ThirdParty/jQuery";
 window.$ = window.jQuery = jQuery;
+import { projectScreen } from "../Screen_Scripts/projectScreen"
 
 class Color {
     constructor(red, green, blue) {
@@ -42,12 +43,13 @@ let previewPanels = {
 
 const numLayers = 2,
     numOfProjects = 1 + 3 * numLayers * (numLayers + 1),
-    hexagonSize = 22.5,
+    hexagonSize = 36.5,
     MARGIN = 8,
-    DURATION = 300;
+    DURATION = 185;
 
 let HexagonalGrid = {
     doesExist: false,
+    isFinishedBuilding: false,
     CentralHexagon: null,
     ringQueues: [
         [],
@@ -55,17 +57,22 @@ let HexagonalGrid = {
     ],
     numOfLayers: 0,
 
-    construct: function (projects) {
+    goToDestinationScreen: null,
+
+    construct: function (projects, goToDestinationScreen) {
+        this.isFinishedBuilding=false;
+        let currentRingNumber=0
+        this.goToDestinationScreen = goToDestinationScreen;
 
         let actualMargin = (0.85 + MARGIN / 100) * hexagonSize
-        this.doesExist=true;
+        
         this.ringQueues = [
             [],
             []
         ]
         this.numOfLayers = 0;
 
-        this.CentralHexagon = new GridElement(projects.shift(), hexagonSize, actualMargin, (100 - hexagonSize) / 2, 0, color[0]);
+        this.CentralHexagon = new GridElement(projects.shift(), hexagonSize, actualMargin, (100 - hexagonSize) / 2, 0, color[0],currentRingNumber);
 
 
         color.push(color.shift())
@@ -87,7 +94,7 @@ let HexagonalGrid = {
 
                 } else {
                     if (projects.length) {
-                        currentGridElement.addNeighbor(projects.shift(), color[0]);
+                        currentGridElement.addNeighbor(projects.shift(), color[0],null, currentRingNumber);
                         currentGridElement.connectContigousNeighbors();
                     }
 
@@ -101,7 +108,7 @@ let HexagonalGrid = {
         let constructBalancedRing = (currentRing, interiorRing) => {
 
             let processCurrentGridElement = () => {
-                let indexOfCurrentProject = currentRing[0].addNeighbor(projects.shift(), color[0]);
+                let indexOfCurrentProject = currentRing[0].addNeighbor(projects.shift(), color[0],null,currentRingNumber);
                 currentRing[0].connectContigousNeighbors();
 
                 return indexOfCurrentProject;
@@ -111,7 +118,7 @@ let HexagonalGrid = {
                     let indexOfOppositeNeighbor = Math.floor(currentRing.length / 2)
                     let oppositeNeighbor = currentRing[indexOfOppositeNeighbor]
 
-                    oppositeNeighbor.addNeighbor(projects.shift(), color[0], (indexOfCurrentProject + 3) % 6);
+                    oppositeNeighbor.addNeighbor(projects.shift(), color[0], (indexOfCurrentProject + 3) % 6,currentRingNumber);
                     oppositeNeighbor.connectContigousNeighbors();
 
                     if (!oppositeNeighbor.isLeaf()) {
@@ -172,13 +179,12 @@ let HexagonalGrid = {
 
             // Cycle the colors
             color.push(color.shift())
-
-
         }
 
         let interiorRing = []
         //Iterate through the depth queue
         while (projects.length) {
+            currentRingNumber++;
             // A: Construct a ring around the grid
             constructBalancedRing(this.ringQueues[0], interiorRing);
 
@@ -201,19 +207,24 @@ let HexagonalGrid = {
             interiorRing = []
 
         }
+
+        
     },
 
     showLayerByLayer() {
         this.showLayer([this.CentralHexagon])
         console.log("Num of Layers: ", this.numOfLayers);
+
+        // setTimeout(() => {
+        //     this.doesExist = true;
+        // }, this.numOfLayers*DURATION);
+        
     },
 
-    destroyGrid() {
-        this.destroyLayerByLayer();
-        this.doesExist=false;
-    },
-    destroyLayerByLayer() {
-        this.destroyLayer([this.CentralHexagon])
+    destroyGrid(hexagon = null) {
+        
+        this.destroyLayer([hexagon ? hexagon : this.CentralHexagon])
+        this.doesExist = false;
     },
 
     destroyLayer(currentLayer) {
@@ -332,6 +343,8 @@ let HexagonalGrid = {
 
             }, DURATION);
 
+        } else{
+            this.doesExist = true;
         }
 
 
@@ -341,6 +354,7 @@ let HexagonalGrid = {
     showHexagon(hexagon) {
         if (!hexagon.visited) {
             hexagon.visited = true;
+            console.log("ringNumber: ",hexagon.ringNumber);
             let hexgrid = $("#hexagonalGridContainer > svg");
             hexgrid.append(hexagon.createElement())
 
@@ -355,10 +369,12 @@ let HexagonalGrid = {
             {
                 hexElement.addEventListener("click", () => {
 
-
-
                     if (hexagon.project.available) {
-                        soundEffects.playDecision();
+
+                        previewPanels.changeContent("", "")
+                        music.pause();
+
+                        this.goToDestinationScreen(() => projectScreen.control(hexagon.project), () => soundEffects.playDecision(), hexagon)
                     } else {
                         soundEffects.playError();
                     }
