@@ -2,37 +2,82 @@
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#StartScreen>p {
-    position: absolute;
-    color: white;
-    font-weight: bold;
-    margin: 0;
+
+#StartScreen > .BackgroundImg { 
+    filter: blur(6px) opacity(50%) hue-rotate(50deg);
+}
+
+#startScreenTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
     z-index: 1;
 }
 
+#startScreenTextContainer>p {
+    position: relative;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
 #Subtitle {
-    font-size: 2.3vw;
-    top: 20%;
+    font-size:4vh;
+    top: -7%;
+    /* text-shadow: 0 0 0.03125vh #00e1ff, 0 0 0.15625vh #00e1ff, 0 0.3125vh #00e1ff, 0 0 0.46875vh #00e1ff; */
+
 }
 
 #GameTitle {
-    font-size: 10.4vw;
-    top: 27.5%;
+    font-size: 11vh;
+    font-style: italic;
+    top: -5%;
     background-color: black;
-    width: 66%;
+    text-shadow: 0 0 0.03125vh #00e1ff, 0 0 0.15625vh #00e1ff, 0 0.3125vh #00e1ff, 0 0 0.46875vh #00e1ff;
+    max-width: 70%;
+    padding: 0 3vh;
     text-align: center;
 }
 
 #StartPrompt {
-    font-size: 2.8vw;
+    font-size: 5vh;
+    padding: 0 2.5vh;
     display: none;
-    bottom: 15%;
+    position: absolute;
+    bottom: -20%;
     background-color: #9e2000;
-    width: 20%;
+    /* width: 20%; */
     text-align: center;
     border-radius: 20vw;
+}
+
+
+@media screen and (orientation: portrait) {
+    #Subtitle {
+        font-size:4vw;
+        /* text-shadow: 0 0 0.03125vw #00e1ff, 0 0 0.15625vw #00e1ff, 0 0.3125vw #00e1ff, 0 0 0.46875vw #00e1ff; */
+    
+    }
+    
+    #GameTitle {
+        font-size: 11vw;
+        text-shadow: 0 0 0.03125vw #00e1ff, 0 0 0.15625vw #00e1ff, 0 0.3125vw #00e1ff, 0 0 0.46875vw #00e1ff;
+        padding: 0 3vw;
+    }
+    
+    #StartPrompt {
+        font-size: 5vw;
+        padding: 0 2.5vw;
+        border-radius: 20vh;
+    }
 }
 
 #StartPrompt:hover {

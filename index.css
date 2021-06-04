@@ -63,9 +63,7 @@ body {
 
 .BackgroundImg {
     position: absolute;
-    /* width: 100%; */
     width: 100%;
-    
     
     filter: opacity(50%) blur(0.1vw) hue-rotate(50deg);
     background-size: cover;
