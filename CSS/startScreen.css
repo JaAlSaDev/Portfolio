@@ -23,7 +23,7 @@
     z-index: 1;
 }
 
-#startScreenTextContainer>p {
+#startScreenTextContainer p {
     position: relative;
     color: white;
     font-weight: bold;
@@ -48,13 +48,19 @@
     text-align: center;
 }
 
+#StartPromptContainer{
+    /* border: blue 1px dashed; */
+    position: absolute;
+    bottom: 15%;
+    /* height: 100%; */
+    /* width: 20%; */
+}
 #StartPrompt {
     font-size: 5vh;
     padding: 0 2.5vh;
     display: none;
-    position: absolute;
-    bottom: -20%;
-    background-color: #9e2000;
+    
+    background-color: #007786;
     /* width: 20%; */
     text-align: center;
     border-radius: 20vw;
@@ -82,7 +88,7 @@
 }
 
 #StartPrompt:hover {
-    color: rgb(0, 225, 255);
+    color: rgb(255, 121, 121);
 }
 
 #StartPrompt:active {
