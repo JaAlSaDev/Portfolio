@@ -10,6 +10,7 @@
 
 #StartScreen > .BackgroundImg { 
     filter: blur(6px) opacity(50%) hue-rotate(50deg);
+    /* filter: unset; */
 }
 
 #startScreenTextContainer {
