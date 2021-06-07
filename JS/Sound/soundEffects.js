@@ -22,17 +22,17 @@ let soundEffects = {
 
     },
     playSelect: function () {
-        this.play(sounds["X8StageSelect"])
+        this.play(sounds["RE_ITEM"])
 
     },
     playError: function () {
         this.play(sounds["X8Error"])
     },
     playDecision: function () {
-        this.play(sounds["X8Decision"])
+        this.play(sounds["RE_DECIDE"])
     },
     playCancel: function () {
-        this.play(sounds["X8Cancel"])
+        this.play(sounds["RE_CANCEL"])
     }
 }
 
