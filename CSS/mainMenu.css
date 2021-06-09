@@ -1,40 +1,26 @@
-#upperSection {
-    height: 25%;
-    width: 100%;
-    /* background-color: red; */
+#MainMenu{
+    display: none;
+    flex-direction: column;
+}
+
+#MainMenu>.BackgroundImg {
+    filter: none;
+}
+
+.screenContent > div{
     display: flex;
+    height: 30%;
+    width: 100%;
+    position: relative;
+
+}
+
+#upperSection, #lowerSection  { 
     justify-content: space-around;
-    align-self: center;
-    position: absolute;
-    /* left: 50%; */
-    top: 12.5%;
-    /* transform: translate(-50%, -50%); */
 }
 
 #midSection {
-    height: 25%;
-    width: 100%;
-    /* background-color: red; */
-    display: flex;
     justify-content: space-evenly;
-    align-self: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#lowerSection {
-    height: 25%;
-    width: 100%;
-    /* background-color: red; */
-    display: flex;
-    justify-content: space-around;
-    align-self: center;
-    position: absolute;
-    /* left: 50%; */
-    top: 62.5%;
-    /* transform: translate(-50%, -50%); */
 }
 
 #message {
@@ -42,7 +28,7 @@
     color: white;
     text-align: center;
     font-size: 6vh;
-    top: 60%;
+    top: 55%;
     left: 40%;
     max-height: 10%;
     width: 20%;
@@ -60,7 +46,7 @@
 
 .cursor {
     display: inline-block;
-    height: 2.7vw;
+    height: 6vh;
     width: 0.81vw;
     background: white;
     vertical-align: middle;

@@ -6,8 +6,6 @@
 @import "./CSS/projectsScreen.css";
 @import "./CSS//projectScreen.css";
 @import "./CSS/itemPreview.css";
-
-
 * {
     -moz-box-sizing: border-box;
     /* Firexfox */
@@ -15,7 +13,6 @@
     /* Safari/Chrome/iOS/Android */
     box-sizing: border-box;
     /* IE */
-    
 }
 
 :root {
@@ -23,21 +20,25 @@
     --scrollbarBg: rgb(161, 0, 27);
     --scrollbarThumb: rgb(244, 63, 94);
 }
-  * {
-    scrollbar-width: var(--scrollbarWidth) ;
+
+* {
+    scrollbar-width: var(--scrollbarWidth);
     scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
-  }
-  *::-webkit-scrollbar {
+}
+
+*::-webkit-scrollbar {
     width: var(--scrollbarWidth);
-  }
-  *::-webkit-scrollbar-track {
+}
+
+*::-webkit-scrollbar-track {
     background: var(--scrollbarBg);
-  }
-  *::-webkit-scrollbar-thumb {
+}
+
+*::-webkit-scrollbar-thumb {
     background-color: var(--scrollbarThumb);
     border-radius: 0.025rem;
     border: 0.025rem solid var(--scrollbarBg);
-  }
+}
 
 body {
     /* position: relative; */
@@ -64,16 +65,13 @@ body {
 .BackgroundImg {
     position: absolute;
     width: 100%;
-    
     filter: opacity(50%) blur(0.1vw) hue-rotate(50deg);
     background-size: cover;
-    pointer-events:none;
+    pointer-events: none;
     z-index: 0;
 }
 
-#MainMenu > .BackgroundImg {
-    filter: none;
-}
+
 
 .hexagon {
     height: auto;
@@ -96,34 +94,33 @@ body {
     stroke-width: 25;
 }
 
-.optionHover  {
+.optionHover {
     stroke: gold;
     animation: optionBorderAnimate 0.75s ease-in-out infinite alternate;
 }
 
-.option:hover  {
+.option:hover {
     animation: optionBorderAnimate 0.75s ease-in-out infinite alternate;
 }
 
- @keyframes optionBorderAnimate {
+@keyframes optionBorderAnimate {
     from {
         stroke: gold;
     }
     to {
-        
         stroke: rgb(122, 104, 0);
     }
-  }
-
-.option:active  {
-    stroke: gold;
-    fill: white;
 }
-.optionClick  {
+
+.option:active {
     stroke: gold;
     fill: white;
 }
 
+.optionClick {
+    stroke: gold;
+    fill: white;
+}
 
 .unavailable {
     stroke: rgb(124, 1, 1);
@@ -139,10 +136,6 @@ body {
     fill: black;
 }
 
-
-
-
-
 svg .previewStatic {
     /* filter: hue-rotate(99deg); */
     opacity: 0.8;
@@ -150,33 +143,30 @@ svg .previewStatic {
 
 @media screen and (orientation: portrait) {
     body {
-      /* Rotate the content container */
-      transform: rotate(90deg);
-      transform-origin: right top;
-      /* Set content width to viewport height */
-      width: 100vh;
-      /* Set content height to viewport width */
-      height: 100vw;
-      overflow-x: hidden;
-      position: absolute;
-      top: 100%;
-      right: 0;
+        /* Rotate the content container */
+        transform: rotate(90deg);
+        transform-origin: right top;
+        /* Set content width to viewport height */
+        width: 100vh;
+        /* Set content height to viewport width */
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        right: 0;
     }
-
-    
-
     .BackgroundImg {
         height: 100%;
         width: auto;
-        
-
     }
-  }
+    .screenTitle>p {
+        font-size: 6vw;
+        text-shadow: 0 0 0.03125vw #00e1ff, 0 0 0.15625vw #00e1ff, 0 0.3125vw #00e1ff, 0 0 0.46875vw #00e1ff;
+    }
+}
 
-  .arrowContainer {
+.arrowContainer {
     position: absolute;
-    /* background-color: blue; */
-    /* left: 2.5%; */
     top: 5%;
     height: 10%;
     width: 100%;
@@ -184,15 +174,63 @@ svg .previewStatic {
 }
 
 p, text {
-    -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Old versions of Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
-  }
+}
 
-  text{
-      cursor: pointer;
-  }
+text {
+    cursor: pointer;
+}
+
+.screenHeader {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.75%;
+    width: 100%;
+    height: 12.5%;
+}
+
+.screenContent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90%;
+}
+
+.screenHeader .backArrow {
+    position: absolute;
+    left: 2.5%;
+    margin-left: 0%;
+    width: 10%;
+    /* border: blue 1px dashed; */
+}
+
+.screenTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    border: rgb(212, 1, 114) 0.8vh groove;
+    padding: 0 5%;
+}
+
+.screenTitle>p {
+    text-align: center;
+    color: white;
+    font-size: 6vh;
+    text-shadow: 0 0 0.03125vh #00e1ff, 0 0 0.15625vh #00e1ff, 0 0.3125vh #00e1ff, 0 0 0.46875vh #00e1ff;
+}
